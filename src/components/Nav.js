@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Home(props) {
+function Nav(props) {
     return (
         <div>
-            This is Home
+            This is the Nav
         </div>
     );
 }
 
-export default Home;
+export default Nav;

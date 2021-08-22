@@ -1,12 +1,15 @@
 .App {
   background-color: #DDDDDD;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border: 2px solid black;
 }
 
 .App-logo {
@@ -18,10 +21,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-
 }
 
 .App-link {
