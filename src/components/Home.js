@@ -4,7 +4,7 @@ import TomLogo from '../tom_logo.svg'
 function Home(props) {
     return (
         <div id="home">
-            <img src={TomLogo} />
+            <img id="home-logo" src={TomLogo} />
         </div>
     );
 }
