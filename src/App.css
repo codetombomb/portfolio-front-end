@@ -4,7 +4,7 @@ body{
   margin: 0;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #root{
@@ -18,12 +18,40 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid green;
+
 }
 
 #portfolio{
   border: 7px solid black;
   height: 92%;
   width: 93%;
+
+}
+
+#nav{
+  width: 10%;
+  height: 10%;
+  border: 2px solid red;
+  /* display: flex;
+  justify-content: flex-end; */
+  /* flex-direction: column; */
+  transform: rotate(90deg);
+}
+
+#nav ul{
+  /* transform: rotate(45deg); */
+}
+
+#nav li{
+  list-style-type: none;
+  border: 2px solid pink;
+
+}
+
+#nav li a{
+  text-decoration: none;
+  color: black;
 }
 
 #home {
@@ -52,6 +80,7 @@ body{
 }
 
 #creep-overlay-block{
+  min-width: 300px;
   width: 53%;
   height: 75%;
   background-color: #ff00006b;
@@ -62,8 +91,9 @@ body{
 
 #creep-pic{
   height: 80%;
+  /* width: 100%; */
   position: absolute;
-  bottom: 2.5%;
+  bottom: 2%;
   border: 2px solid black;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
