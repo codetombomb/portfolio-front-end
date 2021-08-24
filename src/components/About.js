@@ -20,7 +20,7 @@ function About(props) {
                         <p>foodie</p>
                         <p>music</p>
                     </div>
-                    <img id="creep-pic" src={Creep} />
+                    <img id="creep-pic" alt="Tom Creep" src={Creep} />
                 </div>
                 <div id="creep-overlay-block"></div>
             </div>

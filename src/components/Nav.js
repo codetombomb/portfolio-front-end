@@ -5,7 +5,7 @@ function Nav(props) {
     return (
         <div id="nav">
                 <div id="nav-logo-wrapper">
-                    <a href="/" ><img id="logo-home" src={TomLogo}/></a>
+                    <a href="/" ><img id="logo-home" alt="tom-logo" src={TomLogo}/></a>
                 </div>
             <div id="logo-link-wrapper">
                 <ul>
