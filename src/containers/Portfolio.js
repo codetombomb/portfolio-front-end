@@ -12,9 +12,9 @@ import {
 
 function Portfolio() {
     const [projects, setProjects] = useState([]);
-    const [about, setAbout] = useState([]);
-    const [works, setWorks] = useState(worksImages);
-    
+    const [info, setInfo] = useState([]);
+    const [works] = useState(worksImages);
+
 
     const getProjects = () => {
         fetch('http://localhost:4000/projects')
@@ -22,10 +22,13 @@ function Portfolio() {
             .then(json => setProjects({ projects: [...json] }))
     }
 
-    const getAbout = () => {
-        fetch('http://localhost:4000/about')
-        .then(res => res.json())
-        .then(json => setProjects({ about: [...json] }))
+    const getAbout = async () => {
+        await fetch('http://localhost:4000/about')
+            .then(res => res.json())
+            .then(json => {
+                const attrArry = json[0].info
+                setInfo({ info: [...attrArry] })
+            })
     }
 
     useEffect(() => {
@@ -42,10 +45,10 @@ function Portfolio() {
                         <Home />
                     </Route>
                     <Route exact path="/about">
-                        <About />
+                        <About attributes={info.about} />
                     </Route>
                     <Route exact path="/works">
-                        <Works works={works} />
+                        <Works ads={works} projects={projects} />
                     </Route>
                 </Switch>
             </Router>

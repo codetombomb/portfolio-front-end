@@ -6,12 +6,11 @@ function Works(props) {
     const img = `process.env.PUBLIC_URL../../worksImgs/${displayed}.png`
 
     useEffect(() => {
-        setDisplayed(props.works[count])
+        setDisplayed(props.ads[count])
     })
 
     const handleClick = (e) => {
-        console.log("moving img")
-        if (count < props.works.length - 1){
+        if (count < props.ads.length - 1){
             setCount(count + 1)
         } else {
             setCount(0)
