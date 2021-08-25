@@ -3,6 +3,7 @@ import Home from '../components/Home';
 import Nav from '../components/Nav';
 import About from '../components/About';
 import Works from '../components/Works';
+import Contact from '../components/Contact';
 import worksImages from '../worksImages';
 import {
     BrowserRouter as Router,
@@ -49,6 +50,9 @@ function Portfolio() {
                     </Route>
                     <Route exact path="/works">
                         <Works ads={works} projects={projects} />
+                    </Route>
+                    <Route exact path="/contact">
+                        <Contact />
                     </Route>
                 </Switch>
             </Router>
