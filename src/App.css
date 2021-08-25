@@ -183,7 +183,6 @@ body{
 
 #works-container img{
   overflow: hidden;
-  cursor: pointer;
   margin: 0;
   padding: 0;
 }
@@ -197,4 +196,25 @@ body{
   position: relative;
   border: 1px solid purple;
   bottom: 10%;
+}
+
+#arrow-left{
+  border: solid black;
+  border-width: 0 0px 2px 2px;
+  height: 30px;
+  width: 30px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  cursor: pointer;
+}
+
+#arrow-right{
+  border: solid black;
+  border-width: 2px 2px 0px 0px;
+  height: 30px;
+  width: 30px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  cursor: pointer;
+  
 }
