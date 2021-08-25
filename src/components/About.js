@@ -1,5 +1,5 @@
 import React from 'react';
-import Creep from '../creep.jpg'
+// import Creep from '../../public/worksImgs/creep.jpg'
 
 function About(props) {
     return (
@@ -20,7 +20,7 @@ function About(props) {
                         <p>foodie</p>
                         <p>music</p>
                     </div>
-                    <img id="creep-pic" alt="Tom Creep" src={Creep} />
+                    <img id="creep-pic" alt="Tom Creep" src="process.env.PUBLIC_URL../../creep.jpg" />
                 </div>
                 <div id="creep-overlay-block"></div>
             </div>

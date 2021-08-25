@@ -13,7 +13,9 @@ import {
 
 function Portfolio() {
     const [projects, setProjects] = useState([]);
-    const [worksImgs, setWorksImages] = useState(worksImages);
+    const [about, setAbout] = useState([]);
+    const [works, setWorks] = useState(worksImages);
+    
 
     const getProjects = () => {
         fetch('http://localhost:4000/projects')
@@ -21,9 +23,15 @@ function Portfolio() {
             .then(json => setProjects({ projects: [...json] }))
     }
 
+    const getAbout = () => {
+        fetch('http://localhost:4000/about')
+        .then(res => res.json())
+        .then(json => setProjects({ about: [...json] }))
+    }
+
     useEffect(() => {
         getProjects();
-        console.log(worksImgs.covidChaos)
+        getAbout()
     }, [])
 
     return (
@@ -38,7 +46,7 @@ function Portfolio() {
                         <About />
                     </Route>
                     <Route exact path="/works">
-                        <Works works={worksImages} />
+                        <Works works={works} />
                     </Route>
                 </Switch>
             </Router>
