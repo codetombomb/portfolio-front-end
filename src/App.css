@@ -187,3 +187,14 @@ body{
   margin: 0;
   padding: 0;
 }
+
+#contact{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid purple;
+  bottom: 10%;
+}
