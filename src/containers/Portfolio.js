@@ -17,8 +17,8 @@ function Portfolio() {
     const [works] = useState(worksImages);
 
 
-    const getProjects = () => {
-        fetch('http://localhost:4000/projects')
+    const getProjects = async () => {
+        await fetch('http://localhost:4000/projects')
             .then(res => res.json())
             .then(json => setProjects({ projects: [...json] }))
     }
@@ -28,7 +28,7 @@ function Portfolio() {
             .then(res => res.json())
             .then(json => {
                 const attrArry = json[0].info
-                setInfo({ info: [...attrArry] })
+                setInfo([...attrArry])
             })
     }
 
@@ -46,7 +46,7 @@ function Portfolio() {
                         <Home />
                     </Route>
                     <Route exact path="/about">
-                        <About attributes={info.about} />
+                        <About attributes={info} />
                     </Route>
                     <Route exact path="/works">
                         <Works ads={works} projects={projects} />

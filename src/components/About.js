@@ -1,7 +1,7 @@
 import React from 'react';
 
 function About(props) {
-
+    console.log(props.attributes)
     return (
         <div id="about">
             <div id="creep-pic-wrapper">
@@ -11,6 +11,7 @@ function About(props) {
                         <h2>0907</h2>
                     </div>
                     <div id="info-container">
+                        {props.attributes.map((attr) => (<p key={attr}>{attr}</p>))}
                     </div>
                     <img id="creep-pic" alt="Tom Creep" src="process.env.PUBLIC_URL../../creep.jpg" />
                 </div>
