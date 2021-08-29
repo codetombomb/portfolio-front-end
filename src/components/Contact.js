@@ -3,7 +3,7 @@ import React from 'react';
 function Contact(props) {
     return (
         <div id="contact">
-            Hello from Contact!
+            <img alt="Tom Tobar Contact Poster Beetlejuice" src='process.env.PUBLIC_URL../../contact.png'></img>
         </div>
     );
 }
