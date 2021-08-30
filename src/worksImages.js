@@ -1,3 +1,3 @@
-const worksImages = ["jeopardy", "covid_chaos", "reacTarot"]
+const worksImages = ["covid_chaos", "jeopardy", "reacTarot"]
 
 export default worksImages;
