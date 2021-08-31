@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TomLogo from '../tom_logo.svg'
 
 function Nav(props) {
-    
+
     const moveDown = (e) => {
         e.target.style.transform = "translateX(5px)";
         e.target.style.color = "red"
@@ -12,14 +12,18 @@ function Nav(props) {
         e.target.style.color = "black"
         e.target.style.transform = "translateX(0px)";
     }
-    
+
 
     return (
         <div id="nav">
             <div id="nav-logo-wrapper">
-                {!props.onHome ?
-                    <a href="/" ><img id="logo-home" alt="tom-logo" src={TomLogo} /></a>
-                    : null}
+                {
+                    !props.onHome
+                        ?
+                        <a href="/" ><img id="logo-home" alt="tom-logo" src={TomLogo} /></a>
+                        :
+                        null
+                }
             </div>
             <div id="logo-link-wrapper">
                 <ul>
