@@ -106,6 +106,7 @@ body{
 }
 
 #info-container{
+  display: none;
   position: relative;
   z-index: 20;
   color: #fff;
@@ -147,16 +148,18 @@ body{
 }
 
 #creep-overlay-block{
+  display: none;
   min-width: 300px;
   width: 53%;
   height: 75%;
-  background-color: #ff00006b;
+  background-color: #ff000067;
   position: absolute;
   top: -10px;
   right: -5px;
 }
 
 #creep-pic{
+  display: none;
   height: 100%;
   position: absolute;
   bottom: 0;
