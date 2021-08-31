@@ -85,6 +85,7 @@ body{
 }
 
 #home-logo {
+  -webkit-filter: drop-shadow(.15em .6em .15em rgb(92, 88, 88));
   filter: drop-shadow(.15em .6em .15em rgb(92, 88, 88));
 }
 
@@ -134,10 +135,14 @@ body{
 }
 
 #bday h1{
+  display: none;
   font-size: 3em;
   margin: .2em;
 }
 
+#bday h2{
+  display: none;
+}
 #creep-pic-wrapper{
   position: relative;
   height: 100%;
@@ -205,7 +210,9 @@ body{
 }
 
 #contact img {
+  display: none;
   height: 75%;
+  filter: drop-shadow(.6em .6em .15em rgb(92, 88, 88));
 }
 
 #arrow-left{
