@@ -15,6 +15,7 @@ function Portfolio() {
     const [projects, setProjects] = useState([]);
     const [info, setInfo] = useState([]);
     const [works] = useState(worksImages);
+    const [onHome, setOnHome] = useState(false);
 
 
     const getProjects = async () => {
@@ -39,14 +40,14 @@ function Portfolio() {
 
     return (
         <div id="portfolio">
-            <Nav />
+            <Nav onHome={onHome} />
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <Home />
+                        <Home onHome={onHome} setOnHome={setOnHome}/>
                     </Route>
                     <Route exact path="/about">
-                        <About attributes={info} />
+                        <About attributes={info}  />
                     </Route>
                     <Route exact path="/works">
                         <Works ads={works} projects={projects} />
