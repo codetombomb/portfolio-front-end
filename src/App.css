@@ -69,6 +69,8 @@ body{
 }
 
 #nav li a{
+  display: block;
+  transition-duration: .5s;
   text-decoration: none;
   color: black;
 }
