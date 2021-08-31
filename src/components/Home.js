@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 
 function Home(props) {
     const tomLogo = useRef();
+
     useEffect(() => {
         props.setOnHome(true)
         spinLogo();
@@ -31,5 +32,3 @@ function Home(props) {
 }
 
 export default Home;
-
-//Diplay the tom logo
