@@ -83,6 +83,7 @@ body{
 }
 
 #home-logo {
+  filter: drop-shadow(.15em .6em .15em rgb(92, 88, 88));
 }
 
 #about{
