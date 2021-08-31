@@ -14,13 +14,12 @@ function Home(props) {
 
     function spinLogo() {
         gsap.from(tomLogo.current, {
-            opacity: 0,     
-            x: -150, 
+            opacity: 0,  
+            x: -190, 
             rotation: -90,
-            duration: 7,
+            duration: 4,
             repeat: false, 
             ease: "elastic"
-
         })
     }
 
