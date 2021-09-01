@@ -28,6 +28,9 @@ function About(props) {
         gsap.to(bdayTitleH2.current, {
             display: "block"
         })
+        gsap.to(infoDiv.current, {
+            display: "block"
+        })
         gsap.from(overlayBlock.current, {
             y: -150,
             opacity: 0,
@@ -62,7 +65,7 @@ function About(props) {
                         <h1 ref={bdayTitleH1}>85</h1>
                         <h2 ref={bdayTitleH2}>0907</h2>
                     </div>
-                    <div ref={infoDiv} style={{display: 'block'}} id="info-container">
+                    <div ref={infoDiv} id="info-container">
                         {props.attributes.map((attr) => (<p key={attr}>{attr}</p>))}
                     </div>
                     <img
