@@ -3,37 +3,44 @@ import Arrow from './Arrow'
 
 function Works(props) {
     const [count, setCount] = useState(0)
-    const [displayed, setDisplayed] = useState("")
-    const img = `process.env.PUBLIC_URL../../worksImgs/${displayed}.png`
+    // const [displayed, setDisplayed] = useState("")
     const [project, setProject] = useState({})
+    // const img = `process.env.PUBLIC_URL../../worksImgs/${project.imgName}.png`
 
-    useEffect(() => {
-        setDisplayed(props.ads[count])
-        setProject({...props.projects[count]})
-    }, [])
-
+    const handleSetProject = () => {
+        let currentProject = props.projects[count]
+        setProject({...currentProject})
+    }
+    
     const handleRightClick = (e) => {
-        if (count < props.ads.length - 1) {
+        console.log("moving right")
+        if (count < props.projects.length - 1) {
             setCount(count + 1)
         } else {
             setCount(0)
         }
     }
-
+    
     const handleLeftClick = (e) => {
+        console.log("moving left")
         if (count > 0) {
             setCount(count - 1)
         } else {
-            setCount(props.ads.length - 1)
+            setCount(props.projects.length - 1)
         }
     }
 
+    useEffect(() => {
+        // console.log("from Works useEffect", props.projects)
+        handleSetProject();
+    }, [])
+    
     return (
         <div id="works">
             <div id="works-container">
-                <Arrow direction="left" handleClick={handleLeftClick}/>
-                <a href={project.title}>{project.title}</a>
-                <img key={count} id={displayed} alt="Works Ad" src={img} />
+                <Arrow direction="left" handleClick={handleLeftClick} />
+                {/* <a href={project.title}>{project.title}</a> */}
+                <img alt={project.imgName} src={`process.env.PUBLIC_URL../../worksImgs/${project.imgName}.png`} />
                 <Arrow direction="right" handleClick={handleRightClick} />
             </div>
         </div>

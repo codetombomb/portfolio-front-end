@@ -1,64 +1,91 @@
-import React, { useState, useEffect } from 'react';
 import Home from '../components/Home';
 import Nav from '../components/Nav';
 import About from '../components/About';
-import Works from '../components/Works';
+import WorksContainer from '../containers/WorksContainer';
 import Contact from '../components/Contact';
-import worksImages from '../worksImages';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
+import React, { Component } from 'react';
 
-function Portfolio() {
-    const [projects, setProjects] = useState([]);
-    const [info, setInfo] = useState([]);
-    const [works] = useState(worksImages);
-    const [onHome, setOnHome] = useState(false);
-
-
-    const getProjects = async () => {
-        await fetch('http://localhost:4000/projects')
-            .then(res => res.json())
-            .then(json => setProjects({ projects: [...json] }))
+class Portfolio extends Component {
+    constructor(props) {
+        super()
+        this.state = {
+            projects: [],
+            onHome: false,
+            info: []
+        }
     }
 
-    const getAbout = async () => {
-        await fetch('http://localhost:4000/about')
+    updateProjects = data => {
+        this.setProjects([...data])
+    }
+
+    getProjects() {
+        fetch('http://localhost:4000/projects')
             .then(res => res.json())
             .then(json => {
-                const attrArry = json[0].info
-                setInfo([...attrArry])
+                this.updateProjects(json)
             })
     }
 
-    useEffect(() => {
-        getProjects();
-        getAbout()
-    }, [])
+    getAbout() {
+        fetch('http://localhost:4000/about')
+            .then(res => res.json())
+            .then(json => {
+                const attrArry = json[0].info
+                this.setInfo([...attrArry])
+            })
+    }
 
-    return (
-        <div id="portfolio">
-            <Nav onHome={onHome} />
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Home onHome={onHome} setOnHome={setOnHome}/>
-                    </Route>
-                    <Route exact path="/about">
-                        <About attributes={info}  />
-                    </Route>
-                    <Route exact path="/works">
-                        <Works ads={works} projects={projects} />
-                    </Route>
-                    <Route exact path="/contact">
-                        <Contact />
-                    </Route>
-                </Switch>
-            </Router>
-        </div>
-    );
+    setOnHome = (current) => {
+        this.setState({
+            onHome: current
+        })
+    }
+
+    setProjects(projects) {
+        this.setState({
+            projects: [...projects]
+        })
+    }
+
+    setInfo(info) {
+        this.setState({
+            info: [...info]
+        })
+    }
+
+    componentDidMount() {
+        this.getProjects();
+        this.getAbout();
+    }
+
+    render() {
+        return (
+            <div id="portfolio">
+                <Nav onHome={this.state.onHome} />
+                <Router>
+                    <Switch>
+                        <Route exact path="/">
+                            <Home onHome={this.state.onHome} setOnHome={this.setOnHome} />
+                        </Route>
+                        <Route exact path="/about">
+                            <About attributes={this.state.info} />
+                        </Route>
+                        <Route exact path="/works">
+                            <WorksContainer projects={this.state.projects} />
+                        </Route>
+                        <Route exact path="/contact">
+                            <Contact />
+                        </Route>
+                    </Switch>
+                </Router>
+            </div>
+        )
+    }
 }
-
 export default Portfolio;
