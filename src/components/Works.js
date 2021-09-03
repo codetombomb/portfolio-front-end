@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Arrow from './Arrow'
+import ProjectCard from './ProjectCard';
 
 function Works(props) {
     const [count, setCount] = useState(0)
-    
+
     const handleRightClick = (e) => {
-        console.log("moving right")
         if (count < props.projects.length - 1) {
             setCount(count + 1)
         } else {
@@ -14,7 +14,6 @@ function Works(props) {
     }
 
     const handleLeftClick = (e) => {
-        console.log("moving left")
         if (count > 0) {
             setCount(count - 1)
         } else {
@@ -26,15 +25,14 @@ function Works(props) {
         <div id="works">
             <div id="works-container">
                 <Arrow direction="left" handleClick={handleLeftClick} />
-                {/* <a href={project.title}>{project.title}</a> */}
                 {props.projects.map((project, index) => {
                     let display = index === count ? "block" : "none";
-                    return <img
+                    return (<ProjectCard
                         key={project._id}
-                        alt={project.imgName}
-                        src={`process.env.PUBLIC_URL../../worksImgs/${project.imgName}.png`}
-                        style={{display: `${display}`}}
-                    />
+                        info={project}
+                        source={`process.env.PUBLIC_URL../../worksImgs/${project.imgName}.png`}
+                        display={{display: `${display}`}}
+                    />)
                 })}
                 <Arrow direction="right" handleClick={handleRightClick} />
             </div>

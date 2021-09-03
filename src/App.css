@@ -193,11 +193,17 @@ body{
   bottom: -2%;
 }
 
-#works-container img{
+#project-card{
   overflow: hidden;
   height: 60%;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+}
+
+#project-card img{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 #contact{
