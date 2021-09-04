@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Arrow from './Arrow'
-import ProjectCard from './ProjectCard';
+import Arrow from '../components/Arrow'
+import ProjectCard from '../components/ProjectCard';
 
 function Works(props) {
     const [count, setCount] = useState(0)
