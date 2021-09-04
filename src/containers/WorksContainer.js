@@ -1,5 +1,5 @@
 import React from 'react';
-import Works from '../components/Works'
+import Works from './Works'
 
 function WorksContainer(props) {
     return (
