@@ -35,9 +35,11 @@ class Portfolio extends Component {
     getAbout() {
         fetch('http://localhost:4000/about')
             .then(res => res.json())
-            .then(json => {
-                const attrArry = json[0].info
-                this.setInfo([...attrArry])
+            .then(attrs => {
+                console.log(attrs.map(attr => attr.trait))
+                this.setState({
+                    info: [...attrs.map(attr => attr.trait)]
+                })
             })
     }
 

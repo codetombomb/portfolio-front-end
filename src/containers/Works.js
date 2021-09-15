@@ -30,7 +30,7 @@ function Works(props) {
                     return (<ProjectCard
                         key={project._id}
                         info={project}
-                        source={`process.env.PUBLIC_URL../../worksImgs/${project.imgName}.png`}
+                        source={`process.env.PUBLIC_URL../../worksImgs/${project.img_name}.png`}
                         display={{display: `${display}`}}
                     />)
                 })}
