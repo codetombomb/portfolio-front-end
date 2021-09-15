@@ -25,7 +25,7 @@ class Portfolio extends Component {
     }
 
     getProjects() {
-        fetch('http://localhost:4000/projects')
+        fetch('https://tom-portfolio-api.herokuapp.com/projects')
             .then(res => res.json())
             .then(json => {
                 this.updateProjects(json)
@@ -33,10 +33,9 @@ class Portfolio extends Component {
     }
 
     getAbout() {
-        fetch('http://localhost:4000/about')
+        fetch('https://tom-portfolio-api.herokuapp.com/about')
             .then(res => res.json())
             .then(attrs => {
-                console.log(attrs.map(attr => attr.trait))
                 this.setState({
                     info: [...attrs.map(attr => attr.trait)]
                 })

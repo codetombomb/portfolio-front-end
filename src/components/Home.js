@@ -2,16 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import TomLogo from '../tom_logo.svg'
 import { gsap } from 'gsap'
 
-function Home(props) {
+function Home({setOnHome}) {
     const tomLogo = useRef();
 
     useEffect(() => {
-        props.setOnHome(true)
+        setOnHome(true)
         spinLogo();
         return () => {
-            props.setOnHome(false)
+            setOnHome(false)
         }
-    }, [])
+    }, [setOnHome])
 
     function spinLogo() {
         gsap.from(tomLogo.current, {
