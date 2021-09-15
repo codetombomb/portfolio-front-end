@@ -28,7 +28,7 @@ function Works(props) {
                 {props.projects.map((project, index) => {
                     let display = index === count ? "block" : "none";
                     return (<ProjectCard
-                        key={project._id}
+                        key={project.id}
                         info={project}
                         source={`process.env.PUBLIC_URL../../worksImgs/${project.img_name}.png`}
                         display={{display: `${display}`}}
