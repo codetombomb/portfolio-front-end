@@ -27,24 +27,6 @@ class Portfolio extends Component {
         this.setProjects([...data])
     }
 
-    // getProjects() {
-    //     fetch('https://tom-portfolio-api.herokuapp.com/projects')
-    //         .then(res => res.json())
-    //         .then(json => {
-    //             this.updateProjects(json)
-    //         })
-    // }
-
-    // getAbout() {
-    //     fetch('https://tom-portfolio-api.herokuapp.com/about')
-    //         .then(res => res.json())
-    //         .then(attrs => {
-    //             this.setState({
-    //                 info: [...attrs.map(attr => attr.trait)]
-    //             })
-    //         })
-    // }
-
     setOnHome = (current) => {
         this.setState({
             onHome: current
@@ -62,11 +44,6 @@ class Portfolio extends Component {
             info: [...info]
         })
     }
-
-    // componentDidMount() {
-    //     this.getProjects();
-    //     this.getAbout();
-    // }
 
     render() {
         return (
