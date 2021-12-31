@@ -3,6 +3,9 @@ import Nav from '../components/Nav';
 import About from '../components/About';
 import WorksContainer from '../containers/WorksContainer';
 import Contact from '../components/Contact';
+import aboutData from '../aboutData'
+import projectData from '../projectData'
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,9 +17,9 @@ class Portfolio extends Component {
     constructor(props) {
         super()
         this.state = {
-            projects: [],
+            projects: [...projectData],
             onHome: false,
-            info: []
+            info: [...aboutData]
         }
     }
 
@@ -24,23 +27,23 @@ class Portfolio extends Component {
         this.setProjects([...data])
     }
 
-    getProjects() {
-        fetch('https://tom-portfolio-api.herokuapp.com/projects')
-            .then(res => res.json())
-            .then(json => {
-                this.updateProjects(json)
-            })
-    }
+    // getProjects() {
+    //     fetch('https://tom-portfolio-api.herokuapp.com/projects')
+    //         .then(res => res.json())
+    //         .then(json => {
+    //             this.updateProjects(json)
+    //         })
+    // }
 
-    getAbout() {
-        fetch('https://tom-portfolio-api.herokuapp.com/about')
-            .then(res => res.json())
-            .then(attrs => {
-                this.setState({
-                    info: [...attrs.map(attr => attr.trait)]
-                })
-            })
-    }
+    // getAbout() {
+    //     fetch('https://tom-portfolio-api.herokuapp.com/about')
+    //         .then(res => res.json())
+    //         .then(attrs => {
+    //             this.setState({
+    //                 info: [...attrs.map(attr => attr.trait)]
+    //             })
+    //         })
+    // }
 
     setOnHome = (current) => {
         this.setState({
@@ -60,10 +63,10 @@ class Portfolio extends Component {
         })
     }
 
-    componentDidMount() {
-        this.getProjects();
-        this.getAbout();
-    }
+    // componentDidMount() {
+    //     this.getProjects();
+    //     this.getAbout();
+    // }
 
     render() {
         return (
