@@ -1,12 +1,13 @@
-import React from 'react';
-import Works from './Works'
+import Work from "../Work/Work";
+import './WorksContainer.css'
 
-function WorksContainer(props) {
-    return (
-        <div style={{height: '100%', width: '100%'}}>
-               <Works projects={props.projects}/>  
-        </div>
-    );
+function WorksContainer({ projectData }) {
+  return (
+    <div className="WorksContainer">
+      {projectData.map((project, index) => (
+        <Work key={index} project={project} />
+      ))}
+    </div>
+  );
 }
-
 export default WorksContainer;
