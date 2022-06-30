@@ -5,8 +5,7 @@
     margin: 0 2% 0 2%;
     width: 10%;
     height: 12%;
-    font-size: 2em;
-    min-width: 100px;
-    cursor: url("./hand.png"), URL("./pointer-hand.svg"),
-    pointer;
+    font-size: 2rem;
+    min-width: 120px;
+    min-height: 55px;
 }

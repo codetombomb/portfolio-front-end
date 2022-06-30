@@ -1,37 +1,11 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from '@mui/material/Button';
-import CardActions from '@mui/material/CardActions';
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import './Work.css'
 
 function Work({ project }) {
   console.log(project);
   return (
-    <div className="Work">
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="350"
-          image={`./worksImgs/${project.img_name}.png`}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {project.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {project.description}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button variant="outlined" size="small" href={project.github_link}>Learn More</Button>
-        </CardActions>
-      </CardActionArea>
-    </Card>
-    </div>
+    <a className="Work" href={project.github_link} target="_blank">
+      <img src={`./worksImgs/${project.img_name}.png`}></img>
+    </a>
   );
 }
 export default Work;
