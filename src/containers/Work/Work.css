@@ -1,0 +1,12 @@
+.Work {
+    margin: 5%;
+    width: 50%;
+    
+}
+
+img {
+    /* height: 100%; */
+    border: 1px solid white;
+    background-color: aliceblue;
+    width: 100%;
+}
