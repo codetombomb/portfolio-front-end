@@ -4,12 +4,13 @@ import WorksContainer from '../WorksContainer/WorksContainer'
 import About from '../../components/About/About';
 import Contact from '../../components/Contact/Contact';
 import projectData from '../../projectData';
-import React, {useState} from 'react'
-import {Routes, Route, useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import Footer from "../Footer/Footer"
 
 const buttons = [
-  {type: "Works"},
-  {type: "Contact"}
+  { type: "Works" },
+  { type: "Contact" }
 ]
 
 function App() {
@@ -24,12 +25,13 @@ function App() {
 
   return (
     <div className="App">
-        <Routes>
-          <Route path='/' element={<Portfolio buttons={buttons} handleClick={onHandleClick}/>} />
-          <Route path='/about' element={<About/>} />
-          <Route path='/works' element={<WorksContainer projectData={projectData}/>} />
-          <Route path='/contact' element={<Contact/>} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<Portfolio buttons={buttons} handleClick={onHandleClick} />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/works' element={<WorksContainer projectData={projectData} />} />
+        <Route path='/contact' element={<Contact />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
