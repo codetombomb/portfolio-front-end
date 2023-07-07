@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Cube from './components/Cube/Cube'
+import "./App.css";
+import Cube from "./components/Cube/Cube";
+import { Canvas } from "@react-three/fiber";
 
 function App() {
-
   return (
-    <Cube />
-  )
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Cube position={[1, 1, 1]} />
+    </Canvas>
+  );
 }
 
-export default App
+export default App;
