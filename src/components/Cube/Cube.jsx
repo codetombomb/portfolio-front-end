@@ -12,14 +12,7 @@ function Cube(props) {
   });
 
   return (
-    <mesh
-      {...props}
-      ref={meshRef}
-      scale={1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}
-    >
+    <mesh {...props} ref={meshRef} scale={1}>
       <RoundedBox args={[1, 1, 1]}>
         <meshStandardMaterial color={"greenyellow"} />
       </RoundedBox>
