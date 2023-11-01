@@ -1,4 +1,5 @@
 import Navbar from '../Navbar'
+import SectionCallToAction from '../SectionCallToAction'
 import SectionDescription from '../SectionDescription'
 import SectionTitle from '../SectionTitle'
 
@@ -10,6 +11,7 @@ const TopSection = () => {
       <Navbar />
       <SectionTitle title={"code tombomb"} color="--primary-dark"/>
       <SectionDescription text="Awakens designs with a sequence of characters" color="--primary-dark"/>
+      <SectionCallToAction text="Let's Chat!" color="--primary-dark"/>
     </div>
   )
 }
