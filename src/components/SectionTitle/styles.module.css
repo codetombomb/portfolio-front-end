@@ -2,4 +2,5 @@
     font-family: var(--heading-font);
     max-width: min-content;
     font-size: 5rem;
+    margin: 1rem;
 }
