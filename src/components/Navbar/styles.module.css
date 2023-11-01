@@ -9,13 +9,18 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    width: 25%;
+    width: 35%;
     min-width: 225px;
     padding: 1%;
+    font-size: 2rem;
+}
 
+.navLinks > li {
+    margin: 5%;
 }
 
 .navLogo{
     font-family: var(--heading-font);
+    font-size: 2em;
     min-width: 125px;
 }
