@@ -30,3 +30,7 @@
 body {
   box-sizing: border-box;
 }
+
+button {
+  font-family: 'Stint Ultra Expanded', serif;
+}
