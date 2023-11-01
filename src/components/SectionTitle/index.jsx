@@ -1,4 +1,3 @@
-import React from 'react'
 import style from './styles.module.css'
 const SectionTitle = ({title, color}) => {
   return (
