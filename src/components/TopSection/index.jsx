@@ -13,7 +13,7 @@ const TopSection = () => {
       <SectionTitle title={"code tombomb"} color="--primary-dark"/>
       <SectionDescription text="Awakens designs with a sequence of characters" color="--primary-dark"/>
       <SectionCallToAction text="Let's Chat!" color="--primary-dark"/>
-      <HeroImage imageSrc="../../public/tom-image.png"/>
+      <HeroImage imageSrc="../../tom-image.png"/>
     </div>
   )
 }
