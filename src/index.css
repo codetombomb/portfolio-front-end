@@ -1,8 +1,11 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Stint+Ultra+Expanded&display=swap');
 
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
+
+  --heading-font: 'Rubik Mono One', monospace;
+  font-family: 'Stint Ultra Expanded', serif;
   
 
   font-synthesis: none;

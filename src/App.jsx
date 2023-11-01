@@ -1,8 +1,15 @@
 import "./App.css";
+import AboutSection from "./components/AboutSection";
+import TopSection from "./components/TopSection";
+import WorksSection from "./components/WorksSection";
 
 function App() {
   return (
-    <h2>Hello</h2>
+    <>
+      <TopSection />
+      <AboutSection />
+      <WorksSection />
+    </>
   );
 }
 
