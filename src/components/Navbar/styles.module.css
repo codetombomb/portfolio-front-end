@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #D5FF40;
+    color: black;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    min-width: 225px;
+    padding: 1%;
+
+}
+
+.navLogo{
+    font-family: var(--heading-font);
+    min-width: 125px;
+}
