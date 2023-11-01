@@ -4,6 +4,13 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
 
+  --primary-light: #D5FF40;
+  --primary-dark: black;
+
+  --secondary-light: #606060;
+  --secondary-dark: #161616; 
+
+
   --heading-font: 'Rubik Mono One', monospace;
   font-family: 'Stint Ultra Expanded', serif;
   
