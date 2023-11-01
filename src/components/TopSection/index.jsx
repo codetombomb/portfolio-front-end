@@ -1,3 +1,4 @@
+import HeroImage from '../HeroImage'
 import Navbar from '../Navbar'
 import SectionCallToAction from '../SectionCallToAction'
 import SectionDescription from '../SectionDescription'
@@ -12,6 +13,7 @@ const TopSection = () => {
       <SectionTitle title={"code tombomb"} color="--primary-dark"/>
       <SectionDescription text="Awakens designs with a sequence of characters" color="--primary-dark"/>
       <SectionCallToAction text="Let's Chat!" color="--primary-dark"/>
+      <HeroImage imageSrc="../../public/tom-image.png"/>
     </div>
   )
 }
