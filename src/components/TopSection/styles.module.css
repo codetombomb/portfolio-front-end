@@ -1,3 +1,4 @@
 .topSection{
     background-color: var(--primary-light);
+    position: relative;
 }
