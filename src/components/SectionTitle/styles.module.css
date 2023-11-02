@@ -1,7 +1,7 @@
 .sectionTitle{
     font-family: var(--heading-font);
     max-width: min-content;
-    font-size: 10rem;
+    font-size: 10vw;
     padding: 5rem 0 5rem 2rem;
     position: relative;
     z-index: 20;
