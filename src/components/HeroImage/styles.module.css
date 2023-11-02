@@ -6,7 +6,7 @@
     background-color: var(--primary-dark);
     position: absolute;
     bottom: -225px;
-    left: 40vw;
+    left: 40%;
     filter: brightness(1.25);
     z-index: 1;
 }
