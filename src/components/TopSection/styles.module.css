@@ -2,3 +2,13 @@
     background-color: var(--primary-light);
     position: relative;
 }
+
+/** Bootstrap breakpoint reference
+https://getbootstrap.com/docs/5.0/layout/breakpoints/#:~:text=These%20Sass%20mixins%20translate%20in%20our%20compiled%20CSS%20using%20the%20values%20declared%20in%20our%20Sass%20variables.
+*/
+
+@media (max-width: 576px) {
+    .topSection {
+        
+    }
+}
