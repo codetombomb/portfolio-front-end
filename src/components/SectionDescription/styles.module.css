@@ -8,10 +8,11 @@
 
 @media (max-width: 576px) {
     .sectionDescription{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width: 90vw;
         margin: 0;
         padding-left: 2rem;
         margin: 0;
+        min-width: 250px;
     }
 }
