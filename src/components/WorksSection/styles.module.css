@@ -1,5 +1,6 @@
 .worksSection {
     background-color: var(--secondary-dark);
+    min-width: 390px;
 }
 
 .worksList {
