@@ -17,5 +17,4 @@
 
 .workLink:hover{
     color: var(--secondary-lighter);
-    font-weight: bold;
 }

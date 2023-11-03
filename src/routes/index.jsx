@@ -12,6 +12,7 @@ const AppRoutes = () => {
       element: <App />,
     },
   ]);
+  
   return <RouterProvider router={element} />;
 };
 

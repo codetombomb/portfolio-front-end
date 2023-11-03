@@ -1,7 +1,7 @@
 export default {
   topSection: {
     title: {
-      text: "code tombomb",
+      text: "tom tobar",
       color: "--primary-dark",
     },
     description: {
