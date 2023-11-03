@@ -18,3 +18,9 @@
 .workLink:hover{
     color: var(--secondary-lighter);
 }
+
+@media (max-width: 576px) {
+    .workLink {
+       font-size: 2rem;
+    }
+}

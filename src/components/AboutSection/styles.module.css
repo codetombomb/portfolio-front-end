@@ -1,3 +1,11 @@
 .aboutSection{
     background-color: var(--primary-dark);
+    position: relative;
+}
+
+@media (max-width: 576px) {
+    .aboutSection{
+        height: 65vh;
+        min-height: 420px;
+    }
 }
