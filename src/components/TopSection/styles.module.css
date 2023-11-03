@@ -9,7 +9,8 @@ https://getbootstrap.com/docs/5.0/layout/breakpoints/#:~:text=These%20Sass%20mix
 
 @media (max-width: 576px) {
     .topSection {
-        height: 90vh;
-        min-height: 630px;
+        height: 70vh;
+        min-height: 650px;
+        min-width: 390px;
     }
 }
