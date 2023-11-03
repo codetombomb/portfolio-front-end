@@ -25,30 +25,54 @@
 }
 
 .hamburgerMenu {
-    height: 30px;
-    width: 50px;
-    margin: 1rem 0 1rem 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
+  height: 30px;
+  width: 50px;
+  margin: 1rem 0 1rem 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .hamburgerSlice {
-    background-color: var(--primary-dark);
-    height: 4px;
-    width: 100%;
-    border-radius: 5px;
+  background-color: var(--primary-dark);
+  height: 4px;
+  width: 100%;
+  border-radius: 5px;
+  z-index: 40;
 }
 
 .hamburgerSliceTop {
-
+  transform: rotate(45deg) translateY(18px);
 }
 
 .hamburgerSliceMid {
+  display: none;
 }
 
 .hamburgerSliceBottom {
+  transform: rotate(-45deg) translateY(-18px);
+}
+
+.mobileMenu {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--secondary-dark);
+  position: absolute;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20%;
+  list-style: none;
+  color: var(--primary-light);
 }
 
 @media (max-width: 576px) {
