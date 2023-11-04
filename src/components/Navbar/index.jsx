@@ -18,7 +18,14 @@ const Navbar = () => {
     }
   };
 
-  const toggleShowMenu = () => setShowMenu((previous) => !previous);
+  const toggleShowMenu = () => {
+    if(showMenu){
+      document.body.style.overflow = "auto"
+    } else {
+      document.body.style.overflow = "hidden"
+    }
+    setShowMenu((previous) => !previous)
+  };
 
   return (
     <div className={`${styles.navbar} flex`}>
