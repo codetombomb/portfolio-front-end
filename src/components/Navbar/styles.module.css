@@ -58,6 +58,7 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--secondary-dark);
+  font-size: 2rem;
   position: absolute;
   z-index: 30;
   display: flex;
@@ -74,6 +75,11 @@
   list-style: none;
   color: var(--primary-light);
 }
+
+.mobileNavLinks > li {
+  cursor: pointer;
+}
+
 
 @media (max-width: 576px) {
   .navbar {
