@@ -5,8 +5,8 @@
   border-radius: 50%;
   background-color: var(--primary-dark);
   position: absolute;
-  bottom: -225px;
-  left: 40%;
+  bottom: -215px;
+  left: 42%;
   filter: sepia(0.1) brightness(1.1);
   z-index: 1;
 }
@@ -17,6 +17,7 @@
     width: 340px;
     height: 340px;
     bottom: -191px;
+    left: 43%;
   }
 }
 
@@ -26,6 +27,7 @@
     width: 280px;
     height: 280px;
     bottom: -156px;
+    left: 44%;
   }
 }
 
@@ -35,6 +37,7 @@
     width: 217px;
     height: 217px;
     bottom: -120px;
+    left: 45%;
   }
 }
 
