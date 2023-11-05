@@ -1,4 +1,5 @@
 import style from "./styles.module.css";
+import submitIcon from "../../assets/submit-icon.svg"
 
 const ChatBox = ({ showChat, avatar }) => {
   return (
@@ -19,8 +20,8 @@ const ChatBox = ({ showChat, avatar }) => {
       </section>
       <section className={style.mainChat}>Messages will diplay here!</section>
       <section className={style.chatInputGroup}>
-        <input className={style.chatInput} type="text" />
-        <input type="submit" value="send" />
+        <input className={style.chatInput} type="text" placeholder="Aa"/>
+        <img src={submitIcon} alt="submit arrow icon"/>
       </section>
     </section>
   );

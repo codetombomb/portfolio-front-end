@@ -62,9 +62,14 @@
     align-items: center;
 }
 
+.chatInputGroup > input {
+    margin: 2%;
+}
+
 .chatInput {
     border: none;
+    border-radius: 1.5rem;
     background-color: var(--chat-input-light);
-    height: 50%;
-
+    width: 60%;
+    padding: 3%;
 }
