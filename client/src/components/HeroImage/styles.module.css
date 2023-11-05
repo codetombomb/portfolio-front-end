@@ -1,0 +1,53 @@
+.heroImage {
+  border: 1em solid var(--secondary-light);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: var(--primary-dark);
+  position: absolute;
+  bottom: -215px;
+  left: 42%;
+  filter: sepia(0.1) brightness(1.1);
+  z-index: 1;
+}
+
+@media (max-width: 1200px) {
+  .heroImage {
+    border: 0.85em solid var(--secondary-light);
+    width: 340px;
+    height: 340px;
+    bottom: -191px;
+    left: 43%;
+  }
+}
+
+@media (max-width: 992px) {
+  .heroImage {
+    border: 0.82em solid var(--secondary-light);
+    width: 280px;
+    height: 280px;
+    bottom: -156px;
+    left: 44%;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroImage {
+    border: 0.77em solid var(--secondary-light);
+    width: 217px;
+    height: 217px;
+    bottom: -120px;
+    left: 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroImage {
+    border: 0.5em solid var(--secondary-light);
+    width: 200px;
+    height: 200px;
+    position: relative;
+    bottom: -3vh;
+    left: 25vw;
+  }
+}

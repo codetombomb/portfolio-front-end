@@ -1,0 +1,20 @@
+.sectionCallToAction{
+    background-color: rgba(240, 248, 255, 0);
+    padding: .2em 1em .2em 1em;
+    margin: 2rem;
+    border: 1px solid;
+    border-radius: 2rem;
+    font-size: 1.8vw;
+    width: 20%;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .sectionCallToAction{
+        font-size: 1.5rem;
+        width: 95%;
+        margin: 1rem .5rem 1.5rem .5rem;
+        position: absolute;
+        bottom: 0;
+    }
+}

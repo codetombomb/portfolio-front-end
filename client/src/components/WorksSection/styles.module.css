@@ -1,0 +1,27 @@
+.worksSection {
+    background-color: var(--secondary-dark);
+    min-width: 390px;
+}
+
+.worksList {
+    margin-top: 5em;
+}
+
+.workLink{
+    text-decoration: none;
+    width: 90%;
+    padding: 1rem;
+    border-top: 1px solid var(--secondary-light);
+    color: var(--secondary-light);
+    font-size: 2vw;
+}
+
+.workLink:hover{
+    color: var(--secondary-lighter);
+}
+
+@media (max-width: 576px) {
+    .workLink {
+       font-size: 2rem;
+    }
+}
