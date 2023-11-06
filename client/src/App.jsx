@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      {showChat && <ChatBox handleSetShowChat={handleSetShowChat} avatar={devData.topSection.heroImage.source}/>}
+      {showChat && <ChatBox showChat={showChat} handleSetShowChat={handleSetShowChat} avatar={devData.topSection.heroImage.source}/>}
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
