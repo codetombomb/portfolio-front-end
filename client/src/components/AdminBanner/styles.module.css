@@ -1,0 +1,10 @@
+.adminBanner {
+    height: 10vh;
+    color: var(--primary-dark);
+    font-family: var(--heading-font);
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
