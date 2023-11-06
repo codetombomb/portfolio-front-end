@@ -4,12 +4,13 @@ import submitIcon from "../../assets/submit-icon.svg";
 import socketIOClient from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 
-const ChatBox = ({ handleSetShowChat, avatar }) => {
+const ChatBox = ({handleSetShowChat, avatar }) => {
   const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   const today = new Date();
 
   const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   const socketio = socketIOClient("http://localhost:3001");
 
@@ -41,6 +42,11 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
     setNewMessage("");
   };
 
+  const renderMinutes = () => {
+    let currentMins = today.getMinutes().toString()
+    return currentMins.toString().length < 2 ? ("0" + currentMins).slice(-2) : currentMins
+  }
+
   return (
     <section className={style.chatBox}>
       <section className={style.chatTab}>
@@ -62,7 +68,7 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
       <section className={style.mainChat}>
         <p className={style.chatDate}>{`
       ${days[today.getDay()]} 
-      ${today.getHours() - 12}:${today.getMinutes()} 
+      ${Math.abs(12 - today.getHours())}:${renderMinutes()} 
       ${today.getHours() > 12 ? "PM" : "AM"}`}</p>
         <div className={style.messagesContainer}>
           {chatMessages.map((message) => (
@@ -87,7 +93,7 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
           onChange={handleInputChange}
           placeholder="Aa"
         />
-        <img src={submitIcon} alt="submit arrow icon" onClick={addNewChat} />
+        <img className={style.submitIcon} src={submitIcon} alt="submit arrow icon" onClick={addNewChat} />
         <input type="submit" style={{ display: "none" }} />
       </form>
     </section>
