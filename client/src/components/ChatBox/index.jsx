@@ -1,7 +1,12 @@
 import style from "./styles.module.css";
-import submitIcon from "../../assets/submit-icon.svg"
+import submitIcon from "../../assets/submit-icon.svg";
 
-const ChatBox = ({ showChat, avatar }) => {
+const ChatBox = ({ handleSetShowChat, avatar }) => {
+  const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  const today = new Date();
+  console.log(days[today.getDay()]);
+  const chatMessages = [{ id: 1, sent: Date.now() }];
+
   return (
     <section className={style.chatBox}>
       <section className={style.chatTab}>
@@ -16,12 +21,17 @@ const ChatBox = ({ showChat, avatar }) => {
             <div className={style.onlineIndicator}></div>
           </>
         </div>
-        <span className={style.chatCloseBtn}>close</span>
+        <span className={style.chatCloseBtn} onClick={handleSetShowChat}>
+          close
+        </span>
       </section>
-      <section className={style.mainChat}>Messages will diplay here!</section>
+      <section className={style.mainChat}>{`
+      ${days[today.getDay()]} 
+      ${today.getHours() - 12}:${today.getMinutes()} 
+      ${today.getHours() > 12 ? "PM" : "AM"}`}</section>
       <section className={style.chatInputGroup}>
-        <input className={style.chatInput} type="text" placeholder="Aa"/>
-        <img src={submitIcon} alt="submit arrow icon"/>
+        <input className={style.chatInput} type="text" placeholder="Aa" />
+        <img src={submitIcon} alt="submit arrow icon" />
       </section>
     </section>
   );

@@ -25,6 +25,7 @@
     display: flex;
     align-items: center;
     width: 75%;
+    margin-left: 3%;
 }
 
 .tabTitleGroup > * {
@@ -47,11 +48,13 @@
 }
 
 .chatCloseBtn {
-    margin-right: 2%;
+    margin-right: 5%;
+    cursor: pointer;
 }
 
 .mainChat {
     height: 50vh;
+    padding: 5%;
 }
 
 .chatInputGroup {
