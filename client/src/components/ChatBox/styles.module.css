@@ -54,7 +54,36 @@
 
 .mainChat {
     height: 50vh;
-    padding: 5%;
+    overflow-y: scroll;
+    line-height: 1.3rem;
+}
+
+.chatDate {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.messageWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tomMessage {
+    background-color: var(--tertiary-light);
+    border-radius: 1em 1em 1em 0;
+    padding: 2%;
+    width: 50%;
+    margin: 3%;
+}
+
+.senderMessage {
+    background-color: var(--chat-input-dark);
+    border-radius: 1em 1em 0 1em;
+    padding: 2%;
+    width: 50%;
+    align-self: end;
+    margin: 3%;
 }
 
 .chatInputGroup {
@@ -76,3 +105,5 @@
     width: 60%;
     padding: 3%;
 }
+
+
