@@ -1,109 +1,140 @@
 .chatBox {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: var(--tertiary-dark);
-    width: 25vw;
-    border-radius: .5rem;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    z-index: 40;
-    margin: 2%;
-    display: flex;
-    flex-direction: column;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: var(--tertiary-dark);
+  width: 25vw;
+  border-radius: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 40;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
 }
 
 .chatTab {
-    background-color: var(--tertiary-light);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: .5rem .5rem 0 0;
+  background-color: var(--tertiary-light);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .tabTitleGroup {
-    display: flex;
-    align-items: center;
-    width: 75%;
-    margin-left: 3%;
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin-left: 3%;
 }
 
 .tabTitleGroup > * {
-    margin: 2%;
+  margin: 2%;
 }
 
 .tabAvatar {
-    border: 1px solid var(--secondary-light);
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    background-color: black;
+  border: 1px solid var(--secondary-light);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: black;
 }
 
 .onlineIndicator {
-    height: 8px;
-    width: 8px;
-    border-radius: 50%;
-    background-color: var(--primary-light);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
 }
 
 .chatCloseBtn {
-    margin-right: 5%;
-    cursor: pointer;
+  margin-right: 5%;
+  cursor: pointer;
 }
 
 .mainChat {
-    height: 50vh;
-    overflow-y: scroll;
-    line-height: 1.3rem;
+  height: 50vh;
+  overflow-y: scroll;
+  line-height: 1.3rem;
 }
 
 .chatDate {
-    text-align: center;
-    margin-top: 2%;
+  text-align: center;
+  margin-top: 2%;
 }
 
 .messageWrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .tomMessage {
-    background-color: var(--tertiary-light);
-    border-radius: 1em 1em 1em 0;
-    padding: 2%;
-    width: 50%;
-    margin: 3%;
+  background-color: var(--tertiary-light);
+  border-radius: 1em 1em 1em 0;
+  padding: 2%;
+  width: 50%;
+  margin: 3%;
 }
 
 .senderMessage {
-    background-color: var(--chat-input-dark);
-    border-radius: 1em 1em 0 1em;
-    padding: 2%;
-    width: 50%;
-    align-self: end;
-    margin: 3%;
+  background-color: var(--chat-input-dark);
+  border-radius: 1em 1em 0 1em;
+  padding: 2%;
+  width: 50%;
+  align-self: end;
+  margin: 3%;
 }
 
 .chatInputGroup {
-    background-color: var(--chat-input-dark);
-    height: 8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--chat-input-dark);
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chatInputGroup > input {
-    margin: 2%;
+  margin: 2%;
 }
 
 .chatInput {
-    border: none;
-    border-radius: 1.5rem;
-    background-color: var(--chat-input-light);
-    width: 60%;
-    padding: 3%;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: var(--chat-input-light);
+  width: 60%;
+  padding: 3%;
 }
 
+.submitIcon {
+  transform: rotate(-45deg);
+  margin-left: 2%;
+}
 
+@media (max-width: 576px) {
+  .chatBox {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+  }
+
+  .mainChat {
+    height: 100%;
+  }
+
+  .chatInputGroup {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .chatTab {
+    border-radius: 0px;
+  }
+}
