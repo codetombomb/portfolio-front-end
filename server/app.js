@@ -14,7 +14,12 @@ io.on("connection", (socket) => {
     console.log("We are connected")
 
     socket.on("chat", chat => {
+        console.log("This is the current chat: ", chat)
         io.emit("chat", chat)
+    })
+
+    socket.on("disconnect", () => {
+        console.log("disconnected")
     })
 })
 
