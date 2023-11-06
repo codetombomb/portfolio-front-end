@@ -1,11 +1,29 @@
+import { useState, useEffect } from "react";
 import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
+import socketIOClient from "socket.io-client";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatBox = ({ handleSetShowChat, avatar }) => {
   const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   const today = new Date();
-  console.log(days[today.getDay()]);
-  const chatMessages = [{ id: 1, sent: Date.now() }];
+
+  // const chatMessages = [
+  //   { id: uuidv4(), isTom: false, content: "Hello?" },
+  //   { id: uuidv4(), isTom: true, content: "Hey there! This is Tom! How do you like the site?"},
+  //   { id: uuidv4(), isTom: false, content: "Its alright..."},
+  //   { id: uuidv4(), isTom: false, content: "Ive seen better 🤷‍♂️"},
+  // ];
+  
+  const [chatMessages, setChatMessages] = useState([]);
+
+  const socketio = socketIOClient("http://localhost:3001");
+
+  useEffect(() => {
+    socketio.on("chat", (chatMessages) => {
+      setChatMessages(chatMessages);
+    });
+  }, []);
 
   return (
     <section className={style.chatBox}>
@@ -24,11 +42,18 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
         <span className={style.chatCloseBtn} onClick={handleSetShowChat}>
           close
         </span>
-      </section>
-      <section className={style.mainChat}>{`
+        </section>
+      <section className={style.mainChat}>
+        <p className={style.chatDate}>{`
       ${days[today.getDay()]} 
       ${today.getHours() - 12}:${today.getMinutes()} 
-      ${today.getHours() > 12 ? "PM" : "AM"}`}</section>
+      ${today.getHours() > 12 ? "PM" : "AM"}`}</p>
+        <div className={style.messagesContainer}>
+          {chatMessages.map(message => <div key={message.id} className={style.messageWrapper}>
+            <p className={message.isTom ? style.tomMessage : style.senderMessage}>{message.content}</p>
+          </div>)}
+        </div>
+      </section>
       <section className={style.chatInputGroup}>
         <input className={style.chatInput} type="text" placeholder="Aa" />
         <img src={submitIcon} alt="submit arrow icon" />
