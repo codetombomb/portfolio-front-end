@@ -7,18 +7,18 @@ import AdminLogin from "../pages/AdminLogin";
 const AppRoutes = () => {
   /** Future Feature -> Authorized ? Protected Routes + Public : Public only */
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [adminData, setAdminData] = useState({});
 
 
   const onLoginSuccess = (user) => {
-    setCurrentUser(user);
+    setAdminData(user);
     setIsAdmin(true);
   };
 
   const element = createBrowserRouter([
     {
       path: "/",
-      element: <App currentUser={currentUser} isAdmin={isAdmin} />,
+      element: <App adminData={adminData} isAdmin={isAdmin} />,
     },
     {
       path: "/admin",
