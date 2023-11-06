@@ -10,7 +10,6 @@ import ChatBox from "./components/ChatBox";
 function App() {
   const [showChat, setShowChat] = useState(false);
   const handleSetShowChat = () => {
-    console.log("Running handle set show chat");
     setShowChat((previousValue) => !previousValue);
   };
 
