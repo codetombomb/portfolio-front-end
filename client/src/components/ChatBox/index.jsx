@@ -1,11 +1,22 @@
+import { useState, useEffect } from 'react'
 import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
+import socketIOClient from 'socket.io-client'
 
 const ChatBox = ({ handleSetShowChat, avatar }) => {
   const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   const today = new Date();
-  console.log(days[today.getDay()]);
-  const chatMessages = [{ id: 1, sent: Date.now() }];
+
+  // const chatMessages = [{ id: 1, sent: Date.now() }];
+  const [chatMessages, setChatMessages] = useState([])
+
+  const socketio = socketIOClient("http://localhost:3001")
+
+  useEffect(() => {
+    socketio.on("chat", chatMessages => {
+      setChatMessages(chatMessages)
+    })
+  }, [])
 
   return (
     <section className={style.chatBox}>
