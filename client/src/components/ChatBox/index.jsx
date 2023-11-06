@@ -8,14 +8,8 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
   const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   const today = new Date();
 
-  // const chatMessages = [
-  //   { id: uuidv4(), isTom: false, content: "Hello?" },
-  //   { id: uuidv4(), isTom: true, content: "Hey there! This is Tom! How do you like the site?"},
-  //   { id: uuidv4(), isTom: false, content: "Its alright..."},
-  //   { id: uuidv4(), isTom: false, content: "Ive seen better 🤷‍♂️"},
-  // ];
-  
   const [chatMessages, setChatMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
 
   const socketio = socketIOClient("http://localhost:3001");
 
@@ -24,6 +18,28 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
       setChatMessages(chatMessages);
     });
   }, []);
+
+  const handleInputChange = ({ target }) => {
+    const { value } = target;
+    setNewMessage(value);
+  };
+
+  const emitChat = (chat) => {
+    socketio.emit("chat", chat);
+  };
+
+  const addNewChat = (e) => {
+    if(e.target.name === "chat-form"){
+      e.preventDefault()
+    }
+    const newChat = [
+      ...chatMessages,
+      { id: uuidv4(), isTom: true, content: newMessage },
+    ];
+    setChatMessages(newChat);
+    emitChat(newChat);
+    setNewMessage("");
+  };
 
   return (
     <section className={style.chatBox}>
@@ -42,22 +58,38 @@ const ChatBox = ({ handleSetShowChat, avatar }) => {
         <span className={style.chatCloseBtn} onClick={handleSetShowChat}>
           close
         </span>
-        </section>
+      </section>
       <section className={style.mainChat}>
         <p className={style.chatDate}>{`
       ${days[today.getDay()]} 
       ${today.getHours() - 12}:${today.getMinutes()} 
       ${today.getHours() > 12 ? "PM" : "AM"}`}</p>
         <div className={style.messagesContainer}>
-          {chatMessages.map(message => <div key={message.id} className={style.messageWrapper}>
-            <p className={message.isTom ? style.tomMessage : style.senderMessage}>{message.content}</p>
-          </div>)}
+          {chatMessages.map((message) => (
+            <div key={message.id} className={style.messageWrapper}>
+              <p
+                className={
+                  message.isTom ? style.tomMessage : style.senderMessage
+                }
+              >
+                {message.content}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
-      <section className={style.chatInputGroup}>
-        <input className={style.chatInput} type="text" placeholder="Aa" />
-        <img src={submitIcon} alt="submit arrow icon" />
-      </section>
+      <form name="chat-form" className={style.chatInputGroup} onSubmit={addNewChat}>
+        <input
+          className={style.chatInput}
+          type="text"
+          name="newMessage"
+          value={newMessage}
+          onChange={handleInputChange}
+          placeholder="Aa"
+        />
+        <img src={submitIcon} alt="submit arrow icon" onClick={addNewChat} />
+        <input type="submit" style={{ display: "none" }} />
+      </form>
     </section>
   );
 };
