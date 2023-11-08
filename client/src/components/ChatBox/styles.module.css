@@ -45,7 +45,7 @@
   height: 8px;
   width: 8px;
   border-radius: 50%;
-  background-color: var(--primary-light);
+  border: .5px solid var(--primary-light)
 }
 
 .chatCloseBtn {
@@ -74,7 +74,7 @@
   background-color: var(--tertiary-light);
   border-radius: 1em 1em 1em 0;
   padding: 2%;
-  width: 50%;
+  width: 70%;
   margin: 3%;
 }
 
@@ -82,7 +82,7 @@
   background-color: var(--chat-input-dark);
   border-radius: 1em 1em 0 1em;
   padding: 2%;
-  width: 50%;
+  width: 70%;
   align-self: end;
   margin: 3%;
 }
