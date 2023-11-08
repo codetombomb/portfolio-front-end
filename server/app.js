@@ -11,7 +11,7 @@ const io = new Server(server, {
 });
 
 let currentChatData = {
-  messages: []
+  rooms: []
 };
 
 io.on("connection", (socket) => {
