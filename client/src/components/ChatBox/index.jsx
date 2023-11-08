@@ -17,6 +17,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
 
   const socketio = socketIOClient("http://localhost:3001");
   socketio.on("chatData", (data) => {
+    console.log("Resetting data")
     setCurrentChat({ ...data });
   });
 
