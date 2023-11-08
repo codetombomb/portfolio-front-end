@@ -28,6 +28,8 @@ function App({adminData, isAdmin}) {
           showChat={showChat}
           handleSetShowChat={handleSetShowChat}
           avatar={devData.topSection.heroImage.source}
+          isAdmin={isAdmin}
+          adminData={adminData}
         />
       )}
     </>

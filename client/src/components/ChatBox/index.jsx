@@ -3,49 +3,94 @@ import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
 import socketIOClient from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
+import botAvatar from "../../assets/bot.svg";
 
-const ChatBox = ({handleSetShowChat, avatar }) => {
-  const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-  const today = new Date();
-
-  const [chatMessages, setChatMessages] = useState([]);
+const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const [newMessage, setNewMessage] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const [currentChatRooms, setCurrentChatRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [currentChat, setCurrentChat] = useState({
+    roomId: "",
+    initialTime: "",
+    messages: [],
+  });
 
   const socketio = socketIOClient("http://localhost:3001");
+  socketio.on("chatData", (data) => {
+    setCurrentChat({ ...data });
+  });
 
   useEffect(() => {
-    socketio.on("chat", (chatMessages) => {
-      setChatMessages(chatMessages);
-    });
+    if (isAdmin) {
+      socketio.emit("adminLogin");
+      socketio.on("adminChats", (data) => {
+        setCurrentChatRooms(data);
+      });
+    } else {
+      socketio.emit("initChat");
+    }
+    return () => {
+      socketio.off("adminLogin");
+      socketio.off("adminChats");
+    };
   }, []);
+
+  // const codeTomBotChat = () => {
+  //   const codeTomBotMessage = { id: uuidv4(), isTom: isAdmin, content: "Hey there! This is Code Tom Bot. Hang tight and I will get Tom for ya! :-)" }
+  //   socketio.emit("chat", [...chatMessages, codeTomBotMessage], socketio.id)
+  //   // setChatMessages([...chatMessages, codeTomBotMessage])
+  // }
 
   const handleInputChange = ({ target }) => {
     const { value } = target;
     setNewMessage(value);
   };
 
-  const emitChat = (chat) => {
-    socketio.emit("chat", chat);
-  };
-
-  const addNewChat = (e) => {
-    if(e.target.name === "chat-form"){
-      e.preventDefault()
+  const handleSendMessage = (e) => {
+    if (e.target.name === "chat-form") {
+      e.preventDefault();
     }
-    const newChat = [
-      ...chatMessages,
-      { id: uuidv4(), isTom: true, content: newMessage },
-    ];
-    setChatMessages(newChat);
-    emitChat(newChat);
+    const newMessageData = {
+      id: uuidv4(),
+      isTom: isAdmin,
+      content: newMessage,
+    };
+
+    socketio.emit(
+      "sendMessage",
+      newMessageData,
+      isAdmin ? selectedRoom : currentChat.roomId
+    );
+
+    const currentChatCopy = JSON.parse(JSON.stringify(currentChat));
+    currentChatCopy.messages.push(newMessageData);
+    setCurrentChat(currentChatCopy);
     setNewMessage("");
   };
 
-  const renderMinutes = () => {
-    let currentMins = today.getMinutes().toString()
-    return currentMins.toString().length < 2 ? ("0" + currentMins).slice(-2) : currentMins
-  }
+  const joinRoom = (roomId) => {
+    const activeChat = currentChatRooms.find((room) => room.roomId === roomId);
+    setCurrentChat(activeChat);
+    socketio.emit("joinRoom", roomId);
+  };
+
+  const onChatRoomClick = (room) => {
+    joinRoom(room);
+    setSelectedRoom(room);
+  };
+
+  const renderLiveChatButtons = () => {
+    return (
+      <div className={style.chatRoomButtonGroup}>
+        {currentChatRooms.map((room, index) => (
+          <button
+            key={room.roomId}
+            onClick={() => onChatRoomClick(room.roomId)}
+          >{`Room ${index + 1}`}</button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <section className={style.chatBox}>
@@ -54,24 +99,31 @@ const ChatBox = ({handleSetShowChat, avatar }) => {
           <>
             <img
               className={style.tabAvatar}
-              src={avatar}
-              alt="Tom Tobar Avatar"
+              src={isAdmin ? adminData.picture : botAvatar}
+              alt={`${isAdmin ? "Tom Tobar" : "Code Tom Bot"} Avatar`}
             />
-            <h3 className={style.tabTitle}>Tom Tobar</h3>
-            <div className={style.onlineIndicator}></div>
+            <h3 className={style.tabTitle}>
+              {isAdmin ? `${adminData.name}` : "Code Tom Bot"}
+            </h3>
+            <div
+              className={style.onlineIndicator}
+              style={{
+                backgroundColor: isAdmin
+                  ? "var(--primary-light)"
+                  : "rgba(255, 0, 0, 0)",
+              }}
+            ></div>
           </>
         </div>
         <span className={style.chatCloseBtn} onClick={handleSetShowChat}>
           close
         </span>
       </section>
+      {isAdmin && renderLiveChatButtons()}
       <section className={style.mainChat}>
-        <p className={style.chatDate}>{`
-      ${days[today.getDay()]} 
-      ${Math.abs(12 - today.getHours())}:${renderMinutes()} 
-      ${today.getHours() > 12 ? "PM" : "AM"}`}</p>
+        <p className={style.chatDate}>{currentChat.initialTime}</p>
         <div className={style.messagesContainer}>
-          {chatMessages.map((message) => (
+          {currentChat.messages.map((message) => (
             <div key={message.id} className={style.messageWrapper}>
               <p
                 className={
@@ -84,7 +136,11 @@ const ChatBox = ({handleSetShowChat, avatar }) => {
           ))}
         </div>
       </section>
-      <form name="chat-form" className={style.chatInputGroup} onSubmit={addNewChat}>
+      <form
+        name="chat-form"
+        className={style.chatInputGroup}
+        onSubmit={handleSendMessage}
+      >
         <input
           className={style.chatInput}
           type="text"
@@ -93,7 +149,12 @@ const ChatBox = ({handleSetShowChat, avatar }) => {
           onChange={handleInputChange}
           placeholder="Aa"
         />
-        <img className={style.submitIcon} src={submitIcon} alt="submit arrow icon" onClick={addNewChat} />
+        <img
+          className={style.submitIcon}
+          src={submitIcon}
+          alt="submit arrow icon"
+          onClick={handleSendMessage}
+        />
         <input type="submit" style={{ display: "none" }} />
       </form>
     </section>
