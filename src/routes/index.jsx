@@ -17,13 +17,13 @@ const AppRoutes = () => {
 
   const element = createBrowserRouter([
     {
-      path: "/",
-      element: <App adminData={adminData} isAdmin={isAdmin} />,
-    },
-    {
       path: "/admin",
       element: <AdminLogin onLoginSuccess={onLoginSuccess} />,
     },
+    {
+      path: "/",
+      element: <App adminData={adminData} isAdmin={isAdmin} />,
+    }
   ]);
 
   return <RouterProvider router={element} />;
