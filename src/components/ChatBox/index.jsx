@@ -15,7 +15,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     messages: [],
   });
 
-  const socketio = socketIOClient("https://portfolio-front-end-c982.onrender.com");
+  const socketio = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com");
   socketio.on("chatData", (data) => {
     console.log("Resetting data")
     setCurrentChat({ ...data });
