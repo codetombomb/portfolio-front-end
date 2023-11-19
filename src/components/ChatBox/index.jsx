@@ -1,46 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
-import socketIOClient from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import botAvatar from "../../assets/bot.svg";
+import { ChatContext } from "../../context/chatContext";
 
 const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
-  const [newMessage, setNewMessage] = useState("");
-  const [currentChatRooms, setCurrentChatRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState(null);
-  const [currentChat, setCurrentChat] = useState({
-    roomId: "",
-    initialTime: "",
-    messages: [],
-  });
+  const {
+    io,
+    currentChatRooms,
+    setCurrentChatRooms,
+    selectedRoom,
+    setSelectedRoom,
+    currentChat,
+    setCurrentChat,
+    newMessage,
+    setNewMessage,
+    initChat,
+    getRooms
+  } = useContext(ChatContext);
 
-  const socketio = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com");
-  socketio.on("chatData", (data) => {
-    console.log("Resetting data")
-    setCurrentChat({ ...data });
-  });
-
-  useEffect(() => {
-    if (isAdmin) {
-      socketio.emit("adminLogin");
-      socketio.on("adminChats", (data) => {
-        setCurrentChatRooms(data);
-      });
-    } else {
-      socketio.emit("initChat");
-    }
-    return () => {
-      socketio.off("adminLogin");
-      socketio.off("adminChats");
-    };
-  }, []);
-
-  // const codeTomBotChat = () => {
-  //   const codeTomBotMessage = { id: uuidv4(), isTom: isAdmin, content: "Hey there! This is Code Tom Bot. Hang tight and I will get Tom for ya! :-)" }
-  //   socketio.emit("chat", [...chatMessages, codeTomBotMessage], socketio.id)
-  //   // setChatMessages([...chatMessages, codeTomBotMessage])
-  // }
 
   const handleInputChange = ({ target }) => {
     const { value } = target;
@@ -57,10 +36,11 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       content: newMessage,
     };
 
-    socketio.emit(
+    io.emit(
       "sendMessage",
       newMessageData,
-      isAdmin ? selectedRoom : currentChat.roomId
+      isAdmin ? selectedRoom : currentChat.room_id,
+      currentChat
     );
 
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat));
@@ -69,10 +49,11 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setNewMessage("");
   };
 
-  const joinRoom = (roomId) => {
-    const activeChat = currentChatRooms.find((room) => room.roomId === roomId);
-    setCurrentChat(activeChat);
-    socketio.emit("joinRoom", roomId);
+  const joinRoom = (room_id) => {
+    const activeChat = currentChatRooms.find((room) => room.room_id === room_id);
+    // setCurrentChat(activeChat);
+    // Need to get chat data and set current chat
+    io.emit("joinRoom", room_id);
   };
 
   const onChatRoomClick = (room) => {
@@ -85,8 +66,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
           <button
-            key={room.roomId}
-            onClick={() => onChatRoomClick(room.roomId)}
+            key={room.room_id}
+            onClick={() => onChatRoomClick(room.room_id)}
           >{`Room ${index + 1}`}</button>
         ))}
       </div>
@@ -122,7 +103,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       </section>
       {isAdmin && renderLiveChatButtons()}
       <section className={style.mainChat}>
-        <p className={style.chatDate}>{currentChat.initialTime}</p>
+        <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
         <div className={style.messagesContainer}>
           {currentChat.messages.map((message) => (
             <div key={message.id} className={style.messageWrapper}>
