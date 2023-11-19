@@ -14,6 +14,12 @@ const AdminLogin = ({onLoginSuccess}) => {
       <SectionTitle title="Admin Login" color="--primary-light" padding="0px"/>
       <GoogleLogin
         onSuccess={(credentialResponse) => {
+          const {
+            email,
+            name, 
+            picture
+          } = jwtDecode(credentialResponse.credential)
+          console.log(email, name, picture)
           onLoginSuccess(jwtDecode(credentialResponse.credential));
           navigate("/")
         }}
