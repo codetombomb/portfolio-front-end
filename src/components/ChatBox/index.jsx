@@ -38,9 +38,10 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
 
     io.emit(
       "sendMessage",
-      newMessageData,
+      newMessage,
       isAdmin ? selectedRoom : currentChat.room_id,
-      currentChat
+      currentChat,
+      isAdmin
     );
 
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat));
