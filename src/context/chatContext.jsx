@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 
 export const ChatContext = createContext();
 
+// const io = socketIOClient("http://localhost:3001")
 const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
 
