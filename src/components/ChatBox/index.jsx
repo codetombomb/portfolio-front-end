@@ -47,14 +47,13 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setNewMessage("");
   };
 
-  const joinRoom = (room_id) => {
-    io.emit("joinRoom", room_id);
+  const joinRoom = (room_id, chat_id) => {
+    io.emit("joinRoom", room_id, chat_id);
   };
 
   const onChatRoomClick = (chat) => {
-    const activeChat = currentChatRooms.find((room) => room.room_id === chat.room_id);
-    setCurrentChat({...JSON.parse(JSON.stringify(activeChat))})
-    joinRoom(chat.room_id);
+    setCurrentChat({...JSON.parse(JSON.stringify(chat))})
+    joinRoom(chat.room_id, chat.id);
   };
 
   const renderLiveChatButtons = () => {
