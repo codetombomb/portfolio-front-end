@@ -20,8 +20,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     getRooms
   } = useContext(ChatContext);
 
-  // Update is_active on chat when close button pressed
-
 
   const handleInputChange = ({ target }) => {
     const { value } = target;
@@ -32,8 +30,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     if (e.target.name === "chat-form") {
       e.preventDefault();
     }
+
     const newMessageData = {
-      id: uuidv4(),
       isTom: isAdmin,
       content: newMessage,
     };
@@ -41,27 +39,22 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     io.emit(
       "sendMessage",
       newMessage,
-      isAdmin ? selectedRoom : currentChat.room_id,
+      currentChat.room_id,
       currentChat,
       isAdmin
     );
 
-    const currentChatCopy = JSON.parse(JSON.stringify(currentChat));
-    currentChatCopy.messages.push(newMessageData);
-    setCurrentChat(currentChatCopy);
     setNewMessage("");
   };
 
   const joinRoom = (room_id) => {
-    const activeChat = currentChatRooms.find((room) => room.room_id === room_id);
-    // setCurrentChat(activeChat);
-    // Need to get chat data and set current chat
     io.emit("joinRoom", room_id);
   };
 
-  const onChatRoomClick = (room) => {
-    joinRoom(room);
-    setSelectedRoom(room);
+  const onChatRoomClick = (chat) => {
+    const activeChat = currentChatRooms.find((room) => room.room_id === chat.room_id);
+    setCurrentChat({...JSON.parse(JSON.stringify(activeChat))})
+    joinRoom(chat.room_id);
   };
 
   const renderLiveChatButtons = () => {
@@ -70,7 +63,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         {currentChatRooms.map((room, index) => (
           <button
             key={room.room_id}
-            onClick={() => onChatRoomClick(room.room_id)}
+            onClick={() => onChatRoomClick(room)}
           >{`Room ${index + 1}`}</button>
         ))}
       </div>
@@ -123,7 +116,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
             <div key={message.id} className={style.messageWrapper}>
               <p
                 className={
-                  message.isTom ? style.tomMessage : style.senderMessage
+                  message.sender_type === "Admin" ? style.tomMessage : style.senderMessage
                 }
               >
                 {message.content}
