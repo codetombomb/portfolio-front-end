@@ -25,8 +25,8 @@ const ChatProvider = ({ children }) => {
   });
 
   io.on("chatData", (data) => {
-    console.log({...currentChat, ...data})
-    setCurrentChat({...currentChat, ...data}) 
+    const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
+    setCurrentChat({...currentChatCopy, ...data}) 
   });
 
   // useEffect(() => {
