@@ -20,6 +20,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     getRooms
   } = useContext(ChatContext);
 
+  // Update is_active on chat when close button pressed
+
 
   const handleInputChange = ({ target }) => {
     const { value } = target;
@@ -98,7 +100,18 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
             ></div>
           </>
         </div>
-        <span className={style.chatCloseBtn} onClick={handleSetShowChat}>
+        <span className={style.chatCloseBtn} onClick={() => {
+          io.emit("closeChat", currentChat)
+          setCurrentChat({
+            visitor_id: null,
+            admin_id: null,
+            room_id: "",
+            chat_time_stamp: "",
+            id: null,
+            messages: []
+        })
+          handleSetShowChat()
+        }}>
           close
         </span>
       </section>
