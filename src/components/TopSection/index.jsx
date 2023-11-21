@@ -9,9 +9,9 @@ import SectionTitle from "../SectionTitle";
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
 
-const TopSection = ({ handleSetShowChat, topSectionData }) => {
+const TopSection = ({ handleSetShowChat, topSectionData, isAdmin }) => {
   const { title, description, callToAction, heroImage } = topSectionData;
-  const { initChat } = useContext(ChatContext)
+  const { initChat, getRooms } = useContext(ChatContext)
 
   return (
     <section className={style.topSection}>
@@ -20,7 +20,11 @@ const TopSection = ({ handleSetShowChat, topSectionData }) => {
       <SectionDescription text={description.text} color={description.color} />
       <SectionCallToAction
         handleButtonClick={() => {
-          initChat()
+          if(isAdmin){
+            getRooms()
+          } else {
+            initChat()
+          }
           handleSetShowChat()
         }}
         text={callToAction.text}
