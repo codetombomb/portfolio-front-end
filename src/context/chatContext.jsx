@@ -30,12 +30,6 @@ const ChatProvider = ({ children }) => {
     setCurrentChat({...currentChatCopy, ...data}) 
   });
 
-  // useEffect(() => {
-  //   initChat();
-  //   getRooms();
-
-  // }, []);
-
   const getRooms = () => {
     io.emit("getChats");
   };
