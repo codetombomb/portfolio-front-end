@@ -6,3 +6,8 @@
 .adminLogin > * {
     margin: 2%;
 }
+
+.errors {
+    color: red;
+    font-weight: bold;
+}
