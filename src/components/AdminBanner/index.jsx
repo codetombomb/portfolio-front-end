@@ -1,8 +1,11 @@
 import style from './styles.module.css'
 
-const AdminBanner = ({adminData}) => {
+const AdminBanner = ({ adminData, onAdminLogout }) => {
   return (
-    <div className={style.adminBanner}>Logged in as {adminData.email}</div>
+    <section className={style.adminBanner}>
+      <div className={style.headingWrapper}><p>Logged in as {adminData.email}</p></div>
+      <p className={style.logoutBtn} onClick={() => onAdminLogout(adminData)}>Logout</p>
+    </section>
   )
 }
 
