@@ -5,6 +5,9 @@ import App from "../App";
 import AdminLogin from "../pages/AdminLogin";
 import ChatContext from "../context/chatContext";
 
+const LOGOUT_BASE = "https://portfolio-api-ws.onrender.com"
+// const LOGOUT_BASE = "http://127.0.0.1:5000"
+
 const AppRoutes = () => {
   /** Future Feature -> Authorized ? Protected Routes + Public : Public only */
   const [isAdmin, setIsAdmin] = useState(false);
@@ -15,6 +18,16 @@ const AppRoutes = () => {
     setIsAdmin(true);
   };
 
+  const onAdminLogout = (admin) => {
+    fetch(`${LOGOUT_BASE}/${admin.id}`, {method: "DELETE"})
+      .then(resp => {
+        if(resp.ok){
+          setAdminData({})
+          setIsAdmin(false)
+        }
+      })
+  }
+
   const element = createBrowserRouter([
     {
       path: "/admin",
@@ -24,7 +37,7 @@ const AppRoutes = () => {
       path: "/",
       element: (
         <ChatContext>
-          <App adminData={adminData} isAdmin={isAdmin} />
+          <App adminData={adminData} isAdmin={isAdmin} onAdminLogout={onAdminLogout}/>
         </ChatContext>
       ),
     },
