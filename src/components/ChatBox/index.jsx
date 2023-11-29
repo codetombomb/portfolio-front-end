@@ -17,8 +17,17 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     newMessage,
     setNewMessage,
     initChat,
-    getRooms
+    getRooms,
+    activeAdmins
   } = useContext(ChatContext);
+
+
+  if (isAdmin) {
+    useEffect(() => {
+      console.log("Running useEffect")
+      io.emit("setActiveAdmin", adminData)
+    }, [])
+  }
 
 
   const handleInputChange = ({ target }) => {
@@ -52,7 +61,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   };
 
   const onChatRoomClick = (chat) => {
-    setCurrentChat({...JSON.parse(JSON.stringify(chat))})
+    setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) })
     joinRoom(chat.room_id, chat.id);
   };
 
@@ -68,6 +77,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       </div>
     );
   };
+
+  const renderAvailableAdmins = () => {
+    return (activeAdmins.map(admin => {
+      return <button
+        key={`admin-${admin.id}`}
+      >{`${admin.first_name} ${admin.last_name}`}</button>
+    }))
+  }
 
   return (
     <section className={style.chatBox}>
@@ -101,13 +118,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
             chat_time_stamp: "",
             id: null,
             messages: []
-        })
+          })
           handleSetShowChat()
         }}>
           close
         </span>
       </section>
       {isAdmin && renderLiveChatButtons()}
+      {!isAdmin && renderAvailableAdmins()}
       <section className={style.mainChat}>
         <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
         <div className={style.messagesContainer}>
