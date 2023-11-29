@@ -19,7 +19,7 @@ const AppRoutes = () => {
   };
 
   const onAdminLogout = (admin) => {
-    fetch(`${LOGOUT_BASE}/${admin.id}`, {method: "DELETE"})
+    fetch(`${LOGOUT_BASE}/logout/${admin.id}`, {method: "DELETE"})
       .then(resp => {
         if(resp.ok){
           setAdminData({})
