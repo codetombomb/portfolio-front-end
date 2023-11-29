@@ -8,7 +8,7 @@ import devData from "./data";
 import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
 
-function App({adminData, isAdmin}) {
+function App({adminData, isAdmin, onAdminLogout}) {
   const [showChat, setShowChat] = useState(false);
 
   const handleSetShowChat = () => {
@@ -17,7 +17,7 @@ function App({adminData, isAdmin}) {
 
   return (
     <>
-      {isAdmin && <AdminBanner adminData={adminData}/>}
+      {isAdmin && <AdminBanner adminData={adminData} onAdminLogout={onAdminLogout}/>}
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}

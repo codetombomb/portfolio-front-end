@@ -8,6 +8,9 @@ import { jwtDecode } from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
 
+const LOGIN_BASE = "https://portfolio-api-ws.onrender.com"
+// const LOGIN_BASE = "http://127.0.0.1:5000"
+
 const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const [errors, setErrors] = useState([])
   const [currentAdmin, setCurrentAdmin] = useState({
@@ -16,6 +19,7 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const navigate = useNavigate()
 
   const handleLogin = (email, first_name, last_name, picture, name) => {
+    console.log(email, first_name, last_name, picture, name)
     const config = {
       method: "POST",
       headers: {
@@ -23,12 +27,12 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
       },
       body: JSON.stringify({ email, first_name, last_name })
     }
-    fetch("https://portfolio-api-ws.onrender.com/login", config)
+    fetch(`${LOGIN_BASE}/login`, config)
       .then(resp => {
         if (resp.ok) {
           resp.json().then(data => {
             console.log({email, first_name, last_name, picture, name})
-            onLoginSuccess({email, first_name, last_name, picture, name});
+            onLoginSuccess({email, first_name, last_name, picture, name, ...data});
             navigate("/")
           })
         } else {

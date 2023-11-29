@@ -4,7 +4,17 @@
     font-family: var(--heading-font);
     background-color: red;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-width: 390px;
+}
+
+.headingWrapper {
+    width: 85%;
+    display: grid;
+    place-items: center;
+}
+
+.logoutBtn {
+    cursor: pointer;
 }
