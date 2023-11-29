@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./App.css";
 import AboutSection from "./components/AboutSection";
 import TopSection from "./components/TopSection";
@@ -8,8 +8,19 @@ import devData from "./data";
 import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
 
-function App({adminData, isAdmin, onAdminLogout}) {
+import { ChatContext } from "./context/chatContext";
+
+function App({ adminData, isAdmin, onAdminLogout }) {
   const [showChat, setShowChat] = useState(false);
+
+  if (isAdmin) {
+    useEffect(() => {
+      window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault()
+        onAdminLogout(adminData)
+      });
+    })
+  }
 
   const handleSetShowChat = () => {
     setShowChat((previousValue) => !previousValue);
@@ -17,7 +28,7 @@ function App({adminData, isAdmin, onAdminLogout}) {
 
   return (
     <>
-      {isAdmin && <AdminBanner adminData={adminData} onAdminLogout={onAdminLogout}/>}
+      {isAdmin && <AdminBanner adminData={adminData} onAdminLogout={onAdminLogout} />}
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
@@ -32,6 +43,7 @@ function App({adminData, isAdmin, onAdminLogout}) {
           avatar={devData.topSection.heroImage.source}
           isAdmin={isAdmin}
           adminData={adminData}
+          onAdminLogout={onAdminLogout}
         />
       )}
     </>
