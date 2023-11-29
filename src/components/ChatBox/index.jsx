@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import botAvatar from "../../assets/bot.svg";
 import { ChatContext } from "../../context/chatContext";
 
-const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
+const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   const {
     io,
     currentChatRooms,
@@ -18,7 +18,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setNewMessage,
     initChat,
     getRooms,
-    activeAdmins
+    activeAdmins,
+    setActiveAdmins
   } = useContext(ChatContext);
 
 
@@ -26,9 +27,27 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     useEffect(() => {
       console.log("Running useEffect")
       io.emit("setActiveAdmin", adminData)
+      return () => {
+        console.log("admin close chat")
+        // onAdminLogout(adminData)
+        // Remove current chat on unmount
+        const filteredAdmins = activeAdmins.filter(admin => admin.id !== adminData.id)
+        setActiveAdmins(filteredAdmins)
+        closeChat(currentChat)
+        // const newChatRooms = currentChatRooms.filter(chat => chat.id)
+      }
     }, [])
-  }
+  } else {
+    useEffect(() => {
+      console.log("Running visitor useEffect")
+      return () => {
+        console.log("Closing visitor chat", currentChat)
+        closeChat(currentChat)
+        // Remove current chat on unmount
+      }
+    }, [])
 
+  }
 
   const handleInputChange = ({ target }) => {
     const { value } = target;
@@ -69,10 +88,17 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     return (
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
-          <button
-            key={room.room_id}
-            onClick={() => onChatRoomClick(room)}
-          >{`Room ${index + 1}`}</button>
+          <>
+            <button
+              key={room.room_id}
+              onClick={() => onChatRoomClick(room)}
+            >{`Room ${index + 1}`}             <span onClick={() => {
+              const newChatRooms = currentChatRooms.filter(chat => chat.id !== room.id)
+              setCurrentChatRooms(newChatRooms)
+              closeChat(room)
+            }}>X</span></button>
+
+          </>
         ))}
       </div>
     );
@@ -86,39 +112,46 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     }))
   }
 
+  const renderAvatar = () => {
+    if (isAdmin) return null
+    return (
+      <img
+        className={style.tabAvatar}
+        src={activeAdmins.length > 0 ? activeAdmins[0].picture : botAvatar}
+        alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
+      />
+    )
+  }
+
+  const closeChat = (chat) => {
+    console.log("closing chat", chat)
+    io.emit("closeChat", chat)
+    setCurrentChat({
+      visitor_id: null,
+      admin_id: null,
+      room_id: "",
+      chat_time_stamp: "",
+      id: null,
+      messages: []
+    })
+  }
+
   return (
     <section className={style.chatBox}>
       <section className={style.chatTab}>
         <div className={style.tabTitleGroup}>
           <>
-            <img
-              className={style.tabAvatar}
-              src={isAdmin ? adminData.picture : botAvatar}
-              alt={`${isAdmin ? "Tom Tobar" : "Code Tom Bot"} Avatar`}
-            />
+            {renderAvatar()}
             <h3 className={style.tabTitle}>
-              {isAdmin ? `${adminData.name}` : "Code Tom Bot"}
+              {activeAdmins.length > 0 ? `${activeAdmins[0].name}` : "CodeTomBot"}
             </h3>
             <div
               className={style.onlineIndicator}
-              style={{
-                backgroundColor: isAdmin
-                  ? "var(--primary-light)"
-                  : "rgba(255, 0, 0, 0)",
-              }}
             ></div>
           </>
         </div>
         <span className={style.chatCloseBtn} onClick={() => {
-          io.emit("closeChat", currentChat)
-          setCurrentChat({
-            visitor_id: null,
-            admin_id: null,
-            room_id: "",
-            chat_time_stamp: "",
-            id: null,
-            messages: []
-          })
+          closeChat(currentChat)
           handleSetShowChat()
         }}>
           close

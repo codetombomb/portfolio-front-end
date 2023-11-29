@@ -3,11 +3,11 @@ import socketIOClient from "socket.io-client";
 
 export const ChatContext = createContext();
 
-// const io = socketIOClient("http://localhost:3001")
-const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
+export const io = socketIOClient("http://localhost:3001")
+// const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
-const API_URL = "https://portfolio-api-ws.onrender.com"
-// const API_URL = "http://127.0.0.1:5000"
+const API_URL = "http://127.0.0.1:5000"
+// const API_URL = "https://portfolio-api-ws.onrender.com"
 
 
 const ChatProvider = ({ children }) => {
@@ -35,10 +35,14 @@ const ChatProvider = ({ children }) => {
   });
 
   io.on("activeAdmins", (data) => {
-    console.log(data)
     const activeAdminsCopy = JSON.parse(JSON.stringify(activeAdmins))
     const newAdmins = [...activeAdminsCopy, data]
     setActiveAdmins(newAdmins)
+  })
+
+  io.on("removeActiveAdmin", (removedAdmin) => {
+    const filteredAdmins = activeAdmins.filter(admin => admin.id !== removedAdmin.id)
+    setActiveAdmins(filteredAdmins)
   })
 
   const getRooms = () => {
@@ -70,7 +74,8 @@ const ChatProvider = ({ children }) => {
         setNewMessage,
         initChat,
         getRooms,
-        activeAdmins
+        activeAdmins,
+        setActiveAdmins
       }}
     >
       {children}
