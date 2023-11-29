@@ -6,6 +6,9 @@ export const ChatContext = createContext();
 // const io = socketIOClient("http://localhost:3001")
 const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
+const API_URL = "https://portfolio-api-ws.onrender.com"
+// const API_URL = "http://127.0.0.1:5000"
+
 
 const ChatProvider = ({ children }) => {
 
@@ -47,7 +50,7 @@ const ChatProvider = ({ children }) => {
   }
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/current_admins")
+      fetch(`${API_URL}/current_admins`)
         .then(resp => resp.json())
         .then(data => setActiveAdmins([...data]))
 
