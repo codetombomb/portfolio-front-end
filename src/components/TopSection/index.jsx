@@ -20,7 +20,7 @@ const TopSection = ({ handleSetShowChat, topSectionData, isAdmin }) => {
       <SectionDescription text={description.text} color={description.color} />
       <SectionCallToAction
         handleButtonClick={() => {
-          if(isAdmin){
+          if (isAdmin) {
             getRooms()
           } else {
             initChat()
