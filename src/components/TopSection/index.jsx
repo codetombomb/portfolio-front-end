@@ -9,9 +9,9 @@ import SectionTitle from "../SectionTitle";
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
 
-const TopSection = ({ handleSetShowChat, topSectionData, isAdmin }) => {
+const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin }) => {
   const { title, description, callToAction, heroImage } = topSectionData;
-  const { initChat, getRooms } = useContext(ChatContext)
+  const { initChat, getRooms, currentChat, setCurrentChat, io  } = useContext(ChatContext)
 
   return (
     <section className={style.topSection}>
@@ -22,8 +22,18 @@ const TopSection = ({ handleSetShowChat, topSectionData, isAdmin }) => {
         handleButtonClick={() => {
           if (isAdmin) {
             getRooms()
-          } else {
+          } else if (!isAdmin && !showChat) {
             initChat()
+          } else if (!isAdmin && showChat) {
+            io.emit("closeChat", currentChat)
+            setCurrentChat({
+              visitor_id: null,
+              admin_id: null,
+              room_id: "",
+              chat_time_stamp: "",
+              id: null,
+              messages: []
+            })
           }
           handleSetShowChat()
         }}
