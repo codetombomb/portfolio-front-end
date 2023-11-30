@@ -13,13 +13,13 @@ import { ChatContext } from "./context/chatContext";
 function App({ adminData, isAdmin, onAdminLogout }) {
   const [showChat, setShowChat] = useState(false);
 
+  const adminLogoutOnTabClose = (e) => {
+    e.preventDefault()
+    onAdminLogout(adminData)
+  }
+
   if (isAdmin) {
-    useEffect(() => {
-      window.addEventListener("beforeunload", (ev) => {
-        ev.preventDefault()
-        onAdminLogout(adminData)
-      });
-    })
+    window.addEventListener("beforeunload", adminLogoutOnTabClose);
   }
 
   const handleSetShowChat = () => {
@@ -32,6 +32,7 @@ function App({ adminData, isAdmin, onAdminLogout }) {
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
+        showChat={showChat}
         isAdmin={isAdmin}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />

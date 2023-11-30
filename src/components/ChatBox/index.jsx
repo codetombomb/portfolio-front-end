@@ -28,13 +28,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       console.log("Running useEffect")
       io.emit("setActiveAdmin", adminData)
       return () => {
-        console.log("admin close chat")
-        // onAdminLogout(adminData)
-        // Remove current chat on unmount
         const filteredAdmins = activeAdmins.filter(admin => admin.id !== adminData.id)
         setActiveAdmins(filteredAdmins)
         closeChat(currentChat)
-        // const newChatRooms = currentChatRooms.filter(chat => chat.id)
       }
     }, [])
   } else {
@@ -43,7 +39,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       return () => {
         console.log("Closing visitor chat", currentChat)
         closeChat(currentChat)
-        // Remove current chat on unmount
       }
     }, [])
 
