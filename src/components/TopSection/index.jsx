@@ -21,12 +21,10 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin }) =>
       <SectionCallToAction
         handleButtonClick={() => {
           if (isAdmin) {
-            console.log("Running isAdmin get rooms")
             getRooms()
           } else if (!isAdmin && !showChat) {
             initChat()
           } else if (!isAdmin && showChat) {
-            console.log("3rd else if")
             io.emit("closeChat", currentChat)
             setCurrentChat({
               visitor_id: null,

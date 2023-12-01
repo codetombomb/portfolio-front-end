@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export const ChatContext = createContext();
 
 // export const io = socketIOClient("http://localhost:3001")
-const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
+export const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
 // const API_URL = "http://127.0.0.1:5000"
 const API_URL = "https://portfolio-api-ws.onrender.com"
@@ -31,7 +31,6 @@ const ChatProvider = ({ children }) => {
   });
 
   io.on("chatData", (data) => {
-    console.log("chat data listener in chat context", data)
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
     setCurrentChat({ ...currentChatCopy, ...data })
   });
@@ -48,7 +47,6 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
-    console.log("chat to be removed: ", chat)
     // const filteredChats = currentChatRooms.filter(room => room.room_id !== chat.room_id)
     // setCurrentChatRooms(filteredChats)
     // const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
@@ -68,7 +66,6 @@ const ChatProvider = ({ children }) => {
   };
 
   const initChat = () => {
-    console.log("init chat")
     io.emit("initChat")
   }
 

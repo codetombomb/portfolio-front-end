@@ -20,7 +20,6 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const navigate = useNavigate()
 
   const handleLogin = (email, first_name, last_name, picture, name) => {
-    console.log({email, first_name, last_name, picture, name})
     const config = {
       method: "POST",
       headers: {
@@ -32,7 +31,6 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
       .then(resp => {
         if (resp.ok) {
           resp.json().then(data => {
-            console.log({email, first_name, last_name, picture, name})
             onLoginSuccess({email, first_name, last_name, picture, name, ...data});
             navigate("/")
           })
@@ -56,7 +54,6 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
             picture,
             name
           } = jwtDecode(credentialResponse.credential)
-          console.log(jwtDecode(credentialResponse.credential))
           handleLogin(email, given_name, family_name, picture, name)
         }}
         onError={() => {
