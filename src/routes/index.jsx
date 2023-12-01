@@ -6,11 +6,10 @@ import AdminLogin from "../pages/AdminLogin";
 import ChatContext from "../context/chatContext";
 import { io } from '../context/chatContext'
 
-// const LOGOUT_BASE = "https://portfolio-api-ws.onrender.com"
-const LOGOUT_BASE = "http://127.0.0.1:5000"
+const LOGOUT_BASE = "https://portfolio-api-ws.onrender.com"
+// const LOGOUT_BASE = "http://127.0.0.1:5000"
 
 const AppRoutes = () => {
-  /** Future Feature -> Authorized ? Protected Routes + Public : Public only */
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminData, setAdminData] = useState({});
 
