@@ -19,44 +19,44 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     initChat,
     getRooms,
     activeAdmins,
-    setActiveAdmins
+    setActiveAdmins,
   } = useContext(ChatContext);
 
-
   const closeChat = (chat) => {
-    io.emit("closeChat", chat)
-    // setCurrentChat({
-    //   visitor_id: null,
-    //   admin_id: null,
-    //   room_id: "",
-    //   chat_time_stamp: "",
-    //   id: null,
-    //   messages: []
-    // })
-  }
+    io.emit("closeChat", chat);
+    setCurrentChat({
+      visitor_id: null,
+      admin_id: null,
+      room_id: "",
+      chat_time_stamp: "",
+      id: null,
+      messages: []
+    })
+  };
 
   if (isAdmin) {
     io.on("addAdminChat", (chat) => {
-      const currentChatRoomsCopy = JSON.parse(JSON.stringify(currentChatRooms))
-      currentChatRoomsCopy.push(chat)
-      setCurrentChatRooms(currentChatRoomsCopy)
-    })
+      const currentChatRoomsCopy = JSON.parse(JSON.stringify(currentChatRooms));
+      currentChatRoomsCopy.push(chat);
+      setCurrentChatRooms(currentChatRoomsCopy);
+    });
 
     useEffect(() => {
-      io.emit("setActiveAdmin", adminData)
+      io.emit("setActiveAdmin", adminData);
       return () => {
-        const filteredAdmins = activeAdmins.filter(admin => admin.id !== adminData.id)
-        setActiveAdmins(filteredAdmins)
-        closeChat(currentChat)
-      }
-    }, [])
+        const filteredAdmins = activeAdmins.filter(
+          (admin) => admin.id !== adminData.id
+        );
+        setActiveAdmins(filteredAdmins);
+        closeChat(currentChat);
+      };
+    }, []);
   } else {
     useEffect(() => {
       return () => {
-        closeChat(currentChat)
-      }
-    }, [])
-
+        closeChat(currentChat);
+      };
+    }, []);
   }
 
   const handleInputChange = ({ target }) => {
@@ -85,23 +85,40 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const onChatRoomClick = (chat) => {
-    setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) })
+    console.log("Running on chat room click");
+    setSelectedRoom(true);
+    setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) });
     joinRoom(chat.room_id, chat.id);
   };
 
+  const handleCloseChatButton = (room) => {
+    const newChatRooms = currentChatRooms.filter((chat) => chat.id !== room.id);
+    setCurrentChatRooms(newChatRooms);
+    closeChat(room);
+  };
+
   const renderLiveChatButtons = () => {
+    if (currentChatRooms.length === 0)
+      return (
+        <span className="grid grid-center" style={{ backgroundColor: `red` }}>
+          No Active Chats
+        </span>
+      );
     return (
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
           <span key={uuidv4()}>
-            <button
-              onClick={() => onChatRoomClick(room)}
-            >{`Room ${index + 1}`}             <span onClick={() => {
-              const newChatRooms = currentChatRooms.filter(chat => chat.id !== room.id)
-              setCurrentChatRooms(newChatRooms)
-              closeChat(room)
-            }}>X</span></button>
-
+            <button className={currentChat.room_id === room.room_id ? style.selectedRoom : null} onClick={() => onChatRoomClick(room)}>
+              {`Room ${index + 1}`}
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCloseChatButton(room);
+                }}
+              >
+                X
+              </span>
+            </button>
           </span>
         ))}
       </div>
@@ -109,63 +126,28 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const renderAvailableAdmins = () => {
-    return (activeAdmins.map(admin => {
-      return <button
-        key={uuidv4()}
-      >{`${admin.first_name} ${admin.last_name}`}</button>
-    }))
-  }
+    return activeAdmins.map((admin) => {
+      return (
+        <button
+          key={uuidv4()}
+        >{`${admin.first_name} ${admin.last_name}`}</button>
+      );
+    });
+  };
 
   const renderAvatar = () => {
-    if (isAdmin) return null
+    if (isAdmin) return null;
     return (
       <img
         className={style.tabAvatar}
         src={activeAdmins.length > 0 ? activeAdmins[0].picture : botAvatar}
         alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
       />
-    )
-  }
+    );
+  };
 
-  return (
-    <section className={style.chatBox}>
-      <section className={style.chatTab}>
-        <div className={style.tabTitleGroup}>
-          <>
-            {renderAvatar()}
-            <h3 className={style.tabTitle}>
-              {activeAdmins.length > 0 ? `${activeAdmins[0].name}` : "CodeTomBot"}
-            </h3>
-            <div
-              className={style.onlineIndicator}
-            ></div>
-          </>
-        </div>
-        <span className={style.chatCloseBtn} onClick={() => {
-          closeChat(currentChat)
-          handleSetShowChat()
-        }}>
-          close
-        </span>
-      </section>
-      {isAdmin && renderLiveChatButtons()}
-      {!isAdmin && renderAvailableAdmins()}
-      <section className={style.mainChat}>
-        <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
-        <div className={style.messagesContainer}>
-          {currentChat.messages.map((message) => (
-            <div key={uuidv4()} className={style.messageWrapper}>
-              <p
-                className={
-                  message.sender_type === "Admin" ? style.tomMessage : style.senderMessage
-                }
-              >
-                {message.content}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+  const rednerChatInput = () => {
+    const chatInput = (
       <form
         name="chat-form"
         className={style.chatInputGroup}
@@ -187,6 +169,61 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
         />
         <input type="submit" style={{ display: "none" }} />
       </form>
+    );
+    if (currentChat.is_active && !isAdmin) {
+      return chatInput;
+    } else if (currentChat.is_active && selectedRoom && isAdmin) {
+      return chatInput;
+    } else {
+      return null;
+    }
+  };
+
+  return (
+    <section className={style.chatBox}>
+      <section className={style.chatTab}>
+        <div className={style.tabTitleGroup}>
+          <>
+            {renderAvatar()}
+            <h3 className={style.tabTitle}>
+              {activeAdmins.length > 0
+                ? `${activeAdmins[0].name}`
+                : "CodeTomBot"}
+            </h3>
+            <div className={style.onlineIndicator}></div>
+          </>
+        </div>
+        <span
+          className={style.chatCloseBtn}
+          onClick={() => {
+            closeChat(currentChat);
+            handleSetShowChat();
+          }}
+        >
+          close
+        </span>
+      </section>
+      {isAdmin && renderLiveChatButtons()}
+      {!isAdmin && renderAvailableAdmins()}
+      <section className={style.mainChat}>
+        <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
+        <div className={style.messagesContainer}>
+          {currentChat.messages.map((message) => (
+            <div key={uuidv4()} className={style.messageWrapper}>
+              <p
+                className={
+                  message.sender_type === "Admin"
+                    ? style.tomMessage
+                    : style.senderMessage
+                }
+              >
+                {message.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+      {rednerChatInput()}
     </section>
   );
 };

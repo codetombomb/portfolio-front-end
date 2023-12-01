@@ -15,7 +15,7 @@ const ChatProvider = ({ children }) => {
 
   const [newMessage, setNewMessage] = useState("");
   const [currentChatRooms, setCurrentChatRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState(false);
   const [activeAdmins, setActiveAdmins] = useState([])
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
@@ -23,8 +23,13 @@ const ChatProvider = ({ children }) => {
     room_id: "",
     chat_time_stamp: "",
     id: null,
-    messages: []
+    messages: [],
+    is_active: true
   });
+
+  document.addEventListener("visibilitychange", () => {
+    io.emit("closeChat", currentChat)
+  })
 
   io.on("rooms", (rooms) => {
     setCurrentChatRooms([...rooms]);
@@ -47,17 +52,8 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
-    // const filteredChats = currentChatRooms.filter(room => room.room_id !== chat.room_id)
-    // setCurrentChatRooms(filteredChats)
-    // const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    // const chatStatusMessage = {
-    //   admin_id: chat.admin_id,
-    //   content: `Chat has ended`,
-    //   id: uuidv4(),
-    //   sender_type: "ChatStatus",
-    //   visitor_id: chat.visitor_id
-    // }
-    // currentChatCopy.messages.push(chatStatusMessage)
+    console.log("ending chat", chat)
+    setSelectedRoom(false);
     setCurrentChat({...chat})
   })
 
