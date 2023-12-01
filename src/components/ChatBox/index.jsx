@@ -24,14 +24,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
 
   const closeChat = (chat) => {
     io.emit("closeChat", chat);
-    // setCurrentChat({
-    //   visitor_id: null,
-    //   admin_id: null,
-    //   room_id: "",
-    //   chat_time_stamp: "",
-    //   id: null,
-    //   messages: []
-    // })
+    setCurrentChat({
+      visitor_id: null,
+      admin_id: null,
+      room_id: "",
+      chat_time_stamp: "",
+      id: null,
+      messages: []
+    })
   };
 
   if (isAdmin) {
@@ -85,8 +85,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const onChatRoomClick = (chat) => {
-    console.log("Running on chat room click")
-    setSelectedRoom((prev) => !prev);
+    console.log("Running on chat room click");
+    setSelectedRoom(true);
     setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) });
     joinRoom(chat.room_id, chat.id);
   };
@@ -110,10 +110,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
           <span key={uuidv4()}>
             <button onClick={() => onChatRoomClick(room)}>
               {`Room ${index + 1}`}
-              <span onClick={(e) => {
-                e.stopPropagation()
-                handleCloseChatButton(room)
-                }}>X</span>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCloseChatButton(room);
+                }}
+              >
+                X
+              </span>
             </button>
           </span>
         ))}
@@ -140,6 +144,39 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
         alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
       />
     );
+  };
+
+  const rednerChatInput = () => {
+    const chatInput = (
+      <form
+        name="chat-form"
+        className={style.chatInputGroup}
+        onSubmit={handleSendMessage}
+      >
+        <input
+          className={style.chatInput}
+          type="text"
+          name="newMessage"
+          value={newMessage}
+          onChange={handleInputChange}
+          placeholder="Aa"
+        />
+        <img
+          className={style.submitIcon}
+          src={submitIcon}
+          alt="submit arrow icon"
+          onClick={handleSendMessage}
+        />
+        <input type="submit" style={{ display: "none" }} />
+      </form>
+    );
+    if (currentChat.is_active && !isAdmin) {
+      return chatInput;
+    } else if (currentChat.is_active && selectedRoom && isAdmin) {
+      return chatInput;
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -186,29 +223,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
           ))}
         </div>
       </section>
-      {!selectedRoom && isAdmin ? null : (
-        <form
-          name="chat-form"
-          className={style.chatInputGroup}
-          onSubmit={handleSendMessage}
-        >
-          <input
-            className={style.chatInput}
-            type="text"
-            name="newMessage"
-            value={newMessage}
-            onChange={handleInputChange}
-            placeholder="Aa"
-          />
-          <img
-            className={style.submitIcon}
-            src={submitIcon}
-            alt="submit arrow icon"
-            onClick={handleSendMessage}
-          />
-          <input type="submit" style={{ display: "none" }} />
-        </form>
-      )}
+      {rednerChatInput()}
     </section>
   );
 };
