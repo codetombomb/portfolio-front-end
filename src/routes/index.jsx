@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import App from "../App";
 import AdminLogin from "../pages/AdminLogin";
 import ChatContext from "../context/chatContext";
-// import { io } from '../context/chatContext'
+import { io } from '../context/chatContext'
 
 const LOGOUT_BASE = "https://portfolio-api-ws.onrender.com"
 // const LOGOUT_BASE = "http://127.0.0.1:5000"
@@ -12,7 +12,6 @@ const LOGOUT_BASE = "https://portfolio-api-ws.onrender.com"
 const AppRoutes = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminData, setAdminData] = useState({});
-  const { io } = useContext(ChatContext)
 
   const onLoginSuccess = (user) => {
     setAdminData(user);
