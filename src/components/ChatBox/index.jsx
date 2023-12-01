@@ -23,9 +23,28 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   } = useContext(ChatContext);
 
 
+  const closeChat = (chat) => {
+    console.log("closing chat", chat)
+    io.emit("closeChat", chat)
+    // setCurrentChat({
+    //   visitor_id: null,
+    //   admin_id: null,
+    //   room_id: "",
+    //   chat_time_stamp: "",
+    //   id: null,
+    //   messages: []
+    // })
+  }
+
   if (isAdmin) {
+    io.on("addAdminChat", (chat) => {
+      const currentChatRoomsCopy = JSON.parse(JSON.stringify(currentChatRooms))
+      currentChatRoomsCopy.push(chat)
+      setCurrentChatRooms(currentChatRoomsCopy)
+    })
+
     useEffect(() => {
-      console.log("Running useEffect")
+      console.log("Running admin useEffect")
       io.emit("setActiveAdmin", adminData)
       return () => {
         const filteredAdmins = activeAdmins.filter(admin => admin.id !== adminData.id)
@@ -54,11 +73,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       e.preventDefault();
     }
 
-    const newMessageData = {
-      isTom: isAdmin,
-      content: newMessage,
-    };
-
     io.emit(
       "sendMessage",
       newMessage,
@@ -83,9 +97,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     return (
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
-          <>
+          <span key={uuidv4()}>
             <button
-              key={room.room_id}
               onClick={() => onChatRoomClick(room)}
             >{`Room ${index + 1}`}             <span onClick={() => {
               const newChatRooms = currentChatRooms.filter(chat => chat.id !== room.id)
@@ -93,7 +106,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
               closeChat(room)
             }}>X</span></button>
 
-          </>
+          </span>
         ))}
       </div>
     );
@@ -102,7 +115,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   const renderAvailableAdmins = () => {
     return (activeAdmins.map(admin => {
       return <button
-        key={`admin-${admin.id}`}
+        key={uuidv4()}
       >{`${admin.first_name} ${admin.last_name}`}</button>
     }))
   }
@@ -116,19 +129,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
         alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
       />
     )
-  }
-
-  const closeChat = (chat) => {
-    console.log("closing chat", chat)
-    io.emit("closeChat", chat)
-    setCurrentChat({
-      visitor_id: null,
-      admin_id: null,
-      room_id: "",
-      chat_time_stamp: "",
-      id: null,
-      messages: []
-    })
   }
 
   return (
@@ -158,7 +158,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
         <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
         <div className={style.messagesContainer}>
           {currentChat.messages.map((message) => (
-            <div key={message.id} className={style.messageWrapper}>
+            <div key={uuidv4()} className={style.messageWrapper}>
               <p
                 className={
                   message.sender_type === "Admin" ? style.tomMessage : style.senderMessage
