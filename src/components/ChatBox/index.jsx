@@ -85,7 +85,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const onChatRoomClick = (chat) => {
-    console.log("Running on chat room click");
     setSelectedRoom(true);
     setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) });
     joinRoom(chat.room_id, chat.id);
