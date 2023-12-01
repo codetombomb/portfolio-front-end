@@ -108,7 +108,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
           <span key={uuidv4()}>
-            <button onClick={() => onChatRoomClick(room)}>
+            <button className={currentChat.room_id === room.room_id ? style.selectedRoom : null} onClick={() => onChatRoomClick(room)}>
               {`Room ${index + 1}`}
               <span
                 onClick={(e) => {

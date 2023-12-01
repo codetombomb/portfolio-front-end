@@ -113,6 +113,26 @@
   margin-left: 2%;
 }
 
+.selectedRoom {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.selectedRoom:hover {
+  border: 1px solid white;
+}
+
+.selectedRoom > span{
+  background-color: red;
+  color: white;
+}
+
+.selectedRoom > span:hover{
+  background-color: red;
+  color: white;
+  border: 1px solid white;
+}
+
 @media (max-width: 576px) {
   .chatBox {
     width: 100%;
