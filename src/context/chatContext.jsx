@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
+import { v4 as uuidv4 } from "uuid";
 
 export const ChatContext = createContext();
 
@@ -23,15 +24,16 @@ const ChatProvider = ({ children }) => {
     chat_time_stamp: "",
     id: null,
     messages: []
-});
+  });
 
   io.on("rooms", (rooms) => {
     setCurrentChatRooms([...rooms]);
   });
 
   io.on("chatData", (data) => {
+    console.log("chat data listener in chat context", data)
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    setCurrentChat({...currentChatCopy, ...data}) 
+    setCurrentChat({ ...currentChatCopy, ...data })
   });
 
   io.on("activeAdmins", (data) => {
@@ -45,21 +47,37 @@ const ChatProvider = ({ children }) => {
     setActiveAdmins(filteredAdmins)
   })
 
+  io.on("endChat", (chat) => {
+    console.log("chat to be removed: ", chat)
+    // const filteredChats = currentChatRooms.filter(room => room.room_id !== chat.room_id)
+    // setCurrentChatRooms(filteredChats)
+    // const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
+    // const chatStatusMessage = {
+    //   admin_id: chat.admin_id,
+    //   content: `Chat has ended`,
+    //   id: uuidv4(),
+    //   sender_type: "ChatStatus",
+    //   visitor_id: chat.visitor_id
+    // }
+    // currentChatCopy.messages.push(chatStatusMessage)
+    setCurrentChat({...chat})
+  })
+
   const getRooms = () => {
     io.emit("getChats");
   };
 
   const initChat = () => {
+    console.log("init chat")
     io.emit("initChat")
   }
 
   useEffect(() => {
-      fetch(`${API_URL}/current_admins`)
-        .then(resp => resp.json())
-        .then(data => setActiveAdmins([...data]))
-
+    fetch(`${API_URL}/current_admins`)
+      .then(resp => resp.json())
+      .then(data => setActiveAdmins([...data]))
   }, [])
-  
+
   return (
     <ChatContext.Provider
       value={{
