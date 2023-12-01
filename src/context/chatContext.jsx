@@ -52,7 +52,6 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
-    console.log("ending chat", chat)
     setSelectedRoom(false);
     setCurrentChat({...chat})
   })
