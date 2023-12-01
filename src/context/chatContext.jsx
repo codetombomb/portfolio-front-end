@@ -4,18 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 
 export const ChatContext = createContext();
 
-// export const io = socketIOClient("http://localhost:3001")
-export const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
+export const io = socketIOClient("http://localhost:3001")
+// export const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
-// const API_URL = "http://127.0.0.1:5000"
-const API_URL = "https://portfolio-api-ws.onrender.com"
+const API_URL = "http://127.0.0.1:5000"
+// const API_URL = "https://portfolio-api-ws.onrender.com"
 
 
 const ChatProvider = ({ children }) => {
 
   const [newMessage, setNewMessage] = useState("");
   const [currentChatRooms, setCurrentChatRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState(false);
   const [activeAdmins, setActiveAdmins] = useState([])
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
@@ -47,17 +47,7 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
-    // const filteredChats = currentChatRooms.filter(room => room.room_id !== chat.room_id)
-    // setCurrentChatRooms(filteredChats)
-    // const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    // const chatStatusMessage = {
-    //   admin_id: chat.admin_id,
-    //   content: `Chat has ended`,
-    //   id: uuidv4(),
-    //   sender_type: "ChatStatus",
-    //   visitor_id: chat.visitor_id
-    // }
-    // currentChatCopy.messages.push(chatStatusMessage)
+    setSelectedRoom(false);
     setCurrentChat({...chat})
   })
 
