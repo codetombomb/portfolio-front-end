@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 
 export const ChatContext = createContext();
 
-export const io = socketIOClient("http://localhost:3001")
-// const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
+// export const io = socketIOClient("http://localhost:3001")
+const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
 
-const API_URL = "http://127.0.0.1:5000"
-// const API_URL = "https://portfolio-api-ws.onrender.com"
+// const API_URL = "http://127.0.0.1:5000"
+const API_URL = "https://portfolio-api-ws.onrender.com"
 
 
 const ChatProvider = ({ children }) => {
