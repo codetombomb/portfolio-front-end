@@ -19,12 +19,11 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     initChat,
     getRooms,
     activeAdmins,
-    setActiveAdmins
+    setActiveAdmins,
   } = useContext(ChatContext);
 
-
   const closeChat = (chat) => {
-    io.emit("closeChat", chat)
+    io.emit("closeChat", chat);
     // setCurrentChat({
     //   visitor_id: null,
     //   admin_id: null,
@@ -33,30 +32,31 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     //   id: null,
     //   messages: []
     // })
-  }
+  };
 
   if (isAdmin) {
     io.on("addAdminChat", (chat) => {
-      const currentChatRoomsCopy = JSON.parse(JSON.stringify(currentChatRooms))
-      currentChatRoomsCopy.push(chat)
-      setCurrentChatRooms(currentChatRoomsCopy)
-    })
+      const currentChatRoomsCopy = JSON.parse(JSON.stringify(currentChatRooms));
+      currentChatRoomsCopy.push(chat);
+      setCurrentChatRooms(currentChatRoomsCopy);
+    });
 
     useEffect(() => {
-      io.emit("setActiveAdmin", adminData)
+      io.emit("setActiveAdmin", adminData);
       return () => {
-        const filteredAdmins = activeAdmins.filter(admin => admin.id !== adminData.id)
-        setActiveAdmins(filteredAdmins)
-        closeChat(currentChat)
-      }
-    }, [])
+        const filteredAdmins = activeAdmins.filter(
+          (admin) => admin.id !== adminData.id
+        );
+        setActiveAdmins(filteredAdmins);
+        closeChat(currentChat);
+      };
+    }, []);
   } else {
     useEffect(() => {
       return () => {
-        closeChat(currentChat)
-      }
-    }, [])
-
+        closeChat(currentChat);
+      };
+    }, []);
   }
 
   const handleInputChange = ({ target }) => {
@@ -85,23 +85,36 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const onChatRoomClick = (chat) => {
-    setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) })
+    console.log("Running on chat room click")
+    setSelectedRoom((prev) => !prev);
+    setCurrentChat({ ...JSON.parse(JSON.stringify(chat)) });
     joinRoom(chat.room_id, chat.id);
   };
 
+  const handleCloseChatButton = (room) => {
+    const newChatRooms = currentChatRooms.filter((chat) => chat.id !== room.id);
+    setCurrentChatRooms(newChatRooms);
+    closeChat(room);
+  };
+
   const renderLiveChatButtons = () => {
+    if (currentChatRooms.length === 0)
+      return (
+        <span className="grid grid-center" style={{ backgroundColor: `red` }}>
+          No Active Chats
+        </span>
+      );
     return (
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
           <span key={uuidv4()}>
-            <button
-              onClick={() => onChatRoomClick(room)}
-            >{`Room ${index + 1}`}             <span onClick={() => {
-              const newChatRooms = currentChatRooms.filter(chat => chat.id !== room.id)
-              setCurrentChatRooms(newChatRooms)
-              closeChat(room)
-            }}>X</span></button>
-
+            <button onClick={() => onChatRoomClick(room)}>
+              {`Room ${index + 1}`}
+              <span onClick={(e) => {
+                e.stopPropagation()
+                handleCloseChatButton(room)
+                }}>X</span>
+            </button>
           </span>
         ))}
       </div>
@@ -109,23 +122,25 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
   };
 
   const renderAvailableAdmins = () => {
-    return (activeAdmins.map(admin => {
-      return <button
-        key={uuidv4()}
-      >{`${admin.first_name} ${admin.last_name}`}</button>
-    }))
-  }
+    return activeAdmins.map((admin) => {
+      return (
+        <button
+          key={uuidv4()}
+        >{`${admin.first_name} ${admin.last_name}`}</button>
+      );
+    });
+  };
 
   const renderAvatar = () => {
-    if (isAdmin) return null
+    if (isAdmin) return null;
     return (
       <img
         className={style.tabAvatar}
         src={activeAdmins.length > 0 ? activeAdmins[0].picture : botAvatar}
         alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
       />
-    )
-  }
+    );
+  };
 
   return (
     <section className={style.chatBox}>
@@ -134,17 +149,20 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
           <>
             {renderAvatar()}
             <h3 className={style.tabTitle}>
-              {activeAdmins.length > 0 ? `${activeAdmins[0].name}` : "CodeTomBot"}
+              {activeAdmins.length > 0
+                ? `${activeAdmins[0].name}`
+                : "CodeTomBot"}
             </h3>
-            <div
-              className={style.onlineIndicator}
-            ></div>
+            <div className={style.onlineIndicator}></div>
           </>
         </div>
-        <span className={style.chatCloseBtn} onClick={() => {
-          closeChat(currentChat)
-          handleSetShowChat()
-        }}>
+        <span
+          className={style.chatCloseBtn}
+          onClick={() => {
+            closeChat(currentChat);
+            handleSetShowChat();
+          }}
+        >
           close
         </span>
       </section>
@@ -157,7 +175,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
             <div key={uuidv4()} className={style.messageWrapper}>
               <p
                 className={
-                  message.sender_type === "Admin" ? style.tomMessage : style.senderMessage
+                  message.sender_type === "Admin"
+                    ? style.tomMessage
+                    : style.senderMessage
                 }
               >
                 {message.content}
@@ -166,27 +186,29 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
           ))}
         </div>
       </section>
-      <form
-        name="chat-form"
-        className={style.chatInputGroup}
-        onSubmit={handleSendMessage}
-      >
-        <input
-          className={style.chatInput}
-          type="text"
-          name="newMessage"
-          value={newMessage}
-          onChange={handleInputChange}
-          placeholder="Aa"
-        />
-        <img
-          className={style.submitIcon}
-          src={submitIcon}
-          alt="submit arrow icon"
-          onClick={handleSendMessage}
-        />
-        <input type="submit" style={{ display: "none" }} />
-      </form>
+      {!selectedRoom && isAdmin ? null : (
+        <form
+          name="chat-form"
+          className={style.chatInputGroup}
+          onSubmit={handleSendMessage}
+        >
+          <input
+            className={style.chatInput}
+            type="text"
+            name="newMessage"
+            value={newMessage}
+            onChange={handleInputChange}
+            placeholder="Aa"
+          />
+          <img
+            className={style.submitIcon}
+            src={submitIcon}
+            alt="submit arrow icon"
+            onClick={handleSendMessage}
+          />
+          <input type="submit" style={{ display: "none" }} />
+        </form>
+      )}
     </section>
   );
 };

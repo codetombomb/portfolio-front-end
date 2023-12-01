@@ -20,11 +20,12 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin }) =>
       <SectionDescription text={description.text} color={description.color} />
       <SectionCallToAction
         handleButtonClick={() => {
-          if (isAdmin) {
+          handleSetShowChat()
+          if (isAdmin && !showChat) {
             getRooms()
           } else if (!isAdmin && !showChat) {
             initChat()
-          } else if (!isAdmin && showChat) {
+          } else if (showChat) {
             io.emit("closeChat", currentChat)
             setCurrentChat({
               visitor_id: null,
@@ -35,7 +36,6 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin }) =>
               messages: []
             })
           }
-          handleSetShowChat()
         }}
         text={callToAction.text}
         color={callToAction.color}
