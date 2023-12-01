@@ -23,7 +23,8 @@ const ChatProvider = ({ children }) => {
     room_id: "",
     chat_time_stamp: "",
     id: null,
-    messages: []
+    messages: [],
+    is_active: true
   });
 
   io.on("rooms", (rooms) => {
@@ -47,6 +48,7 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
+    console.log("ending chat", chat)
     setSelectedRoom(false);
     setCurrentChat({...chat})
   })
