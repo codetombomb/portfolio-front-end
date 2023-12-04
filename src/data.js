@@ -1,4 +1,8 @@
 export default {
+  navLinks: {
+    github: "https://github.com/codetombomb",
+    linkedin: "https://www.linkedin.com/in/tomtobar",
+  },
   topSection: {
     title: {
       text: "tom tobar",
@@ -33,11 +37,23 @@ export default {
       text: "Here are some of my projects and blogs. More to come in the near future!",
       color: "--secondary-light",
     },
-    worksList:[
-      {title: "Py-CLI GPT", githubLink: "https://github.com/codetombomb/cli-gpt"},
-      {title: "Covid Chaos", githubLink: "https://github.com/codetombomb/covid-chaos-frontend"},
-      {title: "Jeopardy CLI - Ruby", githubLink: "https://github.com/codetombomb/this_is_jeopardy"},
-      {title: "MotoGO", githubLink: "https://github.com/codetombomb/MotoGoApp"},
-    ]
+    worksList: [
+      {
+        title: "Py-CLI GPT",
+        githubLink: "https://github.com/codetombomb/cli-gpt",
+      },
+      {
+        title: "Covid Chaos",
+        githubLink: "https://github.com/codetombomb/covid-chaos-frontend",
+      },
+      {
+        title: "Jeopardy CLI - Ruby",
+        githubLink: "https://github.com/codetombomb/this_is_jeopardy",
+      },
+      {
+        title: "MotoGO",
+        githubLink: "https://github.com/codetombomb/MotoGoApp",
+      },
+    ],
   },
 };
