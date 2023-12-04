@@ -34,6 +34,7 @@ function App({ adminData, isAdmin, onAdminLogout }) {
         handleSetShowChat={handleSetShowChat}
         showChat={showChat}
         isAdmin={isAdmin}
+        navData={devData.navLinks}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
       <WorksSection worksSectionData={devData.worksSection} />
