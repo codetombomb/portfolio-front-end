@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import AboutSection from "./components/AboutSection";
 import TopSection from "./components/TopSection";
@@ -7,8 +7,6 @@ import WorksSection from "./components/WorksSection";
 import devData from "./data";
 import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
-
-import { ChatContext } from "./context/chatContext";
 
 function App({ adminData, isAdmin, onAdminLogout }) {
   const [showChat, setShowChat] = useState(false);
@@ -34,6 +32,7 @@ function App({ adminData, isAdmin, onAdminLogout }) {
         handleSetShowChat={handleSetShowChat}
         showChat={showChat}
         isAdmin={isAdmin}
+        navData={devData.navLinks}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
       <WorksSection worksSectionData={devData.worksSection} />

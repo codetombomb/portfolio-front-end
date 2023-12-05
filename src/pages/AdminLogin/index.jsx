@@ -14,9 +14,6 @@ const LOGIN_BASE = "https://portfolio-api-ws.onrender.com"
 
 const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const [errors, setErrors] = useState([])
-  const [currentAdmin, setCurrentAdmin] = useState({
-
-  })
   const navigate = useNavigate()
 
   const handleLogin = (email, first_name, last_name, picture, name) => {
