@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
-import { v4 as uuidv4 } from "uuid";
 
 export const ChatContext = createContext();
 

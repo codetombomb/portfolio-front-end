@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext, useRef } from "react";
 import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
 import { v4 as uuidv4 } from "uuid";
 import botAvatar from "../../assets/bot.svg";
 import { ChatContext } from "../../context/chatContext";
 
-const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
+const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const {
     io,
     currentChatRooms,
@@ -16,11 +16,18 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     setCurrentChat,
     newMessage,
     setNewMessage,
-    initChat,
-    getRooms,
     activeAdmins,
     setActiveAdmins,
   } = useContext(ChatContext);
+
+  const chatRef = useRef()
+
+  useEffect(() => {
+    if (chatRef.current){
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [currentChat])
+
 
   const closeChat = (chat) => {
     io.emit("closeChat", chat);
@@ -30,8 +37,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       room_id: "",
       chat_time_stamp: "",
       id: null,
-      messages: []
-    })
+      messages: [],
+    });
   };
 
   if (isAdmin) {
@@ -68,6 +75,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
     if (e.target.name === "chat-form") {
       e.preventDefault();
     }
+    if (!newMessage) return;
 
     io.emit(
       "sendMessage",
@@ -107,7 +115,12 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       <div className={style.chatRoomButtonGroup}>
         {currentChatRooms.map((room, index) => (
           <span key={uuidv4()}>
-            <button className={currentChat.room_id === room.room_id ? style.selectedRoom : null} onClick={() => onChatRoomClick(room)}>
+            <button
+              className={
+                currentChat.room_id === room.room_id ? style.selectedRoom : null
+              }
+              onClick={() => onChatRoomClick(room)}
+            >
               {`Room ${index + 1}`}
               <span
                 onClick={(e) => {
@@ -143,6 +156,22 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
         alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
       />
     );
+  };
+
+  const renderMessages = () => {
+    return currentChat.messages.map((message) => (
+      <div key={uuidv4()} className={style.messageWrapper}>
+        <p
+          className={
+            message.sender_type === "Admin"
+              ? style.tomMessage
+              : style.senderMessage
+          }
+        >
+          {message.content}
+        </p>
+      </div>
+    ));
   };
 
   const rednerChatInput = () => {
@@ -204,23 +233,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData, onAdminLogout }) => {
       </section>
       {isAdmin && renderLiveChatButtons()}
       {!isAdmin && renderAvailableAdmins()}
+      <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
       <section className={style.mainChat}>
-        <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
-        <div className={style.messagesContainer}>
-          {currentChat.messages.map((message) => (
-            <div key={uuidv4()} className={style.messageWrapper}>
-              <p
-                className={
-                  message.sender_type === "Admin"
-                    ? style.tomMessage
-                    : style.senderMessage
-                }
-              >
-                {message.content}
-              </p>
-            </div>
-          ))}
-        </div>
+        <div ref={chatRef} className={style.messagesContainer}>{renderMessages()}</div>
       </section>
       {rednerChatInput()}
     </section>
