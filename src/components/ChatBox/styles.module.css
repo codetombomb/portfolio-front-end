@@ -58,11 +58,21 @@
   height: 50vh;
   overflow-y: scroll;
   line-height: 1.3rem;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+
 }
 
 .chatDate {
   text-align: center;
   margin-top: 2%;
+}
+
+.messagesContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 }
 
 .messageWrapper {
@@ -77,6 +87,7 @@
   padding: 2%;
   width: 70%;
   margin: 3%;
+  align-self: flex-end;
 }
 
 .senderMessage {
@@ -84,7 +95,6 @@
   border-radius: 1em 1em 0 1em;
   padding: 2%;
   width: 70%;
-  align-self: end;
   margin: 3%;
 }
 
