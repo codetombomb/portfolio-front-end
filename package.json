@@ -10,17 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-oauth/google": "^0.11.1",
-    "@react-three/drei": "^9.78.1",
-    "@react-three/fiber": "^8.13.4",
     "jwt-decode": "^4.0.0",
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "socket.io-client": "^4.7.2",
-    "sort-by": "^1.2.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
