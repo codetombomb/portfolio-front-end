@@ -74,7 +74,6 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  padding-bottom: 8vh;
 }
 
 .messageWrapper {
@@ -163,6 +162,10 @@
     bottom: 0;
     width: 100%;
   }
+
+  .messagesContainer {
+    padding-bottom: 8vh;
+  }
 }
 @media (min-width: 577px) {
   .chatBox {
@@ -175,6 +178,10 @@
 
   .chatInputGroup {
     position: relative;
+  }
+
+  .messagesContainer {
+    padding-bottom: 0;
   }
   
 }
