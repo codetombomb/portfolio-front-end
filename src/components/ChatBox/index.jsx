@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef } from "react";
+import { useEffect, useContext, useRef, useState } from "react";
 import style from "./styles.module.css";
 import submitIcon from "../../assets/submit-icon.svg";
 import { v4 as uuidv4 } from "uuid";
@@ -18,15 +18,17 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setNewMessage,
     activeAdmins,
     setActiveAdmins,
+    isInputFocused, 
+    setInputFocused
   } = useContext(ChatContext);
 
-  const chatRef = useRef()
+  const mainChatRef = useRef()
 
   useEffect(() => {
-    if (chatRef.current){
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    if (mainChatRef.current) {
+      mainChatRef.current.scrollTop = mainChatRef.current.scrollHeight;
     }
-  }, [currentChat])
+  }, [isInputFocused, currentChat.messages])
 
 
   const closeChat = (chat) => {
@@ -39,6 +41,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       id: null,
       messages: [],
     });
+    document.body.style.overflow = '';
   };
 
   if (isAdmin) {
@@ -174,7 +177,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     ));
   };
 
-  const rednerChatInput = () => {
+  const renderChatInput = () => {
     const chatInput = (
       <form
         name="chat-form"
@@ -187,6 +190,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           name="newMessage"
           value={newMessage}
           onChange={handleInputChange}
+          onFocus={() => setInputFocused(true)}
+          onBlur={() => setInputFocused(false)}
           placeholder="Aa"
         />
         <img
@@ -198,6 +203,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         <input type="submit" style={{ display: "none" }} />
       </form>
     );
+
     if (currentChat.is_active && !isAdmin) {
       return chatInput;
     } else if (currentChat.is_active && selectedRoom && isAdmin) {
@@ -206,6 +212,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       return null;
     }
   };
+
 
   return (
     <section className={style.chatBox}>
@@ -235,9 +242,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       {!isAdmin && renderAvailableAdmins()}
       <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
       <section className={style.mainChat}>
-        <div ref={chatRef} className={style.messagesContainer}>{renderMessages()}</div>
+        <div ref={mainChatRef} className={style.messagesContainer}>{renderMessages()}</div>
       </section>
-      {rednerChatInput()}
+      {renderChatInput()}
     </section>
   );
 };

@@ -20,6 +20,9 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navD
       <SectionDescription text={description.text} color={description.color} />
       <SectionCallToAction
         handleButtonClick={() => {
+          if(typeof screen.orientation !== 'undefined'){
+            document.body.style.overflow = 'hidden';
+          }
           handleSetShowChat()
           if (isAdmin && !showChat) {
             getRooms()
