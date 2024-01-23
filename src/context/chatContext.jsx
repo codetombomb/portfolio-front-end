@@ -37,7 +37,7 @@ const ChatProvider = ({ children }) => {
 
   io.on("chatData", (data) => {
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    setCurrentChat({ ...currentChatCopy, ...data })
+    setCurrentChat({ ...currentChatCopy, ...data, chat_time_stamp: Intl.DateTimeFormat('en', { weekday: "short", hour: "numeric", minute: "numeric", hour12: true }).format(new Date()) })
   });
 
   io.on("activeAdmins", (data) => {
@@ -86,7 +86,7 @@ const ChatProvider = ({ children }) => {
         getRooms,
         activeAdmins,
         setActiveAdmins,
-        isInputFocused, 
+        isInputFocused,
         setInputFocused
       }}
     >
