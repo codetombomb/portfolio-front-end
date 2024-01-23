@@ -14,8 +14,9 @@ const ChatProvider = ({ children }) => {
 
   const [newMessage, setNewMessage] = useState("");
   const [currentChatRooms, setCurrentChatRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState(false);
   const [activeAdmins, setActiveAdmins] = useState([])
+  const [isInputFocused, setInputFocused] = useState(false)
+  const [selectedRoom, setSelectedRoom] = useState(false);
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
     admin_id: null,
@@ -52,7 +53,7 @@ const ChatProvider = ({ children }) => {
 
   io.on("endChat", (chat) => {
     setSelectedRoom(false);
-    setCurrentChat({...chat})
+    setCurrentChat({ ...chat })
   })
 
   const getRooms = () => {
@@ -84,7 +85,9 @@ const ChatProvider = ({ children }) => {
         initChat,
         getRooms,
         activeAdmins,
-        setActiveAdmins
+        setActiveAdmins,
+        isInputFocused, 
+        setInputFocused
       }}
     >
       {children}
