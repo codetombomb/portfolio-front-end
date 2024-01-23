@@ -56,8 +56,8 @@
 
 .mainChat {
   height: 50vh;
-  flex: 1;
-  overflow-y: auto;
+  /* flex: 1; */
+  overflow-y: scroll;
   line-height: 1.3rem;
   flex-direction: column;
   display: flex;
@@ -163,4 +163,18 @@
     bottom: 0;
     width: 100%;
   }
+}
+@media (min-width: 577px) {
+  .chatBox {
+    width: 25vw;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 2%;
+  }
+
+  .chatInputGroup {
+    position: relative;
+  }
+  
 }
