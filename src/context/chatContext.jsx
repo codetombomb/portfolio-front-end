@@ -59,11 +59,9 @@ const ChatProvider = ({ children }) => {
       const newTypers = [...currentTypers, name]
       setCurrentTypers(newTypers)
     }
-    console.log(`${name || "visitor"} is typing`)
   })
 
   io.on("stopped typing", (name) => {
-    console.log(name, 'stopped typing')
     setCurrentTypers((prevTypers) => prevTypers.filter((typer) => typer !== name));
   });
 
