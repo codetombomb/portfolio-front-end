@@ -110,12 +110,19 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     }
     if (!newMessage) return;
 
+    const timeSent = Intl.DateTimeFormat("en", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    }).format(new Date());
+
     io.emit(
       "sendMessage",
       newMessage,
       currentChat.room_id,
       currentChat,
-      isAdmin
+      isAdmin,
+      timeSent
     );
 
     setNewMessage("");
@@ -184,18 +191,20 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const renderMessages = () => {
     return currentChat.messages.map((message) => (
       <div key={uuidv4()} className={style.messageWrapper}>
-        <div className={`${style.messageContent} ${message.sender_type === "Admin" ? style.tomMessageContent : null}`}>
-          <span className={style.messageTimeStamp}>{Intl.DateTimeFormat("en", {
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          }).format(new Date())}</span>
+        <div
+          className={`${style.messageContent} ${
+            message.sender_type === "Admin" ? style.tomMessageContent : null
+          }`}
+        >
+          <span className={style.messageTimeStamp}>
+            {message.timeSent}
+          </span>
           <p
             className={`${style.message} ${
               message.sender_type === "Admin"
                 ? style.tomMessage
-                : style.senderMessage}`
-            }
+                : style.senderMessage
+            }`}
           >
             {message.content}
           </p>

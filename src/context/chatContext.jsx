@@ -19,7 +19,7 @@ const ChatProvider = ({ children }) => {
     visitor_id: null,
     admin_id: null,
     room_id: "",
-    chat_time_stamp: "",
+    chat_time_stamp: Intl.DateTimeFormat('en', { weekday: "short", hour: "numeric", minute: "numeric", hour12: true }).format(new Date()),
     id: null,
     messages: [],
     is_active: true
@@ -35,7 +35,7 @@ const ChatProvider = ({ children }) => {
 
   io.on("chatData", (data) => {
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    setCurrentChat({ ...currentChatCopy, ...data, chat_time_stamp: Intl.DateTimeFormat('en', { weekday: "short", hour: "numeric", minute: "numeric", hour12: true }).format(new Date()) })
+    setCurrentChat({ ...currentChatCopy, ...data})
   });
 
   io.on("activeAdmins", (data) => {
