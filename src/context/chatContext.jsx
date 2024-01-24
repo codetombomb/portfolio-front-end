@@ -55,7 +55,6 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("typing", (name) => {
-    setIsTyping(true)
     if (!currentTypers.includes(name)){
       const newTypers = [...currentTypers, name]
       setCurrentTypers(newTypers)
