@@ -1,5 +1,6 @@
 # TODO
-- [] Moblie view does not show typing indicator
+- [x] Moblie view does not show typing indicator
+    - [] Noticed that the chat message does not contain the entire message when a long message is added to chat.
 - [] Greeting for visitor in chat if I am not there
 - [] SEO
 - [] Reorganize projects
