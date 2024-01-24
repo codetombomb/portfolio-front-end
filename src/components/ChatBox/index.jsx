@@ -24,25 +24,24 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     isTyping,
     setIsTyping,
     currentTypers,
-    setCurrentTypers
+    setCurrentTypers,
   } = useContext(ChatContext);
 
-  const mainChatRef = useRef()
+  const mainChatRef = useRef();
   const typingTimeoutRef = useRef(null);
-  const debouncedMessage = useDebounce(newMessage, 500)
+  const debouncedMessage = useDebounce(newMessage, 500);
 
   useEffect(() => {
     if (mainChatRef.current) {
       mainChatRef.current.scrollTop = mainChatRef.current.scrollHeight;
     }
-  }, [isInputFocused, currentChat.messages])
+  }, [isInputFocused, currentChat.messages]);
 
   useEffect(() => {
     if (debouncedMessage) {
       io.emit("stopped typing", adminData.first_name, currentChat.room_id);
     }
-  }, [debouncedMessage])
-
+  }, [debouncedMessage]);
 
   const closeChat = (chat) => {
     io.emit("closeChat", chat);
@@ -54,7 +53,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       id: null,
       messages: [],
     });
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
   };
 
   if (isAdmin) {
@@ -85,15 +84,23 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const handleInputChange = ({ target }) => {
     const { value } = target;
     setNewMessage(value);
-    if(typingTimeoutRef.current){
+    if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
     }
-    if(value){
-      setIsTyping(true)
-      io.emit("typing", { name: adminData.first_name || "visitor"}, currentChat.room_id);
+    if (value) {
+      setIsTyping(true);
+      io.emit(
+        "typing",
+        { name: adminData.first_name || "visitor" },
+        currentChat.room_id
+      );
       typingTimeoutRef.current = setTimeout(() => {
-        io.emit("stopped typing", adminData.first_name || "visitor", currentChat.room_id);
-      }, 500)
+        io.emit(
+          "stopped typing",
+          adminData.first_name || "visitor",
+          currentChat.room_id
+        );
+      }, 500);
     }
   };
 
@@ -163,16 +170,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     );
   };
 
-  const renderAvailableAdmins = () => {
-    return activeAdmins.map((admin) => {
-      return (
-        <button
-          key={uuidv4()}
-        >{`${admin.first_name} ${admin.last_name}`}</button>
-      );
-    });
-  };
-
   const renderAvatar = () => {
     if (isAdmin) return null;
     return (
@@ -187,15 +184,22 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const renderMessages = () => {
     return currentChat.messages.map((message) => (
       <div key={uuidv4()} className={style.messageWrapper}>
-        <p
-          className={
-            message.sender_type === "Admin"
-              ? style.tomMessage
-              : style.senderMessage
-          }
-        >
-          {message.content}
-        </p>
+        <div className={`${style.messageContent} ${message.sender_type === "Admin" ? style.tomMessageContent : null}`}>
+          <span className={style.messageTimeStamp}>{Intl.DateTimeFormat("en", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          }).format(new Date())}</span>
+          <p
+            className={`${style.message} ${
+              message.sender_type === "Admin"
+                ? style.tomMessage
+                : style.senderMessage}`
+            }
+          >
+            {message.content}
+          </p>
+        </div>
       </div>
     ));
   };
@@ -216,6 +220,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           onFocus={() => setInputFocused(true)}
           onBlur={() => setInputFocused(false)}
           placeholder="Aa"
+          autoComplete="off"
         />
         <img
           className={style.submitIcon}
@@ -237,13 +242,12 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   };
 
   const renderCurrentTypers = () => {
-     if(currentTypers.length === 1) {
-        return `${currentTypers[0]} is typing...`
-      } else {
-        return `${currentTypers.length} people are typing...`
-      }
-  }
-
+    if (currentTypers.length === 1) {
+      return `${currentTypers[0]} is typing...`;
+    } else {
+      return `${currentTypers.length} people are typing...`;
+    }
+  };
 
   return (
     <section className={style.chatBox}>
@@ -270,11 +274,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         </span>
       </section>
       {isAdmin && renderLiveChatButtons()}
-      {!isAdmin && renderAvailableAdmins()}
       <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
       <section className={style.mainChat}>
-        <div ref={mainChatRef} className={style.messagesContainer}>{renderMessages()}</div>
-        {currentTypers.length > 0 ? renderCurrentTypers() : null}
+        <div ref={mainChatRef} className={style.messagesContainer}>
+          {renderMessages()}
+          <p className={style.currentTypers}>
+            {currentTypers.length > 0 ? renderCurrentTypers() : null}
+          </p>
+        </div>
       </section>
       {renderChatInput()}
     </section>
