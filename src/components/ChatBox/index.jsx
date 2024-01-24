@@ -4,6 +4,7 @@ import submitIcon from "../../assets/submit-icon.svg";
 import { v4 as uuidv4 } from "uuid";
 import botAvatar from "../../assets/bot.svg";
 import { ChatContext } from "../../context/chatContext";
+import useDebounce from "../../hooks/useDebounce";
 
 const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const {
@@ -18,17 +19,29 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setNewMessage,
     activeAdmins,
     setActiveAdmins,
-    isInputFocused, 
-    setInputFocused
+    isInputFocused,
+    setInputFocused,
+    isTyping,
+    setIsTyping,
+    currentTypers,
+    setCurrentTypers
   } = useContext(ChatContext);
 
   const mainChatRef = useRef()
+  const typingTimeoutRef = useRef(null);
+  const debouncedMessage = useDebounce(newMessage, 500)
 
   useEffect(() => {
     if (mainChatRef.current) {
       mainChatRef.current.scrollTop = mainChatRef.current.scrollHeight;
     }
   }, [isInputFocused, currentChat.messages])
+
+  useEffect(() => {
+    if (debouncedMessage) {
+      io.emit("stopped typing", adminData.first_name, currentChat.room_id);
+    }
+  }, [debouncedMessage])
 
 
   const closeChat = (chat) => {
@@ -72,6 +85,16 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const handleInputChange = ({ target }) => {
     const { value } = target;
     setNewMessage(value);
+    if(typingTimeoutRef.current){
+      clearTimeout(typingTimeoutRef.current);
+    }
+    if(value){
+      setIsTyping(true)
+      io.emit("typing", { name: adminData.first_name || "visitor"}, currentChat.room_id);
+      typingTimeoutRef.current = setTimeout(() => {
+        io.emit("stopped typing", adminData.first_name || "visitor", currentChat.room_id);
+      }, 500)
+    }
   };
 
   const handleSendMessage = (e) => {
@@ -213,6 +236,14 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     }
   };
 
+  const renderCurrentTypers = () => {
+     if(currentTypers.length === 1) {
+        return `${currentTypers[0]} is typing...`
+      } else {
+        return `${currentTypers.length} people are typing...`
+      }
+  }
+
 
   return (
     <section className={style.chatBox}>
@@ -243,6 +274,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
       <section className={style.mainChat}>
         <div ref={mainChatRef} className={style.messagesContainer}>{renderMessages()}</div>
+        {currentTypers.length > 0 ? renderCurrentTypers() : null}
       </section>
       {renderChatInput()}
     </section>

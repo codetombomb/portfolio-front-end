@@ -8,21 +8,13 @@ import { jwtDecode } from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
 
-const LOGIN_BASE = "https://portfolio-api-ws.onrender.com"
-// const LOGIN_BASE = "http://127.0.0.1:5000";
+const LOGIN_BASE = import.meta.env.VITE_API_URL;
 
 const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const [errors, setErrors] = useState([]);
-  const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("logging in");
     window.location.href = `${LOGIN_BASE}/login`;
-    fetch(`${LOGIN_BASE}/login`)
-      .then((data) => {
-        console.log(data)
-      })
-      .catch((err) => console.log(err));
   };
 
   return (
