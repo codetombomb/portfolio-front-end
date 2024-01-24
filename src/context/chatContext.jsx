@@ -3,12 +3,8 @@ import socketIOClient from "socket.io-client";
 
 export const ChatContext = createContext();
 
-// export const io = socketIOClient("http://localhost:3001")
-export const io = socketIOClient("https://portfolio-chat-server-rjvo.onrender.com")
-
-// const API_URL = "http://127.0.0.1:5000"
-const API_URL = "https://portfolio-api-ws.onrender.com"
-
+export const io = socketIOClient(import.meta.env.VITE_SOCKET_URL)
+const API_URL = import.meta.env.VITE_API_URL
 
 const ChatProvider = ({ children }) => {
 
@@ -17,6 +13,8 @@ const ChatProvider = ({ children }) => {
   const [activeAdmins, setActiveAdmins] = useState([])
   const [isInputFocused, setInputFocused] = useState(false)
   const [selectedRoom, setSelectedRoom] = useState(false);
+  const [isTyping, setIsTyping] = useState(false)
+  const [currentTypers, setCurrentTypers] = useState([])
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
     admin_id: null,
@@ -56,6 +54,19 @@ const ChatProvider = ({ children }) => {
     setCurrentChat({ ...chat })
   })
 
+  io.on("typing", (name) => {
+    if (!currentTypers.includes(name)){
+      const newTypers = [...currentTypers, name]
+      setCurrentTypers(newTypers)
+    }
+    console.log(`${name || "visitor"} is typing`)
+  })
+
+  io.on("stopped typing", (name) => {
+    console.log(name, 'stopped typing')
+    setCurrentTypers((prevTypers) => prevTypers.filter((typer) => typer !== name));
+  });
+
   const getRooms = () => {
     io.emit("getChats");
   };
@@ -87,7 +98,11 @@ const ChatProvider = ({ children }) => {
         activeAdmins,
         setActiveAdmins,
         isInputFocused,
-        setInputFocused
+        setInputFocused,
+        isTyping, 
+        setIsTyping,
+        currentTypers,
+        setCurrentTypers
       }}
     >
       {children}
