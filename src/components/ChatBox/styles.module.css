@@ -56,7 +56,6 @@
 
 .mainChat {
   height: 50vh;
-  /* flex: 1; */
   overflow-y: scroll;
   line-height: 1.3rem;
   flex-direction: column;
@@ -68,6 +67,7 @@
 .chatDate {
   text-align: center;
   margin-top: 2%;
+  z-index: 20;
 }
 
 .messagesContainer {
@@ -82,21 +82,42 @@
   flex-direction: column;
 }
 
+.messageContent {
+  padding: 2%;
+  width: 75%;
+}
+
+.currentTypers {
+  min-height: 1rem;
+}
+
 .tomMessage {
   background-color: var(--tertiary-light);
-  border-radius: 1em 1em 1em 0;
+}
+
+.tomMessageContent {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+}
+
+.message {
+  border-radius: 1em 1em 0 1em;
   padding: 2%;
   width: 70%;
-  margin: 3%;
-  align-self: flex-end;
 }
 
 .senderMessage {
   background-color: var(--chat-input-dark);
-  border-radius: 1em 1em 0 1em;
-  padding: 2%;
-  width: 70%;
-  margin: 3%;
+}
+
+.messageTimeStamp{
+  color: var(--secondary-light);
+  font-size: .8rem;
+  margin: 4%;
+  font-style: italic;
 }
 
 .chatInputGroup {
@@ -135,6 +156,7 @@
 
 .selectedRoom:hover {
   border: 1px solid white;
+
 }
 
 .selectedRoom > span{
@@ -147,6 +169,11 @@
 }
 
 @media (max-width: 576px) {
+  .chatTab {
+    z-index: 10;
+    overflow-y: scroll;
+  }
+
   .chatBox {
     width: 90%;
     bottom: 0vh;
@@ -164,7 +191,10 @@
   }
 
   .messagesContainer {
-    padding-bottom: 8vh;
+    position: absolute;
+    overflow-y: scroll;
+    width: 100%;
+    bottom: 8vh;
   }
 }
 @media (min-width: 577px) {

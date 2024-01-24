@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+/notes
+
 .env.development
 .env.production
