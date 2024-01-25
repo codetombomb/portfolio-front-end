@@ -107,6 +107,7 @@
 .message {
   padding: 2%;
   width: 70%;
+  overflow-wrap: break-word;
 }
 
 .senderMessage {
