@@ -110,11 +110,13 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     }
     if (!newMessage) return;
 
-    const timeSent = Intl.DateTimeFormat("en", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    }).format(new Date());
+    // const timeSent = Intl.DateTimeFormat("en", {
+    //   hour: "numeric",
+    //   minute: "numeric",
+    //   hour12: true,
+    // }).format(new Date());
+
+    const timeSent = new Date().toISOString();
 
     io.emit(
       "sendMessage",
@@ -188,29 +190,40 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     );
   };
 
+  // Need a more cost effective way to handle this - running every new messasge
+  const parseIsoTime = (isoTime) => {
+    const newDateString = new Date(isoTime)
+      const timeZoneOffset = newDateString.getTimezoneOffset() * 60000
+      const localDate = new Date(newDateString.getTime() - timeZoneOffset)
+      return localDate.toLocaleString("en", {hour: "numeric", minute: "numeric", hour12: true})
+  }
+
   const renderMessages = () => {
-    return currentChat.messages.map((message) => (
-      <div key={uuidv4()} className={style.messageWrapper}>
-        <div
-          className={`${style.messageContent} ${
-            message.sender_type === "Admin" ? style.tomMessageContent : null
-          }`}
-        >
-          <span className={style.messageTimeStamp}>
-            {message.timeSent}
-          </span>
-          <p
-            className={`${style.message} ${
-              message.sender_type === "Admin"
-                ? style.tomMessage
-                : style.senderMessage
+    return currentChat.messages.map((message) => {
+      const timeSent = parseIsoTime(message.created_at)
+      return (
+        <div key={uuidv4()} className={style.messageWrapper}>
+          <div
+            className={`${style.messageContent} ${
+              message.sender_type === "Admin" ? style.tomMessageContent : null
             }`}
           >
-            {message.content}
-          </p>
+            <span className={style.messageTimeStamp}>
+              {timeSent}
+            </span>
+            <p
+              className={`${style.message} ${
+                message.sender_type === "Admin"
+                  ? style.tomMessage
+                  : style.senderMessage
+              }`}
+            >
+              {message.content}
+            </p>
+          </div>
         </div>
-      </div>
-    ));
+      );
+    });
   };
 
   const renderChatInput = () => {
