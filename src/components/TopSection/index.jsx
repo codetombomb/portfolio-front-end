@@ -29,7 +29,8 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navD
           } else if (!isAdmin && !showChat) {
             initChat()
           } else if (showChat) {
-            io.emit("closeChat", currentChat)
+            const timeSent = new Date().toISOString();
+            io.emit("closeChat", currentChat, timeSent)
             setCurrentChat({
               visitor_id: null,
               admin_id: null,
