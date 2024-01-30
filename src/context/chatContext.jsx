@@ -25,10 +25,6 @@ const ChatProvider = ({ children }) => {
     is_active: true
   });
 
-  // document.addEventListener("visibilitychange", () => {
-  //   io.emit("closeChat", currentChat, "from chat context line 29")
-  // })
-
   io.on("rooms", (rooms) => {
     setCurrentChatRooms([...rooms]);
   });
@@ -50,7 +46,6 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("endChat", (chat) => {
-    console.log(chat)
     setSelectedRoom(false);
     setCurrentChat({ ...chat })
   })
