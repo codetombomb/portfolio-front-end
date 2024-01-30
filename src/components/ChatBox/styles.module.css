@@ -151,18 +151,23 @@
   margin-left: 2%;
 }
 
+.chatRoomButtonGroup {
+  z-index: 50;
+}
+
 .selectedRoom {
   background-color: var(--primary-light);
   color: var(--primary-dark);
 }
 
 .selectedRoom:hover {
-  border: 1px solid white;
+  border: 1px solid red;
 
 }
 
 .selectedRoom > span{
-  color: white;
+  color: var(--primary-light);
+  background-color: red;
 }
 
 .selectedRoom > span:hover{
@@ -182,7 +187,7 @@
     margin: 5%;
     min-height: 50vh;
     max-height: 40vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     border: 1px solid var(--secondary-light)
   }
 
@@ -194,7 +199,7 @@
 
   .messagesContainer {
     position: absolute;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     width: 100%;
     bottom: 8vh;
   }
