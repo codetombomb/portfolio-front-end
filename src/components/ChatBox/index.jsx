@@ -44,15 +44,10 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   }, [debouncedMessage]);
 
   const closeChat = (chat) => {
-    io.emit("closeChat", chat);
-    setCurrentChat({
-      visitor_id: null,
-      admin_id: null,
-      room_id: "",
-      chat_time_stamp: "",
-      id: null,
-      messages: [],
-    });
+    const newChatRooms = currentChatRooms.filter((c) => c.id !== chat.id);
+    setCurrentChatRooms(newChatRooms);
+    const timeSent = new Date().toISOString();
+    io.emit("closeChat", chat, timeSent);
     document.body.style.overflow = "";
   };
 
@@ -70,13 +65,13 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           (admin) => admin.id !== adminData.id
         );
         setActiveAdmins(filteredAdmins);
-        closeChat(currentChat);
       };
     }, []);
   } else {
     useEffect(() => {
       return () => {
-        closeChat(currentChat);
+        const timeSent = new Date().toISOString();
+        closeChat(currentChat, timeSent);
       };
     }, []);
   }
@@ -110,12 +105,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     }
     if (!newMessage) return;
 
-    // const timeSent = Intl.DateTimeFormat("en", {
-    //   hour: "numeric",
-    //   minute: "numeric",
-    //   hour12: true,
-    // }).format(new Date());
-
     const timeSent = new Date().toISOString();
 
     io.emit(
@@ -140,12 +129,6 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     joinRoom(chat.room_id, chat.id);
   };
 
-  const handleCloseChatButton = (room) => {
-    const newChatRooms = currentChatRooms.filter((chat) => chat.id !== room.id);
-    setCurrentChatRooms(newChatRooms);
-    closeChat(room);
-  };
-
   const renderLiveChatButtons = () => {
     if (currentChatRooms.length === 0)
       return (
@@ -159,7 +142,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           <span key={uuidv4()}>
             <button
               className={
-                currentChat.room_id === room.room_id ? style.selectedRoom : null
+                `roomButton ${currentChat.room_id === room.room_id ? style.selectedRoom : null}`
               }
               onClick={() => onChatRoomClick(room)}
             >
@@ -167,7 +150,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
               <span
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleCloseChatButton(room);
+                  closeChat(room);
                 }}
               >
                 X
@@ -190,12 +173,16 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     );
   };
 
-  // Need a more cost effective way to handle this - running every new messasge
+  // Need a more cost effective way to handle this - running every new
   const parseIsoTime = (isoTime) => {
-    const newDateString = new Date(isoTime)
-      const timeZoneOffset = newDateString.getTimezoneOffset() * 60000
-      const localDate = new Date(newDateString.getTime() - timeZoneOffset)
-      return localDate.toLocaleString("en", {hour: "numeric", minute: "numeric", hour12: true})
+    const newDateString = new Date(isoTime);
+    if (isoTime.endsWith('Z')) {
+      return newDateString.toLocaleString("en", { hour: "numeric", minute: "numeric", hour12: true });
+    } else {
+      const timeZoneOffset = newDateString.getTimezoneOffset() * 60000;
+      const localDate = new Date(newDateString.getTime() - timeZoneOffset);
+      return localDate.toLocaleString("en", { hour: "numeric", minute: "numeric", hour12: true });
+    }
   }
 
   const renderMessages = () => {
@@ -204,19 +191,17 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       return (
         <div key={uuidv4()} className={style.messageWrapper}>
           <div
-            className={`${style.messageContent} ${
-              message.sender_type === "Admin" ? style.tomMessageContent : null
-            }`}
+            className={`${style.messageContent} ${message.sender_type === "Admin" ? style.tomMessageContent : null
+              }`}
           >
             <span className={style.messageTimeStamp}>
               {timeSent}
             </span>
             <p
-              className={`${style.message} ${
-                message.sender_type === "Admin"
+              className={`${style.message} ${message.sender_type === "Admin"
                   ? style.tomMessage
                   : style.senderMessage
-              }`}
+                }`}
             >
               {message.content}
             </p>
@@ -288,7 +273,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         <span
           className={style.chatCloseBtn}
           onClick={() => {
-            closeChat(currentChat);
+            if (!isAdmin) closeChat(currentChat);
             handleSetShowChat();
           }}
         >

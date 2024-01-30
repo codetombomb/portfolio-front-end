@@ -25,10 +25,6 @@ const ChatProvider = ({ children }) => {
     is_active: true
   });
 
-  document.addEventListener("visibilitychange", () => {
-    io.emit("closeChat", currentChat)
-  })
-
   io.on("rooms", (rooms) => {
     setCurrentChatRooms([...rooms]);
   });
