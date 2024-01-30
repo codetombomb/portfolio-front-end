@@ -44,7 +44,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   }, [debouncedMessage]);
 
   const closeChat = (chat) => {
-    io.emit("closeChat", chat);
+    io.emit("closeChat", chat, "from chat box line 47");
     setCurrentChat({
       visitor_id: null,
       admin_id: null,
@@ -70,7 +70,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           (admin) => admin.id !== adminData.id
         );
         setActiveAdmins(filteredAdmins);
-        closeChat(currentChat);
+        // closeChat(currentChat);
       };
     }, []);
   } else {
@@ -143,7 +143,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const handleCloseChatButton = (room) => {
     const newChatRooms = currentChatRooms.filter((chat) => chat.id !== room.id);
     setCurrentChatRooms(newChatRooms);
-    closeChat(room);
+    closeChat(room, "from chat box line 146");
   };
 
   const renderLiveChatButtons = () => {
@@ -159,7 +159,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           <span key={uuidv4()}>
             <button
               className={
-                currentChat.room_id === room.room_id ? style.selectedRoom : null
+                `roomButton ${currentChat.room_id === room.room_id ? style.selectedRoom : null}`
               }
               onClick={() => onChatRoomClick(room)}
             >
@@ -190,7 +190,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     );
   };
 
-  // Need a more cost effective way to handle this - running every new messasge
+  // Need a more cost effective way to handle this - running every new
   const parseIsoTime = (isoTime) => {
     const newDateString = new Date(isoTime)
       const timeZoneOffset = newDateString.getTimezoneOffset() * 60000
@@ -201,6 +201,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
   const renderMessages = () => {
     return currentChat.messages.map((message) => {
       const timeSent = parseIsoTime(message.created_at)
+      console.log(message)
       return (
         <div key={uuidv4()} className={style.messageWrapper}>
           <div
@@ -288,7 +289,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         <span
           className={style.chatCloseBtn}
           onClick={() => {
-            closeChat(currentChat);
+            if(!isAdmin)closeChat(currentChat);
             handleSetShowChat();
           }}
         >
