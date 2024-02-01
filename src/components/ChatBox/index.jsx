@@ -21,10 +21,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setActiveAdmins,
     isInputFocused,
     setInputFocused,
-    isTyping,
     setIsTyping,
     currentTypers,
-    setCurrentTypers,
+    chatTime
   } = useContext(ChatContext);
 
   const mainChatRef = useRef();
@@ -48,7 +47,15 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setCurrentChatRooms(newChatRooms);
     const timeSent = new Date().toISOString();
     io.emit("closeChat", chat, timeSent);
-    document.body.style.overflow = "";
+    setCurrentChat({
+      visitor_id: null,
+      admin_id: null,
+      room_id: "",
+      chat_time_stamp: Intl.DateTimeFormat('en', { weekday: "short", hour: "numeric", minute: "numeric", hour12: true }).format(new Date()),
+      id: null,
+      messages: [],
+      is_active: true
+    })
   };
 
   if (isAdmin) {
@@ -199,8 +206,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
             </span>
             <p
               className={`${style.message} ${message.sender_type === "Admin"
-                  ? style.tomMessage
-                  : style.senderMessage
+                ? style.tomMessage
+                : style.senderMessage
                 }`}
             >
               {message.content}
@@ -250,9 +257,9 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
 
   const renderCurrentTypers = () => {
     if (currentTypers.length === 1) {
-      return `${currentTypers[0]} is typing...`;
+      return  <p className={style.currentTypers}>{`${currentTypers[0]} is typing...`}</p>;
     } else {
-      return `${currentTypers.length} people are typing...`;
+      return <p className={style.currentTypers}>{`${currentTypers.length} people are typing...`}</p>;
     }
   };
 
@@ -281,14 +288,12 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         </span>
       </section>
       {isAdmin && renderLiveChatButtons()}
-      <p className={style.chatDate}>{currentChat.chat_time_stamp}</p>
+      <p className={style.chatDate}>{chatTime}</p>
       <section className={style.mainChat}>
         <div ref={mainChatRef} className={style.messagesContainer}>
           {renderMessages()}
-          <p className={style.currentTypers}>
-            {currentTypers.length > 0 ? renderCurrentTypers() : null}
-          </p>
         </div>
+          {currentTypers.length > 0 ? renderCurrentTypers() : null}
       </section>
       {renderChatInput()}
     </section>
