@@ -20,11 +20,11 @@ const Navbar = ({ navData }) => {
   };
 
   const toggleShowMenu = () => {
-    if (showMenu) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
+    // if (showMenu) {
+    //   document.body.style.overflow = "auto";
+    // } else {
+    //   document.body.style.overflow = "hidden";
+    // }
     setShowMenu((previous) => !previous);
   };
 

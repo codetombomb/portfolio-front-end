@@ -15,6 +15,7 @@ const ChatProvider = ({ children }) => {
   const [selectedRoom, setSelectedRoom] = useState(false);
   const [isTyping, setIsTyping] = useState(false)
   const [currentTypers, setCurrentTypers] = useState([])
+  const [chatTime, setChatTime] = useState("")
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
     admin_id: null,
@@ -75,6 +76,16 @@ const ChatProvider = ({ children }) => {
       .then(data => setActiveAdmins([...data]))
   }, [])
 
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setChatTime(new Date().toLocaleTimeString([], {hour:"2-digit", minute: "2-digit"}))
+    }, 1000)
+
+    return () => {
+      clearInterval(timerId)
+    }
+  }, [])
+
   return (
     <ChatContext.Provider
       value={{
@@ -96,7 +107,8 @@ const ChatProvider = ({ children }) => {
         isTyping, 
         setIsTyping,
         currentTypers,
-        setCurrentTypers
+        setCurrentTypers,
+        chatTime
       }}
     >
       {children}
