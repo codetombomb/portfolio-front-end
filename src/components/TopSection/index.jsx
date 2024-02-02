@@ -9,7 +9,7 @@ import SectionTitle from "../SectionTitle";
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
 
-const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
+const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, adminData, navData }) => {
   const { title, description, callToAction, heroImage } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
 
@@ -20,9 +20,6 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navD
       <SectionDescription text={description.text} color={description.color} />
       <SectionCallToAction
         handleButtonClick={() => {
-          // if(typeof screen.orientation !== 'undefined'){
-          //   document.body.style.overflow = 'hidden';
-          // }
           handleSetShowChat()
           if (isAdmin && !showChat) {
             getRooms()

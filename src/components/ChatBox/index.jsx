@@ -6,7 +6,7 @@ import botAvatar from "../../assets/bot.svg";
 import { ChatContext } from "../../context/chatContext";
 import useDebounce from "../../hooks/useDebounce";
 
-const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
+const ChatBox = ({ handleSetShowChat }) => {
   const {
     io,
     currentChatRooms,
@@ -23,6 +23,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     setInputFocused,
     setIsTyping,
     currentTypers,
+    currentAdmin,
+    isAdmin,
     chatTime
   } = useContext(ChatContext);
 
@@ -38,7 +40,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
 
   useEffect(() => {
     if (debouncedMessage) {
-      io.emit("stopped typing", adminData.first_name, currentChat.room_id);
+      io.emit("stopped typing", currentAdmin.first_name, currentChat.room_id);
     }
   }, [debouncedMessage]);
 
@@ -66,10 +68,10 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     });
 
     useEffect(() => {
-      io.emit("setActiveAdmin", adminData);
+      io.emit("setActiveAdmin", currentAdmin);
       return () => {
         const filteredAdmins = activeAdmins.filter(
-          (admin) => admin.id !== adminData.id
+          (admin) => admin.id !== currentAdmin.id
         );
         setActiveAdmins(filteredAdmins);
       };
@@ -93,13 +95,13 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
       setIsTyping(true);
       io.emit(
         "typing",
-        { name: adminData.first_name || "visitor" },
+        { name: isAdmin ? currentAdmin.name : "visitor" },
         currentChat.room_id
       );
       typingTimeoutRef.current = setTimeout(() => {
         io.emit(
           "stopped typing",
-          adminData.first_name || "visitor",
+          isAdmin ? currentAdmin.name : "visitor",
           currentChat.room_id
         );
       }, 500);
@@ -174,8 +176,8 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
     return (
       <img
         className={style.tabAvatar}
-        src={activeAdmins.length > 0 ? activeAdmins[0].picture : botAvatar}
-        alt={`${activeAdmins.length > 0 ? "TomTobar" : "CodeTomBot"} Avatar`}
+        src={currentAdmin.picture}
+        alt={`${currentAdmin.name} Avatar`}
       />
     );
   };
@@ -257,7 +259,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
 
   const renderCurrentTypers = () => {
     if (currentTypers.length === 1) {
-      return  <p className={style.currentTypers}>{`${currentTypers[0]} is typing...`}</p>;
+      return <p className={style.currentTypers}>{`${currentTypers[0]} is typing...`}</p>;
     } else {
       return <p className={style.currentTypers}>{`${currentTypers.length} people are typing...`}</p>;
     }
@@ -270,9 +272,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
           <>
             {renderAvatar()}
             <h3 className={style.tabTitle}>
-              {activeAdmins.length > 0
-                ? `${activeAdmins[0].name}`
-                : "CodeTomBot"}
+              {currentAdmin.name}
             </h3>
             <div className={style.onlineIndicator}></div>
           </>
@@ -293,7 +293,7 @@ const ChatBox = ({ handleSetShowChat, isAdmin, adminData }) => {
         <div ref={mainChatRef} className={style.messagesContainer}>
           {renderMessages()}
         </div>
-          {currentTypers.length > 0 ? renderCurrentTypers() : null}
+        {currentTypers.length > 0 ? renderCurrentTypers() : null}
       </section>
       {renderChatInput()}
     </section>

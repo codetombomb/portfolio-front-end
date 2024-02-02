@@ -10,3 +10,7 @@
 - [] GSAP animations
 - [] REFACTOR! 
 
+
+---
+- I log in as an admin - broadcast to all sockets that admin here
+- 
