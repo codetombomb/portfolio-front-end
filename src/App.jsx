@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import AboutSection from "./components/AboutSection";
 import TopSection from "./components/TopSection";
@@ -8,17 +8,19 @@ import devData from "./data";
 import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
 import { useSearchParams } from "react-router-dom";
+import { ChatContext } from "./context/chatContext";
 
-function App({ adminData, isAdmin, onAdminLogout, onLoginSuccess }) {
+function App() {
   const [showChat, setShowChat] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams()
+  const { currentAdmin, isAdmin, onAdminLogin } = useContext(ChatContext)
 
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const admin = JSON.parse(urlParams.get("admin"));
     if (admin) {
-      onLoginSuccess(admin);
+      onAdminLogin(admin)
       searchParams.delete("admin")
       setSearchParams(searchParams)
     }
@@ -26,7 +28,7 @@ function App({ adminData, isAdmin, onAdminLogout, onLoginSuccess }) {
 
   const adminLogoutOnTabClose = (e) => {
     e.preventDefault();
-    onAdminLogout(adminData);
+    onAdminLogout(currentAdmin);
   };
 
   if (isAdmin) {
@@ -40,13 +42,14 @@ function App({ adminData, isAdmin, onAdminLogout, onLoginSuccess }) {
   return (
     <>
       {isAdmin && (
-        <AdminBanner adminData={adminData} onAdminLogout={onAdminLogout} />
+        <AdminBanner />
       )}
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
         showChat={showChat}
         isAdmin={isAdmin}
+        currentAdmin={currentAdmin}
         navData={devData.navLinks}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
@@ -55,10 +58,6 @@ function App({ adminData, isAdmin, onAdminLogout, onLoginSuccess }) {
         <ChatBox
           showChat={showChat}
           handleSetShowChat={handleSetShowChat}
-          avatar={devData.topSection.heroImage.source}
-          isAdmin={isAdmin}
-          adminData={adminData}
-          onAdminLogout={onAdminLogout}
         />
       )}
     </>

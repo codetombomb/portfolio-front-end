@@ -15,12 +15,13 @@ const ChatProvider = ({ children }) => {
   const [selectedRoom, setSelectedRoom] = useState(false);
   const [isTyping, setIsTyping] = useState(false)
   const [currentTypers, setCurrentTypers] = useState([])
+  const [currentAdmin, setCurrentAdmin] = useState({})
   const [chatTime, setChatTime] = useState("")
+  const [isAdmin, setIsAdmin] = useState(false)
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
     admin_id: null,
     room_id: "",
-    chat_time_stamp: Intl.DateTimeFormat('en', { weekday: "short", hour: "numeric", minute: "numeric", hour12: true }).format(new Date()),
     id: null,
     messages: [],
     is_active: true
@@ -32,13 +33,12 @@ const ChatProvider = ({ children }) => {
 
   io.on("chatData", (data) => {
     const currentChatCopy = JSON.parse(JSON.stringify(currentChat))
-    setCurrentChat({ ...currentChatCopy, ...data})
+    setCurrentChat({ ...currentChatCopy, ...data })
   });
 
-  io.on("activeAdmins", (data) => {
-    const activeAdminsCopy = JSON.parse(JSON.stringify(activeAdmins))
-    const newAdmins = [...activeAdminsCopy, data]
-    setActiveAdmins(newAdmins)
+  io.on("currentAdmin", (data) => {
+    console.log("Current admin",data)
+    setCurrentAdmin({...data})
   })
 
   io.on("removeActiveAdmin", (removedAdmin) => {
@@ -52,7 +52,7 @@ const ChatProvider = ({ children }) => {
   })
 
   io.on("typing", (name) => {
-    if (!currentTypers.includes(name)){
+    if (!currentTypers.includes(name)) {
       const newTypers = [...currentTypers, name]
       setCurrentTypers(newTypers)
     }
@@ -67,18 +67,27 @@ const ChatProvider = ({ children }) => {
   };
 
   const initChat = () => {
-    io.emit("initChat")
+    io.emit("initChat", currentAdmin)
+  }
+
+  const onAdminLogin = (admin) => {
+    setCurrentAdmin({ ...admin })
+    setIsAdmin(true)
+    io.emit("currentAdmin", admin)
   }
 
   useEffect(() => {
-    fetch(`${API_URL}/current_admins`)
+    fetch(`${API_URL}/current_admin`)
       .then(resp => resp.json())
-      .then(data => setActiveAdmins([...data]))
+      .then(data => {
+        console.log(data)
+        setCurrentAdmin({ ...data })
+      })
   }, [])
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      setChatTime(new Date().toLocaleTimeString([], {hour:"2-digit", minute: "2-digit"}))
+      setChatTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
     }, 1000)
 
     return () => {
@@ -104,10 +113,15 @@ const ChatProvider = ({ children }) => {
         setActiveAdmins,
         isInputFocused,
         setInputFocused,
-        isTyping, 
+        isTyping,
         setIsTyping,
         currentTypers,
         setCurrentTypers,
+        currentAdmin,
+        setCurrentAdmin,
+        isAdmin,
+        setIsAdmin,
+        onAdminLogin,
         chatTime
       }}
     >

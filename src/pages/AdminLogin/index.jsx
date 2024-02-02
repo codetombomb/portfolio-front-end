@@ -14,6 +14,7 @@ const AdminLogin = ({ onLoginSuccess, setAdminData }) => {
   const [errors, setErrors] = useState([]);
 
   const handleLogin = () => {
+
     window.location.href = `${LOGIN_BASE}/login`;
   };
 
