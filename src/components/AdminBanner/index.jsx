@@ -5,7 +5,7 @@ import { ChatContext } from '../../context/chatContext'
 const LOGOUT_BASE = import.meta.env.VITE_API_URL;
 
 const AdminBanner = () => {
-  const { currentAdmin, setCurrentAdmin, io, setIsAdmin } = useContext(ChatContext)
+  const { currentAdmin, io, setIsAdmin } = useContext(ChatContext)
   const onAdminLogout = (admin) => {
     fetch(`${LOGOUT_BASE}/logout/${admin.id}`, { method: "DELETE" }).then(
       (resp) => {
