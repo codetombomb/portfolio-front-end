@@ -196,6 +196,9 @@ const ChatBox = ({ handleSetShowChat }) => {
 
   const renderMessages = () => {
     return currentChat.messages.map((message) => {
+      if(message.sender_type === "Update"){
+        return <span className={style.messageTimeStamp} key={message.id}>{message.content}</span>
+      }
       const timeSent = parseIsoTime(message.created_at)
       return (
         <div key={uuidv4()} className={style.messageWrapper}>

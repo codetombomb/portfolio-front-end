@@ -13,4 +13,9 @@
 
 ---
 - I log in as an admin - broadcast to all sockets that admin here
-- 
+    - Tom logged in
+        - Emit to all sockets 
+        - Add to chat messages
+    - Tom joined chat
+        - Emit to room
+        - Add to chat messages
