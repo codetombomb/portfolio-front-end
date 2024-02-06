@@ -7,33 +7,33 @@ import WorksSection from "./components/WorksSection";
 import devData from "./data";
 import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ChatContext } from "./context/chatContext";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
+  const location = useLocation()
   const { currentAdmin, isAdmin, onAdminLogin } = useContext(ChatContext)
 
-  useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const admin = JSON.parse(urlParams.get("admin"));
-    if (admin) {
-      onAdminLogin(admin)
-      searchParams.delete("admin")
-      setSearchParams(searchParams)
-    }
-  }, []);
+  
+    useEffect(() => {
+      if (location.pathname === "/admin" && !isAdmin) {
+        navigate("/")
+      } else {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const admin = JSON.parse(urlParams.get("admin"));
+        if (admin) {
+          onAdminLogin(admin)
+          navigate("/admin")
+        }
+      }
+    }, []);
 
-  const adminLogoutOnTabClose = (e) => {
-    e.preventDefault();
-    onAdminLogout(currentAdmin);
-  };
-
-  if (isAdmin) {
-    window.addEventListener("beforeunload", adminLogoutOnTabClose);
-  }
+  // if (isAdmin) {
+  //   window.addEventListener("beforeunload", adminLogoutOnTabClose);
+  // }
 
   const handleSetShowChat = () => {
     setShowChat((previousValue) => !previousValue);
