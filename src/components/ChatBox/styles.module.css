@@ -123,10 +123,10 @@
   background-color: var(--chat-input-dark);
 }
 
-.messageTimeStamp {
+.messageData {
   color: var(--secondary-light);
   font-size: .8rem;
-  margin: 4%;
+  margin: 0px 1% 0 1%;
   font-style: italic;
 }
 

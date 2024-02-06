@@ -9,8 +9,16 @@ const AppRoutes = () => {
 
   const element = createBrowserRouter([
     {
+      path: "/admin-login",
+      element: <AdminLogin />
+    },
+    {
       path: "/admin",
-      element: <AdminLogin />,
+      element: (
+        <ChatContext>
+          <App />
+        </ChatContext>
+      ),
     },
     {
       path: "/",
