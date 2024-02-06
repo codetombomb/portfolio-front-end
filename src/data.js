@@ -15,10 +15,7 @@ export default {
     callToAction: {
       text: "Let's Chat!",
       color: "--primary-dark",
-    },
-    heroImage: {
-      source: "tom-image.png",
-    },
+    }
   },
   aboutSection: {
     title: { text: "about", color: "--primary-light" },

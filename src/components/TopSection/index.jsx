@@ -9,7 +9,7 @@ import SectionTitle from "../SectionTitle";
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
 
-const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, adminData, navData }) => {
+const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
   const { title, description, callToAction, heroImage } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
 
@@ -41,7 +41,7 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, admi
         text={callToAction.text}
         color={callToAction.color}
       />
-      <HeroImage imageSrc={heroImage.source} />
+      <HeroImage />
     </section>
   );
 };
