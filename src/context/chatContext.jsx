@@ -80,7 +80,6 @@ const ChatProvider = ({ children }) => {
     fetch(`${API_URL}/current_admin`)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
         setCurrentAdmin({ ...data })
       })
   }, [])
