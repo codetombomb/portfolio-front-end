@@ -9,6 +9,8 @@ import ChatBox from "./components/ChatBox";
 import AdminBanner from "./components/AdminBanner";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChatContext } from "./context/chatContext";
+import { generateToken, messaging } from "./notifications/firebase";
+import { onMessage } from "firebase/messaging";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -25,15 +27,15 @@ function App() {
         const urlParams = new URLSearchParams(queryString);
         const admin = JSON.parse(urlParams.get("admin"));
         if (admin) {
+          generateToken()
+          onMessage(messaging, (payload) => {
+            console.log(payload)
+          })
           onAdminLogin(admin)
           navigate("/admin")
         }
       }
     }, []);
-
-  // if (isAdmin) {
-  //   window.addEventListener("beforeunload", adminLogoutOnTabClose);
-  // }
 
   const handleSetShowChat = () => {
     setShowChat((previousValue) => !previousValue);

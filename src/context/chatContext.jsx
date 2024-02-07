@@ -19,6 +19,7 @@ const ChatProvider = ({ children }) => {
   const [currentAdmin, setCurrentAdmin] = useState({})
   const [chatTime, setChatTime] = useState("")
   const [isAdmin, setIsAdmin] = useState(false)
+  const [deviceToken, setDeviceToken] = useState(null)
   const [currentChat, setCurrentChat] = useState({
     visitor_id: null,
     admin_id: null,
@@ -121,6 +122,8 @@ const ChatProvider = ({ children }) => {
         isAdmin,
         setIsAdmin,
         onAdminLogin,
+        deviceToken,
+        setDeviceToken,
         chatTime
       }}
     >
