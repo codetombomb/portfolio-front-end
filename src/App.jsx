@@ -17,7 +17,7 @@ function App() {
   const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate()
   const location = useLocation()
-  const { currentAdmin, isAdmin, onAdminLogin } = useContext(ChatContext)
+  const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } = useContext(ChatContext)
 
   
     useEffect(() => {
@@ -28,7 +28,7 @@ function App() {
         const urlParams = new URLSearchParams(queryString);
         const admin = JSON.parse(urlParams.get("admin"));
         if (admin) {
-          generateToken()
+          handleGetToken(admin.id)
           onMessage(messaging, (payload) => {
             console.log(payload)
             toast(payload.notification.body)
@@ -38,6 +38,11 @@ function App() {
         }
       }
     }, []);
+
+  const handleGetToken = async (admin_id) => {
+    const token_id = await generateToken(admin_id)
+    if(token_id) setDeviceTokenId(token_id)
+  }
 
   const handleSetShowChat = () => {
     setShowChat((previousValue) => !previousValue);
