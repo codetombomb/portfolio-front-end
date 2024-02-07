@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ChatContext } from "./context/chatContext";
 import { generateToken, messaging } from "./notifications/firebase";
 import { onMessage } from "firebase/messaging";
+import toast, { Toaster } from 'react-hot-toast'
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           generateToken()
           onMessage(messaging, (payload) => {
             console.log(payload)
+            toast(payload.notification.body)
           })
           onAdminLogin(admin)
           navigate("/admin")
@@ -43,6 +45,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       {isAdmin && (
         <AdminBanner />
       )}
