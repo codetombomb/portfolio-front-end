@@ -15,13 +15,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 export const messaging = getMessaging(app)
 
-export const generateToken = async () => {
+export const generateToken = async (admin_id) => {
     const permission = await Notification.requestPermission()
     if (permission === "granted") {
         const token = await getToken(messaging, {
             vapidKey: "BIwW1HuZaMhDjlsSgi_1qVGIJT3zAlbeZogmOmjhLi4z5_N45BOam8GHJ174aNOpjkixNwqxoIAAaBHNT-sJWEI"
         })
-        console.log(token)
+        return await fetch(`${import.meta.env.VITE_API_URL}/device_tokens/${token}`)
+            .then(resp => {
+                if (resp.ok) {
+                    return resp.json().then(data => data.id)
+                } else {
+                    const config = {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            token,
+                            admin_id
+                        })
+                    }
+                    return fetch(`${import.meta.env.VITE_API_URL}/device_tokens`, config)
+                        .then(resp => resp.json())
+                        .then(data => data)
+                        .catch(err => console.log(err))
+
+
+                }
+            })
+
     }
 }
 
