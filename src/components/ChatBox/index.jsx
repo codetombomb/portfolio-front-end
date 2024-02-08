@@ -196,21 +196,21 @@ const ChatBox = ({ handleSetShowChat }) => {
 
   const renderMessages = () => {
     return currentChat.messages.map((message) => {
-      if(message.sender_type === "Update"){
+      if (message.sender_type === "Update") {
         return <span className={style.messageData} key={message.id}>{message.content}</span>
       }
       const timeSent = parseIsoTime(message.created_at)
       return (
         <div key={uuidv4()} className={style.messageWrapper}>
           <div
-            className={`${style.messageContent} ${message.sender_type === "Admin" ? style.tomMessageContent : null
+            className={`${style.messageContent} ${message.sender_type === "Admin" || message.sender_type === "Bot" ? style.tomMessageContent : null
               }`}
           >
             <span className={style.messageData}>
               {timeSent}
             </span>
             <p
-              className={`${style.message} ${message.sender_type === "Admin"
+              className={`${style.message} ${message.sender_type === "Admin" || message.sender_type === "Bot"
                 ? style.tomMessage
                 : style.senderMessage
                 }`}
