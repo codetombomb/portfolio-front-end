@@ -8,9 +8,10 @@ import SectionTitle from "../SectionTitle";
 
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
+import SectionSubTitle from "../SectionSubTitle";
 
 const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
-  const { title, description, callToAction, heroImage } = topSectionData;
+  const { title, subTitle, description, callToAction, heroImage } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
 
   return (
