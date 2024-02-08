@@ -30,7 +30,6 @@ function App() {
         if (admin) {
           handleGetToken(admin.id)
           onMessage(messaging, (payload) => {
-            console.log(payload)
             toast(payload.notification.body)
           })
           onAdminLogin(admin)
