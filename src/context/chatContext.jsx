@@ -68,7 +68,7 @@ const ChatProvider = ({ children }) => {
   };
 
   const initChat = () => {
-    io.emit("initChat", currentAdmin)
+    io.emit("initChat", currentAdmin, new Date().toISOString())
   }
 
   const onAdminLogin = (admin) => {
@@ -89,7 +89,6 @@ const ChatProvider = ({ children }) => {
     const timerId = setInterval(() => {
       setChatTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
     }, 1000)
-
     return () => {
       clearInterval(timerId)
     }
