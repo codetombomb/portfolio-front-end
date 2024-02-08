@@ -8,9 +8,17 @@ export default {
       text: "tom tobar",
       color: "--primary-dark",
     },
-    description: {
-      text: "Awakens designs with a sequence of characters",
+    subTitle: {
+      text: "web developer", 
       color: "--primary-dark",
+    },
+    description: {
+      text: "Crafting Dynamic Web Experiences Through Code",
+      color: "--primary-dark",
+    },
+    tagLine: {
+      text: "I specialize in front-end development and user experience, bringing innovative designs to life with modern web technologies.",
+      color: "--primary-dark"
     },
     callToAction: {
       text: "Let's Chat!",

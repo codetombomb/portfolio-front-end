@@ -20,17 +20,12 @@ const Navbar = ({ navData }) => {
   };
 
   const toggleShowMenu = () => {
-    // if (showMenu) {
-    //   document.body.style.overflow = "auto";
-    // } else {
-    //   document.body.style.overflow = "hidden";
-    // }
     setShowMenu((previous) => !previous);
   };
 
   return (
     <div className={`${styles.navbar} flex`}>
-      <div className={`${styles.navLogo} grid grid-center`}>codetombomb</div>
+      <div className={`${styles.navLogo} grid grid-center`}>web developer</div>
       {isMobile ? (
         <>
           <div className={`${styles.hamburgerMenu}`} onClick={toggleShowMenu}>
