@@ -19,12 +19,13 @@ export const generateToken = async (admin_id) => {
     const permission = await Notification.requestPermission()
     if (permission === "granted") {
         const token = await getToken(messaging, {
-            vapidKey: "BIwW1HuZaMhDjlsSgi_1qVGIJT3zAlbeZogmOmjhLi4z5_N45BOam8GHJ174aNOpjkixNwqxoIAAaBHNT-sJWEI"
+            vapidKey: "BKa2bzSq8NKk-bmL0GlWQF34GXBXYYqeNzAtbkpKSeMb59zSvpWdIL8fq8FdRJMB3twyJa9ZDVpxIc5BFrao9iA"
         })
         return await fetch(`${import.meta.env.VITE_API_URL}/device_tokens/${token}`)
-            .then(resp => {
+            .then(async resp => {
                 if (resp.ok) {
-                    return resp.json().then(data => data.id)
+                    const data = await resp.json();
+                    return data.id;
                 } else {
                     const config = {
                         method: "POST",
@@ -34,10 +35,13 @@ export const generateToken = async (admin_id) => {
                             admin_id
                         })
                     }
-                    return fetch(`${import.meta.env.VITE_API_URL}/device_tokens`, config)
-                        .then(resp => resp.json())
-                        .then(data => data)
-                        .catch(err => console.log(err))
+                    try {
+                        const resp_1 = await fetch(`${import.meta.env.VITE_API_URL}/device_tokens`, config);
+                        const data_1 = await resp_1.json();
+                        return data_1;
+                    } catch (err) {
+                        console.log(err);
+                    }
 
 
                 }
