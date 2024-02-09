@@ -9,6 +9,7 @@ import SectionTitle from "../SectionTitle";
 import style from "./styles.module.css";
 import { ChatContext } from "../../context/chatContext";
 import SectionSubTitle from "../SectionSubTitle";
+import TextAnimationWrapper from "../TextAnimationWrapper";
 
 const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
   const { title, subTitle, description, callToAction, heroImage } = topSectionData;
@@ -16,9 +17,13 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navD
 
   return (
     <section className={style.topSection}>
-      <Navbar navData={navData}/>
-      <SectionTitle title={title.text} color={title.color} />
-      <SectionDescription text={description.text} color={description.color} />
+      <Navbar navData={navData} />
+      <TextAnimationWrapper delay={.25} duration={.5}>
+        <SectionTitle title={title.text} color={title.color} />
+      </TextAnimationWrapper>
+      <TextAnimationWrapper delay={.5} duration={.4}>
+        <SectionDescription text={description.text} color={description.color} />
+      </TextAnimationWrapper>
       <SectionCallToAction
         handleButtonClick={() => {
           handleSetShowChat()
