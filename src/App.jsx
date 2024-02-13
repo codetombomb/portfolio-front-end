@@ -12,6 +12,7 @@ import { ChatContext } from "./context/chatContext";
 import { generateToken, messaging } from "./notifications/firebase";
 import { onMessage } from "firebase/messaging";
 import toast, { Toaster } from 'react-hot-toast'
+import PageSelection from "./components/PageSelection";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -19,28 +20,28 @@ function App() {
   const location = useLocation()
   const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } = useContext(ChatContext)
 
-  
-    useEffect(() => {
-      if (location.pathname === "/admin" && !isAdmin) {
-        navigate("/")
-      } else {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const admin = JSON.parse(urlParams.get("admin"));
-        if (admin) {
-          handleGetToken(admin.id)
-          onMessage(messaging, (payload) => {
-            toast(payload.notification.body)
-          })
-          onAdminLogin(admin)
-          navigate("/admin")
-        }
+
+  useEffect(() => {
+    if (location.pathname === "/admin" && !isAdmin) {
+      navigate("/")
+    } else {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const admin = JSON.parse(urlParams.get("admin"));
+      if (admin) {
+        handleGetToken(admin.id)
+        onMessage(messaging, (payload) => {
+          toast(payload.notification.body)
+        })
+        onAdminLogin(admin)
+        navigate("/admin")
       }
-    }, []);
+    }
+  }, []);
 
   const handleGetToken = async (admin_id) => {
     const token_id = await generateToken(admin_id)
-    if(token_id) setDeviceTokenId(token_id)
+    if (token_id) setDeviceTokenId(token_id)
   }
 
   const handleSetShowChat = () => {

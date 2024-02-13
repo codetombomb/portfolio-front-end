@@ -4,8 +4,7 @@
   font-size: 10vw;
   padding: 2rem 0 2rem 2rem;
   position: relative;
-  z-index: 20;
-  line-height: 0.9em;
+  line-height: 0.95em;
 }
 
 @media (max-width: 576px) {
