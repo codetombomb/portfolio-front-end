@@ -1,0 +1,12 @@
+.sideBar {
+    width: 10vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tomLogo {
+    width: 60%;
+}

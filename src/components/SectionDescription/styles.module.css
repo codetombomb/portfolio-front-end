@@ -1,18 +1,18 @@
 .sectionDescription {
-    width: 35%;
-    margin: 2rem;
-    max-width: 600px;
-    min-width: 295px;
-    font-size: 2.6vw;
+    /* width: 35%; */
+    /* margin: 2rem; */
+    /* max-width: 600px;
+    min-width: 295px; */
+    font-size: 1.2vw;
 }
 
 @media (max-width: 576px) {
     .sectionDescription{
-        font-size: 1.2rem;
+        /* font-size: 1.2rem;
         width: 90vw;
         margin: 0;
         padding-left: 2rem;
         margin: 0;
-        min-width: 250px;
+        min-width: 250px; */
     }
 }
