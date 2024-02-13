@@ -1,0 +1,17 @@
+.pageIndicator {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10vh;
+    position: fixed;
+    z-index: 3;
+    left: 4vw;
+    top: 45vh;
+}
+
+.pageIndicator>span {
+    border: 2px solid var(--primary-light);
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}

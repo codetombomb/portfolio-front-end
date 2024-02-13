@@ -5,15 +5,15 @@ export default {
   },
   topSection: {
     title: {
-      text: "tom tobar",
+      text: "web dev",
       color: "--primary-dark",
     },
     subTitle: {
-      text: "web developer", 
+      text: "web developer",
       color: "--primary-dark",
     },
     description: {
-      text: "Crafting Dynamic Web Experiences Through Code",
+      text: "Crafting Future-Forward Web Experiences: A Passionate Front-End Developer Blending Technical Excellence with Creative Design.",
       color: "--primary-dark",
     },
     tagLine: {
@@ -22,15 +22,25 @@ export default {
     },
     callToAction: {
       text: "Let's Chat!",
-      color: "--primary-dark",
+      color: "--primary-light",
+      backgroundColor: "--primary-dark"
     }
   },
   aboutSection: {
-    title: { text: "about", color: "--primary-light" },
-    description: {
-      text: "Hi, I'm Tom and I am obsessed with code! For the past two years, I have been teaching Full-Stack Web Development at Flatiron School. I love crafting designs and then breathing life into them with code tools.",
-      color: "--secondary-light",
-    },
+    descriptions: [{
+      title: { text: "design", color: "--tertiary-lighter" },
+      description: {
+        text: "As a front end developer, I am obsessed with making sure that my works are pixel perfect. Although I am not a designer, I enjoy pairing fonts, choosing color palettes that are pleasing to the eye, and constantly improving my designs.",
+        color: "--tertiary-lighter",
+      }
+    }, {
+      title: { text: "develop", color: "--tertiary-lighter" },
+      description: {
+        text: "Plan before code. Red, green, refactor. Make it work, make it right, make it fast. \n\nGoal: be a senior dev before I become a senior citizen.",
+        color: "--tertiary-lighter",
+      }
+    }
+    ],
     callToAction: {
       text: "Learn More!",
       color: "--primary-light",
