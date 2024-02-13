@@ -3,7 +3,7 @@ import { useRef } from "react";
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
-const SectionCallToAction = ({ text, handleButtonClick, color }) => {
+const SectionCallToAction = ({ text, handleButtonClick, color, backgroundColor }) => {
   const btnRef = useRef()
 
   useGSAP(() => {
@@ -19,7 +19,7 @@ const SectionCallToAction = ({ text, handleButtonClick, color }) => {
       className={style.sectionCallToAction}
       ref={btnRef}
       onClick={handleButtonClick}
-      style={{ color: `var(${color})`, borderColor: `var(${color})` }}
+      style={{ color: `var(${color})`, backgroundColor: `var(${backgroundColor})` }}
     >
       {text}
     </button>

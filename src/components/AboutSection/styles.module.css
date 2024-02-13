@@ -1,12 +1,48 @@
-.aboutSection{
-    background-color: var(--primary-dark);
+.aboutSection {
+    background-color: #3A098A;
     position: relative;
+    height: 100vh;
+}
+
+.slimeContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100vw;
+}
+
+.slime {
+    justify-self: flex-end;
+    width: 66.7%;
+    filter: drop-shadow(black -1rem 1rem 1rem);
+    z-index: 1;
+}
+
+.aboutMain {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.aboutDesc {
+    width: 30vw;
+}
+
+.tomInSunWrapper {
+    margin-left: 5%;
+    height: 40vh;
+}
+
+.tomInSun {
+    height: 100%;
 }
 
 @media (max-width: 576px) {
-    .aboutSection{
-        height: 40vh;
-        min-height: 450px;
-        min-width: 390px;
+    .aboutSection {
+
     }
 }

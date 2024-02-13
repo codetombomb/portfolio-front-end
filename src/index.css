@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Stint+Ultra+Expanded&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
 
 :root {
   color-scheme: light dark;
@@ -12,13 +12,14 @@
   --secondary-dark: #161616;
 
   --tertiary-light: #3A098A;
+  --tertiary-lighter: #FFA800;
   --tertiary-dark: #090010;
   
   --chat-input-dark: #242426;
   --chat-input-light: #2D2D2F;
 
   --heading-font: 'Rubik Mono One', monospace;
-  font-family: 'Stint Ultra Expanded', serif;
+  font-family: 'Red Hat Mono', serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

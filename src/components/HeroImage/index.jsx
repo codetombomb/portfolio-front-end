@@ -1,5 +1,6 @@
 import style from './styles.module.css'
-import imageSrc from "../../assets/tom-image.png"
+import VRFourSixFan from "../../assets/tom-beanie.png"
+
 import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
@@ -15,7 +16,7 @@ const HeroImage = () => {
     })
   })
   return (
-    <img className={style.heroImage} ref={imgRef} src={imageSrc} alt="Head shot of smiling developer, Tom Tobar" />
+    <img className={style.VRFourSixFan} ref={imgRef} src={VRFourSixFan} alt="Head shot of smiling developer, Tom Tobar" />
   )
 }
 
