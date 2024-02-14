@@ -21,7 +21,7 @@ export default {
       color: "--primary-dark"
     },
     callToAction: {
-      text: "Let's Chat!",
+      text: "Live Chat!",
       color: "--primary-light",
       backgroundColor: "--primary-dark"
     }
@@ -30,13 +30,13 @@ export default {
     descriptions: [{
       title: { text: "design", color: "--tertiary-lighter" },
       description: {
-        text: "As a front end developer, I am obsessed with making sure that my works are pixel perfect. Although I am not a designer, I enjoy pairing fonts, choosing color palettes that are pleasing to the eye, and constantly improving my designs.",
+        text: "As a front end developer, I am obsessed with making sure that my works are pixel perfect. Although I am not a designer, I enjoy pairing fonts, choosing color palettes that are pleasing to the eye, and constantly tweaking stylesheets.",
         color: "--tertiary-lighter",
       }
     }, {
       title: { text: "develop", color: "--tertiary-lighter" },
       description: {
-        text: "Plan before code. Red, green, refactor. Make it work, make it right, make it fast. \n\nGoal: be a senior dev before I become a senior citizen.",
+        text: "I am the kind of person that needs a solid plan before I code. I live by 'Make it work, make it right, make it fast'. I always have performance and scalability in mind and would love to learn more about how different people approach this aspect of development.",
         color: "--tertiary-lighter",
       }
     }
