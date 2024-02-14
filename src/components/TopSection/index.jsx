@@ -12,16 +12,20 @@ import SectionSubTitle from "../SectionSubTitle";
 import TextAnimationWrapper from "../TextAnimationWrapper";
 import SideBar from "../SideBar";
 import PageSelection from "../PageSelection";
+import MenuButton from "../MenuButton";
 
 const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
-  const { title, subTitle, description, callToAction, heroImage } = topSectionData;
+  const { title, description, callToAction } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
 
   return (
     <section className={style.topSection}>
+      <div className={style.menuButtonWrapper}>
+        <MenuButton />
+      </div>
       <SideBar />
       <section className={style.sidebar}>
-      <PageSelection />
+        <PageSelection />
         <div className={style.heroImgWrapper}>
           <HeroImage />
         </div>
@@ -71,41 +75,3 @@ const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navD
 };
 
 export default TopSection;
-
-
-// return (
-//   <section className={style.topSection}>
-//     <Navbar navData={navData} />
-//     <TextAnimationWrapper delay={.25} duration={.5}>
-//       <SectionTitle title={title.text} color={title.color} />
-//     </TextAnimationWrapper>
-//     <TextAnimationWrapper delay={.5} duration={.4}>
-//       <SectionDescription text={description.text} color={description.color} />
-//     </TextAnimationWrapper>
-//     <SectionCallToAction
-//       handleButtonClick={() => {
-//         handleSetShowChat()
-//         if (isAdmin && !showChat) {
-//           getRooms()
-//         } else if (!isAdmin && !showChat) {
-//           initChat()
-//         } else if (showChat) {
-//           const timeSent = new Date().toISOString();
-//           io.emit("closeChat", currentChat, timeSent)
-//           setCurrentChat({
-//             visitor_id: null,
-//             admin_id: null,
-//             room_id: "",
-//             chat_time_stamp: "",
-//             id: null,
-//             messages: []
-//           })
-//         }
-//       }}
-//       text={callToAction.text}
-//       color={callToAction.color}
-//     />
-// <HeroImage />
-//   </section>
-// );
-
