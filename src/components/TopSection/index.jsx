@@ -15,7 +15,7 @@ import PageSelection from "../PageSelection";
 import MenuButton from "../MenuButton";
 
 const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
-  const { title, subTitle, description, callToAction, heroImage } = topSectionData;
+  const { title, description, callToAction } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
 
   return (

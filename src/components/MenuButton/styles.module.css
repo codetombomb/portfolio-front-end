@@ -41,27 +41,12 @@
     height: 50%;
     width: 90%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
 }
 
-.burgerTop {
-    border: .5px solid var(--primary-light);
-    width: 85%;
-}
-
-.burgerMid {
-    border: .5px solid var(--primary-light);
-    width: 85%;
-    
-}
-
-.burgerBottom {
-    border: .5px solid var(--primary-light);
-    width: 85%;
-
+.burgerState {
+    width: 100%;
 }
 
 .menuButton>span {

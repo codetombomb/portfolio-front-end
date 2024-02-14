@@ -1,18 +1,16 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import style from './styles.module.css'
-import gsap from "gsap"
-import { useGSAP } from "@gsap/react"
+import open from "../../assets/burger-open.svg"
+import closed from "../../assets/burger-closed.svg"
+// import gsap from "gsap"
+// import { useGSAP } from "@gsap/react"
+
 
 
 const MenuButton = () => {
-    const [clicked, setClicked] = useState(false)
-    const burgerTopRef = useRef()
-    const burgerMidRef = useRef()
-    const burgerBottomRef = useRef()
-
-    console.log(clicked)
-
-
+    const [clicked, setClicked] = useState(false);
+    const openImgRef = useRef(null);
+    const closedImgRef = useRef(null);
 
     return (
         <div className={style.menuButton} onClick={() => setClicked(prev => !prev)}>
@@ -20,13 +18,12 @@ const MenuButton = () => {
             <div className={style.midLayer}></div>
             <div className={style.frontLayer}>
                 <div className={style.burgerWrapper}>
-                    <div className={style.burgerTop} ref={burgerTopRef}></div>
-                    <div className={style.burgerMid} ref={burgerMidRef}></div>
-                    <div className={style.burgerBottom} ref={burgerBottomRef}></div>
+                    <img ref={closedImgRef} className={style.burgerState} src={closed} alt="Menu" style={{display: !clicked ? "block" : "none"}}/>
+                    <img ref={openImgRef} className={style.burgerState} src={open} alt="Close" style={{display: clicked ? "block" : "none"}}/>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default MenuButton
