@@ -40,12 +40,17 @@
     place-items: center;
 }
 
+.burgerWrapper {
+    height:1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .slice {
     background-color: var(--primary-light);
     height: 1.5px;
     width: 1.5em;
-    position: relative;
-    margin: .3em 0;
 }
 
 .menuButton>span {
