@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import HeroImage from "../HeroImage";
 import Navbar from "../Navbar";
@@ -13,15 +13,22 @@ import TextAnimationWrapper from "../TextAnimationWrapper";
 import SideBar from "../SideBar";
 import PageSelection from "../PageSelection";
 import MenuButton from "../MenuButton";
+import ContactMenu from "../ContactMenu";
 
 const TopSection = ({ handleSetShowChat, showChat, topSectionData, isAdmin, navData }) => {
   const { title, description, callToAction } = topSectionData;
   const { initChat, getRooms, currentChat, setCurrentChat, io } = useContext(ChatContext)
+  const [clicked, setClicked] = useState(false);
+
+  const handleMenuBtnClick = () => {
+    setClicked(prev => !prev)
+  }
 
   return (
     <section className={style.topSection}>
       <div className={style.menuButtonWrapper}>
-        <MenuButton />
+        <MenuButton handleMenuBtnClick={handleMenuBtnClick} clicked={clicked} />
+        {clicked ? <ContactMenu /> : null}
       </div>
       <SideBar />
       <section className={style.sidebar}>
