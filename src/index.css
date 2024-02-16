@@ -35,8 +35,18 @@
 
 body {
   box-sizing: border-box;
+  background-color: var(--primary-light);
+  color: var(--primary-dark)
 }
 
+h1 {
+  font-size: 3em;
+}
+
+/* p {
+  font-size: 1em;
+} */
+
 button {
-  font-family: 'Stint Ultra Expanded', serif;
+  font-family: 'Red Hat Mono', serif;
 }
