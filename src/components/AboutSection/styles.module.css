@@ -12,7 +12,7 @@
 
 .slime {
     justify-self: flex-end;
-    width: 66.7%;
+    width: 100%;
     filter: drop-shadow(black -1rem 1rem 1rem);
     z-index: 1;
 }

@@ -1,8 +1,17 @@
-import style from './styles.module.css'
-const SectionDescription = ({text, color}) => {
+import styles from "./styles.module.css";
+const SectionDescription = ({ text, color, style={} }) => {
+  
   return (
-    <p className={style.sectionDescription} style={{color: color ? `var(${color})` : null}}>{text}</p>
-  )
-}
+    <p
+      className={styles.sectionDescription}
+      style={{
+        ...style,
+        color: color ? `var(${color})` : null,
+      }}
+    >
+      {text}
+    </p>
+  );
+};
 
-export default SectionDescription
+export default SectionDescription;
