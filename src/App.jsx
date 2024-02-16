@@ -13,6 +13,7 @@ import { generateToken, messaging } from "./notifications/firebase";
 import { onMessage } from "firebase/messaging";
 import toast, { Toaster } from 'react-hot-toast'
 import PageSelection from "./components/PageSelection";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -54,6 +55,7 @@ function App() {
       {isAdmin && (
         <AdminBanner />
       )}
+      <Navbar navData={devData.navLinks}/>
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
@@ -63,7 +65,7 @@ function App() {
         navData={devData.navLinks}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
-      <WorksSection worksSectionData={devData.worksSection} />
+      {/* <WorksSection worksSectionData={devData.worksSection} /> */}
       {showChat && (
         <ChatBox
           showChat={showChat}

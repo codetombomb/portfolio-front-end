@@ -29,7 +29,7 @@ const AboutSection = ({ aboutSectionData }) => {
       </div>
       <section className={style.aboutMain}>
         <article className={style.headline}>
-          {renderDescriptions()}
+          {/* {renderDescriptions()} */}
         </article>
         <div className={style.tomInSunWrapper}>
           <img className={style.tomInSun} src={tomInSun}></img>

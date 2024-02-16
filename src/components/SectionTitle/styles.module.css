@@ -1,15 +1,13 @@
 .sectionTitle {
   font-family: var(--heading-font);
-  max-width: min-content;
-  font-size: 10vw;
-  padding: 2rem 0 2rem 2rem;
-  position: relative;
+  max-width: max-content;
+  text-align: center;
   line-height: 0.95em;
 }
 
 @media (max-width: 576px) {
     .sectionTitle{
-        font-size: 4.5rem;
-        padding: 2rem 0 2rem 2rem;
+        /* font-size: 4.5rem;
+        padding: 2rem 0 2rem 2rem; */
     }
 }
