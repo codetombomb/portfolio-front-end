@@ -1,17 +1,17 @@
 .sectionCallToAction{
     background-color: rgba(240, 248, 255, 0);
     white-space: nowrap;
-    padding: .2em 1em .2em 1em;
-    margin: 1rem;
+    padding: 0.4em 1em 0.4em 1em;
+    margin: 1em;
     border: none;
     border-radius: 2rem;
-    font-size: 1.8vw;
     width: 70%;
     cursor: pointer;
-    filter: drop-shadow(black .6rem 1rem 1rem);
-    font-family: 'Red Hat Mono', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    width: 24vw;
+    filter: drop-shadow(black 0.2rem 0.3em 0.5em);
+    /* font-family: 'Red Hat Mono', Tahoma, Geneva, Verdana, sans-serif; */
+    font-weight: 600;
+    font-size: 1rem;
+    /* width: 24vw; */
 }
 
 @media (max-width: 576px) {

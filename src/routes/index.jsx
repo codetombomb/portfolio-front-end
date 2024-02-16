@@ -4,19 +4,21 @@ import React from "react";
 import App from "../App";
 import AdminLogin from "../pages/AdminLogin";
 import ChatContext from "../context/chatContext";
+import MobileContext from "../context/mobileContext";
 
 const AppRoutes = () => {
-
   const element = createBrowserRouter([
     {
       path: "/admin-login",
-      element: <AdminLogin />
+      element: <AdminLogin />,
     },
     {
       path: "/admin",
       element: (
         <ChatContext>
-          <App />
+          <MobileContext>
+            <App />
+          </MobileContext>
         </ChatContext>
       ),
     },
@@ -24,7 +26,9 @@ const AppRoutes = () => {
       path: "/",
       element: (
         <ChatContext>
-          <App />
+          <MobileContext>
+            <App />
+          </MobileContext>
         </ChatContext>
       ),
     },

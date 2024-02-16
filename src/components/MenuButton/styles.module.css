@@ -3,10 +3,7 @@
     width: 2em;
     background-color: var(--primary-dark);
     cursor: pointer;
-    position: absolute;
-    right: 2em;
-    top: 0em;
-    z-index: 5;
+    position: relative;
 }
 
 .backLayer {

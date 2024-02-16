@@ -1,8 +1,25 @@
 .navbar {
   background-color: #d5ff40;
+  /* border: 1px solid red; */
   color: black;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 .navLinks {
   list-style: none;
@@ -102,4 +119,4 @@
     margin: 1rem;
     padding: 0;
   }
-}
+} */
