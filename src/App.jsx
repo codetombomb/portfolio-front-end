@@ -65,7 +65,7 @@ function App() {
         navData={devData.navLinks}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
-      {/* <WorksSection worksSectionData={devData.worksSection} /> */}
+      <WorksSection worksSectionData={devData.worksSection} />
       {showChat && (
         <ChatBox
           showChat={showChat}

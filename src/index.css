@@ -36,7 +36,6 @@
 body {
   box-sizing: border-box;
   background-color: var(--primary-light);
-  color: var(--primary-dark)
 }
 
 h1 {
@@ -44,7 +43,7 @@ h1 {
 }
 
 p {
-  font-size: .6em;
+  font-size: 1em;
 }
 
 button {
