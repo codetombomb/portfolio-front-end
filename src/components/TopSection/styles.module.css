@@ -1,5 +1,5 @@
 .topSection {
-    height: 75vh;
+    height: 65vh;
     background-color: var(--primary-light);
     position: relative;
     z-index: 2;
@@ -16,9 +16,9 @@
     background-color: var(--primary-light);
 }
 
-.topMain>*{
+/* .topMain>*{
     margin: .5em 0;
-}
+} */
 
 .menuButtonWrapper {
     /* border: 1px solid cyan; */
