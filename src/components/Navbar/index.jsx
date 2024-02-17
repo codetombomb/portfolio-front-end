@@ -19,7 +19,7 @@ const Navbar = ({ navData }) => {
 
   return (
     <div className={`${styles.navbar} flex`}>
-      <TomLogo />
+      <TomLogo size="40"/>
       <MenuButton />
     </div>
   );
