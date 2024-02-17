@@ -1,13 +1,13 @@
 .menuButton {
-    height: 2em;
-    width: 2em;
+    height: 25px;
+    width: 25px;
     background-color: var(--primary-dark);
     cursor: pointer;
     position: relative;
 }
 
 .backLayer {
-    height: 2em;
+    height: 25px;
     aspect-ratio: 1/1;
     border-top: 2px solid black;
     border-right: 2px solid black;
@@ -19,7 +19,7 @@
 }
 
 .midLayer {
-    height: 2em;
+    height: 25px;
     aspect-ratio: 1/1;
     border-top: 2px solid black;
     border-right: 2px solid black;
@@ -30,7 +30,7 @@
 }
 
 .frontLayer {
-    height: 2em;
+    height: 25px;
     aspect-ratio: 1/1;
     background-color: var(--primary-dark);
     display: grid;
@@ -38,7 +38,7 @@
 }
 
 .burgerWrapper {
-    height:1.5em;
+    height:1em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -46,8 +46,8 @@
 
 .slice {
     background-color: var(--primary-light);
-    height: 1.5px;
-    width: 1.5em;
+    height: 1px;
+    width: 1em;
 }
 
 .menuButton>span {

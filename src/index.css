@@ -40,12 +40,12 @@ body {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
-/* p {
-  font-size: 1em;
-} */
+p {
+  font-size: .8em;
+}
 
 button {
   font-family: 'Red Hat Mono', serif;
