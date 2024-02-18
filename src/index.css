@@ -50,3 +50,13 @@ p {
 button {
   font-family: 'Red Hat Mono', serif;
 }
+
+/* https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints */
+
+/* Breakpoint	Class infix	Dimensions
+X-Small	  None	     <576px
+Small	    sm	        ≥576px
+Medium	  md	        ≥768px
+Large	    lg	        ≥992px
+Extra   large	xl	    ≥1200px
+Extra extra large	xxl	≥1400px */
