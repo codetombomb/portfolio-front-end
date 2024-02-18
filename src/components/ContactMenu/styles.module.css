@@ -1,17 +1,18 @@
 .contactMenu {
-    width: 20em;
-    position: absolute;
-    right: .5em;
-    top: -2.2em;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    right: 0em;
+    top: 0em;
     background-color: var(--secondary-dark);
     color: var(--secondary-lighter);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
-    margin: 1em 0;
     filter: drop-shadow(black 1rem 1rem 1rem);
+    z-index: 3;
+    overflow: hidden;
 }
 
 .contactMenu>a{

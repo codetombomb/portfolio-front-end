@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/tom-logo.svg'
 import style from './styles.module.css'
 
+
 const TomLogo = ({color, size=50}) => {
+    const navigate = useNavigate()
     return (
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+        <svg onClick={() => navigate("/")} version="1.0" xmlns="http://www.w3.org/2000/svg"
             width={`${size}pt`} height={`${size}pt`} viewBox="0 0 500.000000 500.000000"
             preserveAspectRatio="xMidYMid meet">
 
