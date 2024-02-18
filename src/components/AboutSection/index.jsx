@@ -15,7 +15,7 @@ const AboutSection = ({ aboutSectionData }) => {
     return descriptions.map((desc) => {
       return (
         <div className={style.aboutDesc} key={uuidv4()}>
-          <SectionTitle title={desc.title.text} color={desc.title.color} fontSize={"4vw"} />
+          <SectionTitle title={desc.title.text} color={desc.title.color} />
           <SectionDescription text={desc.description.text} color={desc.description.color} />
         </div>
       )
@@ -29,7 +29,7 @@ const AboutSection = ({ aboutSectionData }) => {
       </div>
       <section className={style.aboutMain}>
         <article className={style.headline}>
-          {/* {renderDescriptions()} */}
+          {renderDescriptions()}
         </article>
         <div className={style.tomInSunWrapper}>
           <img className={style.tomInSun} src={tomInSun}></img>

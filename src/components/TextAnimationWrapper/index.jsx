@@ -13,7 +13,7 @@ const TextAnimationWrapper = ({children, delay, duration}) => {
         })
     }, { scope: container })
     
-    return <span className="text-animation" ref={container}>{children}</span>
+    return <div className="text-animation" ref={container}>{children}</div>
 }
 
 export default TextAnimationWrapper;

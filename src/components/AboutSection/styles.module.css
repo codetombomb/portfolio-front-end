@@ -1,13 +1,23 @@
 .aboutSection {
     background-color: #3A098A;
     position: relative;
-    height: 100vh;
+    height: 80vh;
+    display: grid;
+    place-items: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 440px;
+    max-height: 545px;
+
 }
 
 .slimeContainer {
     display: flex;
     flex-direction: row-reverse;
-    width: 100vw;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .slime {
@@ -18,21 +28,22 @@
 }
 
 .aboutMain {
-    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    /* height: 50%; */
+}
+
+.headline {
 }
 
 .aboutDesc {
-    width: 30vw;
+    margin: 10%;
 }
 
 .tomInSunWrapper {
+    display: none;
     margin-left: 5%;
     height: 30vw;
 }

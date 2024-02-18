@@ -4,6 +4,7 @@
     background-color: var(--primary-dark);
     cursor: pointer;
     position: relative;
+    z-index: 4;
 }
 
 .backLayer {

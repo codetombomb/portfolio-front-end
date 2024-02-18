@@ -6,6 +6,7 @@ import { MobileContext } from "../../context/mobileContext";
 
 import MenuButton from "../MenuButton";
 import TomLogo from "../TomLogo";
+import ContactMenu from "../ContactMenu";
 
 const Navbar = ({ navData }) => {
   const { github, linkedin } = navData;
@@ -13,14 +14,15 @@ const Navbar = ({ navData }) => {
   const [showMenu, setShowMenu] = useState(false);
   const container = useRef();
 
-  const toggleShowMenu = () => {
+  const onMenuBtnClick = () => {
     setShowMenu((previous) => !previous);
   };
 
   return (
     <div className={`${styles.navbar} flex`}>
       <TomLogo size="40"/>
-      <MenuButton />
+      <MenuButton handleMenuBtnClick={onMenuBtnClick}/>
+      {showMenu && <ContactMenu />}
     </div>
   );
 };
