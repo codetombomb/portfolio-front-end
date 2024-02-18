@@ -36,14 +36,15 @@
 body {
   box-sizing: border-box;
   background-color: var(--primary-light);
+  min-width: 200px;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 p {
-  font-size: 1em;
+  font-size: .8em;
 }
 
 button {
