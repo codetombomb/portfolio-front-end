@@ -53,7 +53,6 @@ const TopSection = ({
 
   return (
     <section className={style.topSection}>
-      <div className={style.topMain}>
         {/* <SideBar /> */}
         <section className={style.sidebar}>
           <PageSelection />
@@ -61,14 +60,14 @@ const TopSection = ({
         <section className={style.topMain}>
           <article className={style.headline}>
             <TextAnimationWrapper delay={0.25} duration={0.5}>
-              <SectionTitle title={title.text} color={title.color} />
+                <SectionTitle title={title.text} color={title.color} />
             </TextAnimationWrapper>
             <TextAnimationWrapper delay={0.5} duration={0.4}>
               <div className={style.headlineDescriptionWrapper}>
                 <SectionDescription
                   text={description.text}
                   color={description.color}
-                  style={{ textAlign: "center" }}
+                  style={{textAlign: "center"}}
                 />
               </div>
             </TextAnimationWrapper>
@@ -83,7 +82,6 @@ const TopSection = ({
             backgroundColor={callToAction.backgroundColor}
           />
         </section>
-      </div>
     </section>
   );
 };

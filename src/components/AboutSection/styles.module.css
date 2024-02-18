@@ -2,17 +2,19 @@
     background-color: #3A098A;
     position: relative;
     height: 80vh;
-    border: 1px solid red;
     display: grid;
     place-items: flex;
     align-items: flex-end;
     justify-content: center;
+    min-height: 440px;
+    max-height: 545px;
+
 }
 
 .slimeContainer {
     display: flex;
     flex-direction: row-reverse;
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -30,8 +32,10 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    border: 1px solid yellow;
     /* height: 50%; */
+}
+
+.headline {
 }
 
 .aboutDesc {

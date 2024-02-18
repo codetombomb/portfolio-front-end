@@ -3,7 +3,11 @@
     background-color: var(--primary-light);
     position: relative;
     z-index: 2;
-    filter: drop-shadow(var(--primary-light) 0px 2px)
+    filter: drop-shadow(var(--primary-light) 0px 2px);
+    min-height: 375px;
+    display: grid;
+    place-items: center;
+
 }
 
 .topMain {
@@ -14,6 +18,8 @@
     justify-content: space-around;
     align-items: center;
     background-color: var(--primary-light);
+    max-width: 600px;
+    min-width: 120px;
 }
 
 /* .topMain>*{
@@ -31,7 +37,7 @@
 
 .heroImgWrapper {
     /* border: 1px solid #39FF14; */
-    width: 45vw;
+    width: 45%;
     filter: drop-shadow(black 0.2rem 0.3em 0.5em);
 }
 
