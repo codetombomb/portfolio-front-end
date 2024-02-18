@@ -5,9 +5,11 @@
   line-height: 0.95em;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 576px) {
     .sectionTitle{
-        /* font-size: 4.5rem;
-        padding: 2rem 0 2rem 2rem; */
+      max-width: min-content;
+        font-size: 4.5rem;
+        text-align: left;
     }
 }
+
