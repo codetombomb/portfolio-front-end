@@ -22,33 +22,21 @@
   min-width: 120px;
 }
 
-/* .topMain>*{
-    margin: .5em 0;
-} */
-
-.menuButtonWrapper {
-  /* border: 1px solid cyan; */
-}
-
 .sidebar {
-  /* border: 1px solid magenta;  */
   display: none;
 }
 
 .heroImgWrapper {
-  /* border: 1px solid #39FF14; */
   width: 45%;
   filter: drop-shadow(black 0.2rem 0.3em 0.5em);
 }
 
 .headline {
-  /* border: 1px solid rgb(238, 0, 255);  */
   display: grid;
   place-items: center;
 }
 
 .headlineDescriptionWrapper {
-  /* border: 1px solid #00BFFF; */
   margin: 1em 0;
 }
 
@@ -62,6 +50,12 @@
     flex-basis: 0;
   }
 
+  .tomLogoWrapper {
+    padding: 1em;
+    display: inline;
+    margin: 1.5em;
+  }
+
   .topMain {
     justify-content: center;
     width: 100%;
@@ -70,7 +64,7 @@
     max-width: 100%;
     position: relative;
   }
-  
+
   .sidebar {
     display: block;
     height: 100%;
@@ -78,6 +72,14 @@
     background-color: var(--primary-dark);
     max-width: 500px;
     min-width: 200px;
+  }
+
+  .menuButtonWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5em;
+    margin-top: .5em;
   }
 
   .heroImgWrapper {
@@ -94,75 +96,18 @@
   }
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .heroImgWrapper {
     width: 12em;
   }
 }
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
   .heroImgWrapper {
     width: 15em;
   }
 }
-@media (min-width: 1400px){
+@media (min-width: 1400px) {
   .heroImgWrapper {
     width: 20em;
   }
 }
-
-
-/* .topSection {
-    background-color: var(--primary-dark);
-    height: 100vh;
-    display: flex;
-}
-
-.menuButtonWrapper {
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    aspect-ratio: 1/1;
-    width: 2vw;
-    z-index: 5;
-}
-
-.sidebar {
-    height: 100vh;
-    width: 30vw;
-    position: relative;
-}
-
-.heroImgWrapper {
-    position: absolute;
-    width: 20vw;
-    left: 50%;
-    top: 50%;
-    transform: translate(0%, -53%);
-    filter: drop-shadow(black 1rem 1rem 1rem);
-    z-index: 3;
-}
-
-.topMain {
-    background-color: var(--primary-light);
-    height: 100vh;
-    width: 80vw;
-    min-width: 345px;
-    display: grid;
-    place-items: center;
-    z-index: 2;
-    filter: drop-shadow(2px 5px 2px #d5ff40)
-}
-
-.headline {
-    width: 40%;
-}
-
-.headlineDescriptionWrapper {
-    padding: 1rem 0;
-}
-
-@media (max-width: 576px) {
-    .topSection {
-
-    }
-} */

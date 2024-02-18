@@ -11,51 +11,62 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ChatContext } from "./context/chatContext";
 import { generateToken, messaging } from "./notifications/firebase";
 import { onMessage } from "firebase/messaging";
-import toast, { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from "react-hot-toast";
 import PageSelection from "./components/PageSelection";
 import Navbar from "./components/Navbar";
+import { MobileContext } from "./context/mobileContext";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } = useContext(ChatContext)
-
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } =
+    useContext(ChatContext);
+  const { isMobile } = useContext(MobileContext);
 
   useEffect(() => {
     if (location.pathname === "/admin" && !isAdmin) {
-      navigate("/")
+      navigate("/");
     } else {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const admin = JSON.parse(urlParams.get("admin"));
       if (admin) {
-        handleGetToken(admin.id)
+        handleGetToken(admin.id);
         onMessage(messaging, (payload) => {
-          toast(payload.notification.body)
-        })
-        onAdminLogin(admin)
-        navigate("/admin")
+          toast(payload.notification.body);
+        });
+        onAdminLogin(admin);
+        navigate("/admin");
       }
     }
   }, []);
 
   const handleGetToken = async (admin_id) => {
-    const token_id = await generateToken(admin_id)
-    if (token_id) setDeviceTokenId(token_id)
-  }
+    const token_id = await generateToken(admin_id);
+    if (token_id) setDeviceTokenId(token_id);
+  };
 
   const handleSetShowChat = () => {
     setShowChat((previousValue) => !previousValue);
   };
 
+  const onMenuBtnClick = () => {
+    setShowMenu((previous) => !previous);
+  };
+
   return (
     <>
       <Toaster />
-      {isAdmin && (
-        <AdminBanner />
+      {isAdmin && <AdminBanner />}
+      {isMobile && (
+        <Navbar
+          navData={devData.navLinks}
+          showMenu={showMenu}
+          handleMenuBtnClick={onMenuBtnClick}
+        />
       )}
-      <Navbar navData={devData.navLinks}/>
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
@@ -63,14 +74,13 @@ function App() {
         isAdmin={isAdmin}
         currentAdmin={currentAdmin}
         navData={devData.navLinks}
+        showMenu={showMenu}
+        handleMenuBtnClick={onMenuBtnClick}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
       {/* <WorksSection worksSectionData={devData.worksSection} /> */}
       {showChat && (
-        <ChatBox
-          showChat={showChat}
-          handleSetShowChat={handleSetShowChat}
-        />
+        <ChatBox showChat={showChat} handleSetShowChat={handleSetShowChat} />
       )}
     </>
   );
