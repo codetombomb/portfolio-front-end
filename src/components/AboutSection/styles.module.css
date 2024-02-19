@@ -13,6 +13,8 @@
   justify-content: center;
   min-height: 440px;
   max-height: 545px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slimeContainer {
@@ -52,7 +54,7 @@
 .tomInSunWrapper {
   display: none;
   margin-left: 5%;
-  height: 30vw;
+  height: 25vw;
   width: 100%;
   padding-left: 2em;
 }
@@ -68,14 +70,18 @@
 }
 
 @media (min-width: 576px) {
-  .aboutMain {
-    width: 50%;
-  }
   .aboutSection {
     height: 100vh;
     max-height: none;
     align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
+
+  .aboutMain {
+    width: 70%;
+  }
+
   .tomInSunWrapper {
     display: block;
   }

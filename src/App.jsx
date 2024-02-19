@@ -15,6 +15,7 @@ import toast, { Toaster } from "react-hot-toast";
 import PageSelection from "./components/PageSelection";
 import Navbar from "./components/Navbar";
 import { MobileContext } from "./context/mobileContext";
+import Footer from "./components/Footer";
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -78,7 +79,8 @@ function App() {
         handleMenuBtnClick={onMenuBtnClick}
       />
       <AboutSection aboutSectionData={devData.aboutSection} />
-      {/* <WorksSection worksSectionData={devData.worksSection} /> */}
+      <WorksSection worksSectionData={devData.worksSection} />
+      <Footer />
       {showChat && (
         <ChatBox showChat={showChat} handleSetShowChat={handleSetShowChat} />
       )}
