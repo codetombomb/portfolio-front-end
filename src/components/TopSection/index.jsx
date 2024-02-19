@@ -13,6 +13,7 @@ import PageSelection from "../PageSelection";
 import MenuButton from "../MenuButton";
 import ContactMenu from "../ContactMenu";
 import TomLogo from "../TomLogo";
+import slime from "../../assets/slime.svg";
 
 const TopSection = ({
   handleSetShowChat,
@@ -85,6 +86,9 @@ const TopSection = ({
           color={callToAction.color}
           backgroundColor={callToAction.backgroundColor}
         />
+        <div className={style.slimeImgWrapper}>
+          <img className={style.slime} src={slime} alt="slime" />
+        </div>
       </section>
     </section>
   );

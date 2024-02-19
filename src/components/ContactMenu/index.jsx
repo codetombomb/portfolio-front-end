@@ -10,7 +10,7 @@ const ContactMenu = () => {
     const linkThreeRef = useRef(null)
 
     useGSAP(() => {
-        gsap.fromTo(navRef.current, { opacity: 0, x: 40 }, { opacity: 1, duration: .3, x: 0 })
+        gsap.fromTo(navRef.current, { opacity: 0 }, { opacity: 1, duration: .1 })
         gsap.fromTo(linkOneRef.current, { opacity: 0, y: 10 }, { opacity: 1, delay: .3, y: 0 })
         gsap.fromTo(linkTwoRef.current, { opacity: 0, y: 10 }, { opacity: 1, delay: .2, y: 0 })
         gsap.fromTo(linkThreeRef.current, { opacity: 0, y: 10 }, { opacity: 1, delay: .1, y: 0 })

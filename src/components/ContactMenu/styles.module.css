@@ -27,7 +27,7 @@
 
 @media (min-width: 576px) {
   .contactMenu {
-    height: 30em;
+    height: 80vh;
     width: 20em;
     margin: 1em;
   }
