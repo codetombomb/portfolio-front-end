@@ -1,5 +1,10 @@
 .aboutSection {
-  background-color: #3a098a;
+  background: rgb(58, 9, 138);
+  background: linear-gradient(
+    19deg,
+    rgba(58, 9, 138, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   position: relative;
   height: 80vh;
   width: 100vw;
@@ -26,9 +31,9 @@
 }
 
 .slimeImgWrapper {
-    flex-grow: 2;
-    border: 2px solid red;
-  }
+  flex-grow: 2;
+  border: 2px solid red;
+}
 
 .aboutMain {
   display: flex;
@@ -49,6 +54,7 @@
   margin-left: 5%;
   height: 30vw;
   width: 100%;
+  padding-left: 2em;
 }
 
 .tomInSun {
@@ -62,31 +68,15 @@
 }
 
 @media (min-width: 576px) {
+  .aboutMain {
+    width: 50%;
+  }
   .aboutSection {
-
+    height: 100vh;
+    max-height: none;
+    align-items: center;
   }
-
-  .slimeBuffer {
+  .tomInSunWrapper {
     display: block;
-    height: 100%;
-    width: 40%;
-    flex-grow: 1;
-    max-width: 500px;
-    min-width: 200px;
-    border: 2px solid red
-  }
-
-  .slimeContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-
-  .slime {
-    
-  }
-
-  .slimeImgWrapper {
-    
   }
 }
