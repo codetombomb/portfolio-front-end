@@ -3,7 +3,6 @@
   background-color: var(--primary-light);
   position: relative;
   z-index: 2;
-  filter: drop-shadow(var(--primary-light) 0px 2px);
   min-height: 375px;
   display: flex;
   justify-content: center;
@@ -40,6 +39,20 @@
   margin: 1em 0;
 }
 
+.slime {
+  justify-self: flex-end;
+  width: 100%;
+  z-index: 1;
+}
+
+.slimeImgWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+}
+
 @media (min-width: 576px) {
   .topSection {
     display: flex;
@@ -58,6 +71,7 @@
 
   .topMain {
     justify-content: center;
+    margin: 0 0em;
     width: 100%;
     height: 100%;
     flex-grow: 2;
@@ -79,20 +93,23 @@
     top: 0;
     right: 0;
     padding: 1.5em;
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
 
   .heroImgWrapper {
     position: absolute;
     width: 10em;
     top: 50%;
-    left: -10em;
+    left: -7em;
     transform: translateY(-50%);
   }
 
   .headline {
     text-align: left;
     width: 50%;
+  }
+
+  .slimeImgWrapper{
   }
 }
 

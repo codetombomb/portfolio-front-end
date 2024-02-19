@@ -1,58 +1,92 @@
 .aboutSection {
-    background-color: #3A098A;
-    position: relative;
-    height: 80vh;
-    display: grid;
-    place-items: flex;
-    align-items: flex-end;
-    justify-content: center;
-    min-height: 440px;
-    max-height: 545px;
-
+  background-color: #3a098a;
+  position: relative;
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 440px;
+  max-height: 545px;
 }
 
 .slimeContainer {
-    display: flex;
-    flex-direction: row-reverse;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .slime {
-    justify-self: flex-end;
-    width: 100%;
-    filter: drop-shadow(black -1rem 1rem 1rem);
-    z-index: 1;
+  justify-self: flex-end;
+  width: 100%;
+  filter: drop-shadow(black -1rem 1rem 1rem);
+  z-index: 1;
 }
 
+.slimeImgWrapper {
+    flex-grow: 2;
+    border: 2px solid red;
+  }
+
 .aboutMain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .headline {
 }
 
 .aboutDesc {
-    margin: 10%;
+  margin: 10%;
 }
 
 .tomInSunWrapper {
-    display: none;
-    margin-left: 5%;
-    height: 30vw;
+  display: none;
+  margin-left: 5%;
+  height: 30vw;
+  width: 100%;
 }
 
 .tomInSun {
-    height: 100%;
+  height: 100%;
 }
 
-@media (max-width: 576px) {
-    .aboutSection {
+.slimeBuffer {
+  width: 40%;
+  height: 100%;
+  display: none;
+}
 
-    }
+@media (min-width: 576px) {
+  .aboutSection {
+
+  }
+
+  .slimeBuffer {
+    display: block;
+    height: 100%;
+    width: 40%;
+    flex-grow: 1;
+    max-width: 500px;
+    min-width: 200px;
+    border: 2px solid red
+  }
+
+  .slimeContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .slime {
+    
+  }
+
+  .slimeImgWrapper {
+    
+  }
 }
