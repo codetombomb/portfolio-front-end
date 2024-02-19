@@ -53,6 +53,10 @@
   width: 100%;
 }
 
+.menuButtonWrapper{
+  padding: 1.5em 2.5em;
+}
+
 @media (min-width: 576px) {
   .topSection {
     display: flex;
@@ -92,7 +96,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 1.5em;
     margin-top: 0.5em;
   }
 
