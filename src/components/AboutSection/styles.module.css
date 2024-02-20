@@ -6,61 +6,44 @@
     rgba(0, 0, 0, 1) 100%
   );
   position: relative;
-  height: 80vh;
-  width: 100vw;
+  height: 100vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  min-height: 440px;
-  max-height: 545px;
+  min-height: 45em;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
-.slimeContainer {
-  flex-direction: row;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.slime {
-  justify-self: flex-end;
-  width: 100%;
-  filter: drop-shadow(black -1rem 1rem 1rem);
-  z-index: 1;
-}
-
-.slimeImgWrapper {
-  flex-grow: 2;
-  border: 2px solid red;
-}
-
 .aboutMain {
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 5em;
 }
 
 .headline {
+
 }
 
 .aboutDesc {
-  margin: 10%;
+  margin: 5%;
 }
 
 .tomInSunWrapper {
-  display: none;
-  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 25vw;
   width: 100%;
-  padding-left: 2em;
 }
 
 .tomInSun {
   height: 100%;
+  min-height: 150px;
+  margin-bottom: 5em;
 }
 
 .slimeBuffer {
@@ -74,15 +57,16 @@
     height: 100vh;
     max-height: none;
     align-items: center;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
   .aboutMain {
+    flex-direction: row;
     width: 70%;
   }
 
   .tomInSunWrapper {
     display: block;
+     padding-left: 2em;
+     margin-bottom: 5em;
   }
 }
