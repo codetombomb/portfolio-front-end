@@ -49,12 +49,12 @@ const TopSection = ({
   };
 
   return (
-    <section className={style.topSection}>
+    <section className={`${style.topSection} main-section`}>
       <section className={style.sidebar}>
         <div className={style.tomLogoWrapper}>
           <TomLogo color="var(--primary-light)" />
         </div>
-        <PageSelection />
+        {/* <PageSelection /> */}
       </section>
       <section className={style.topMain}>
         {!isMobile && (

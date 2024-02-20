@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import style from "./styles.module.css";
 
 import SectionTitle from "../SectionTitle";
@@ -8,26 +8,25 @@ import tomInSun from "../../assets/tom-in-sun.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = ({ aboutSectionData }) => {
   const { descriptions } = aboutSectionData;
   const aboutMainRef = useRef(null);
+  const aboutSectionRef = useRef(null);
 
   useGSAP(
     () => {
       gsap.from(aboutMainRef.current, {
         scrollTrigger: {
           trigger: aboutMainRef.current,
-          start: "top bottom",
-          end: "+=300",
-          scrub: true,
+          start: "-50% center",
+          end: "+=40%",
+          toggleActions: "play restart play reverse",
+          scrub: 1
         },
-        delay: .2,
+        y: "5em",
+        delay: .4,
         duration: .5,
-        y: "70px",
         opacity: 0,
       });
     },
@@ -49,7 +48,7 @@ const AboutSection = ({ aboutSectionData }) => {
   };
 
   return (
-    <section className={style.aboutSection}>
+    <section className={`${style.aboutSection} main-section`} ref={aboutSectionRef}>
       <section className={style.aboutMain} ref={aboutMainRef}>
         <article className={style.headline}>{renderDescriptions()}</article>
         <div className={style.tomInSunWrapper}>

@@ -8,7 +8,7 @@ import TextAnimationWrapper from "../TextAnimationWrapper";
 const WorksSection = ({ worksSectionData }) => {
   const { title, description, worksList } = worksSectionData;
   return (
-    <section className={style.worksSection}>
+    <section className={`${style.worksSection} main-section`}>
       Works section
     </section>
   );
