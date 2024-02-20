@@ -1,4 +1,13 @@
 .footer {
-    background-color: var(--primary-dark);
-    height: 20vh;
+  background-color: var(--primary-dark);
+  height: 20vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (min-width: 576px) {
+  .footer {
+    scroll-snap-align: end;
+    scroll-snap-stop: always;
+  }
 }
