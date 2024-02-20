@@ -12,17 +12,20 @@ import gsap from "gsap";
 const AboutSection = ({ aboutSectionData }) => {
   const { descriptions } = aboutSectionData;
   const aboutMainRef = useRef(null);
+  const aboutSectionRef = useRef(null);
 
   useGSAP(
     () => {
       gsap.from(aboutMainRef.current, {
         scrollTrigger: {
           trigger: aboutMainRef.current,
-          start: "top center", 
-          toggleActions: "play restart play reverse"
+          start: "-50% center",
+          end: "+=40%",
+          toggleActions: "play restart play reverse",
+          scrub: 1
         },
-        y: "3em",
-        delay: .1,
+        y: "5em",
+        delay: .4,
         duration: .5,
         opacity: 0,
       });
@@ -33,7 +36,7 @@ const AboutSection = ({ aboutSectionData }) => {
   const renderDescriptions = () => {
     return descriptions.map((desc) => {
       return (
-        <div id="about-section" className={style.aboutDesc} key={uuidv4()}>
+        <div className={style.aboutDesc} key={uuidv4()}>
           <SectionTitle title={desc.title.text} color={desc.title.color} />
           <SectionDescription
             text={desc.description.text}
@@ -45,7 +48,7 @@ const AboutSection = ({ aboutSectionData }) => {
   };
 
   return (
-    <section className={style.aboutSection}>
+    <section className={`${style.aboutSection} main-section`} ref={aboutSectionRef}>
       <section className={style.aboutMain} ref={aboutMainRef}>
         <article className={style.headline}>{renderDescriptions()}</article>
         <div className={style.tomInSunWrapper}>
