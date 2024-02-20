@@ -98,7 +98,7 @@ function App() {
           handleMenuBtnClick={onMenuBtnClick}
         />
       )}
-      <PageSelection currentPage={currentPage}/>
+      {!isMobile && <PageSelection currentPage={currentPage}/>}
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
