@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import "./App.css";
 import AboutSection from "./components/AboutSection";
 import TopSection from "./components/TopSection";
@@ -16,6 +16,9 @@ import PageSelection from "./components/PageSelection";
 import Navbar from "./components/Navbar";
 import { MobileContext } from "./context/mobileContext";
 import Footer from "./components/Footer";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
 
 function App() {
   const [showChat, setShowChat] = useState(false);
@@ -25,6 +28,30 @@ function App() {
   const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } =
     useContext(ChatContext);
   const { isMobile } = useContext(MobileContext);
+  const sectionRefs = {
+    top: useRef(null),
+    about: useRef(null),
+    works: useRef(null),
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrentSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "0px", threshold: 0.5 }
+    );
+
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, [sectionRefs]);
 
   useEffect(() => {
     if (location.pathname === "/admin" && !isAdmin) {
