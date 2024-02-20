@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import "./App.css";
 import AboutSection from "./components/AboutSection";
 import TopSection from "./components/TopSection";
@@ -16,15 +16,21 @@ import PageSelection from "./components/PageSelection";
 import Navbar from "./components/Navbar";
 import { MobileContext } from "./context/mobileContext";
 import Footer from "./components/Footer";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [showChat, setShowChat] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [currentPage, setCurrentPage] = useState("top");
   const navigate = useNavigate();
   const location = useLocation();
   const { currentAdmin, isAdmin, onAdminLogin, setDeviceTokenId } =
     useContext(ChatContext);
   const { isMobile } = useContext(MobileContext);
+  const appRef = useRef(null);
 
   useEffect(() => {
     if (location.pathname === "/admin" && !isAdmin) {
@@ -44,6 +50,30 @@ function App() {
     }
   }, []);
 
+  const handleSetCurrentPage = (page) => {
+    setCurrentPage(page.trigger.className.split(" ")[0].split("_")[1].split("Section")[0]);
+  };
+
+  useGSAP(() => {
+    gsap.utils.toArray(".main-section").forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "15% bottom",
+        end: "10%",
+        onEnter: handleSetCurrentPage,
+        onEnterBack: handleSetCurrentPage
+      });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "95% bottom",
+        end: "10%",
+        onEnter: handleSetCurrentPage,
+        onEnterBack: handleSetCurrentPage
+      })
+    });
+  });
+
   const handleGetToken = async (admin_id) => {
     const token_id = await generateToken(admin_id);
     if (token_id) setDeviceTokenId(token_id);
@@ -58,7 +88,7 @@ function App() {
   };
 
   return (
-    <>
+    <section className="app" ref={appRef}>
       <Toaster />
       {isAdmin && <AdminBanner />}
       {isMobile && (
@@ -68,6 +98,7 @@ function App() {
           handleMenuBtnClick={onMenuBtnClick}
         />
       )}
+      <PageSelection currentPage={currentPage}/>
       <TopSection
         topSectionData={devData.topSection}
         handleSetShowChat={handleSetShowChat}
@@ -84,7 +115,7 @@ function App() {
       {showChat && (
         <ChatBox showChat={showChat} handleSetShowChat={handleSetShowChat} />
       )}
-    </>
+    </section>
   );
 }
 
