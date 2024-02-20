@@ -6,7 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 390px;
+    scroll-snap-stop: always;
+    scroll-snap-align: start;
 }
 
 .headingWrapper {
