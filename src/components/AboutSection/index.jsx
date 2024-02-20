@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import style from "./styles.module.css";
 
 import SectionTitle from "../SectionTitle";
@@ -8,9 +8,6 @@ import tomInSun from "../../assets/tom-in-sun.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = ({ aboutSectionData }) => {
   const { descriptions } = aboutSectionData;
@@ -21,13 +18,12 @@ const AboutSection = ({ aboutSectionData }) => {
       gsap.from(aboutMainRef.current, {
         scrollTrigger: {
           trigger: aboutMainRef.current,
-          start: "top bottom",
-          end: "+=300",
-          scrub: true,
+          start: "top center", 
+          toggleActions: "play restart play reverse"
         },
-        delay: .2,
+        y: "3em",
+        delay: .1,
         duration: .5,
-        y: "70px",
         opacity: 0,
       });
     },
@@ -37,7 +33,7 @@ const AboutSection = ({ aboutSectionData }) => {
   const renderDescriptions = () => {
     return descriptions.map((desc) => {
       return (
-        <div className={style.aboutDesc} key={uuidv4()}>
+        <div id="about-section" className={style.aboutDesc} key={uuidv4()}>
           <SectionTitle title={desc.title.text} color={desc.title.color} />
           <SectionDescription
             text={desc.description.text}
