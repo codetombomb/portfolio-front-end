@@ -30,7 +30,7 @@ export default {
     descriptions: [{
       title: { text: "design", color: "--tertiary-lighter" },
       description: {
-        text: "As a front end developer, I am obsessed with making sure that my works are pixel perfect. Although I am not a designer, I enjoy pairing fonts, choosing color palettes that are pleasing to the eye, and constantly tweaking stylesheets.",
+        text: "I'm a front-end developer focused on pixel-perfect outcomes. Not a designer, but I thrive on creativity—selecting fonts, crafting appealing color palettes, and diligently refining stylesheets. Perfecting visuals is part of my daily mission.",
         color: "--tertiary-lighter",
       }
     }, {

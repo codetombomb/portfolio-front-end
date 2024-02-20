@@ -3,11 +3,11 @@
   background-color: var(--primary-light);
   position: relative;
   z-index: 2;
-  min-height: 375px;
+  min-height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   scroll-snap-stop: always;
 }
 
@@ -109,6 +109,7 @@
     top: 50%;
     left: -7em;
     transform: translateY(-50%);
+    filter: drop-shadow(rgb(0, 0, 0, 0.95) 1rem 1em .5em);
   }
 
   .headline {
@@ -116,8 +117,6 @@
     width: 50%;
   }
 
-  .slimeImgWrapper{
-  }
 }
 
 @media (min-width: 768px) {
