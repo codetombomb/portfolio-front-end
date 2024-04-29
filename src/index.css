@@ -1,57 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-
 :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
-  --primary-light: #D5FF40;
-  --primary-dark: black;
-
-  --secondary-light: #606060;
-  --secondary-lighter: #ECECEC;
-  --secondary-dark: #161616;
-
-  --tertiary-light: #3A098A;
-  --tertiary-lighter: #FFA800;
-  --tertiary-dark: #090010;
-  
-  --chat-input-dark: #242426;
-  --chat-input-light: #2D2D2F;
-
-  --heading-font: 'Rubik Mono One', monospace;
-  font-family: 'Red Hat Mono', serif;
+  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-*, *::before, *::after {
-  padding: 0;
-  margin: 0;
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
 }
-
-html {
-  scroll-snap-type: y mandatory;
-  min-width: 300px;
+a:hover {
+  color: #535bf2;
 }
 
 body {
-  box-sizing: border-box;
-  background-color: var(--primary-light);
-  min-width: 200px;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 h1 {
-  font-size: 1.8em;
-}
-
-p {
-  font-size: 1em;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 button {
-  font-family: 'Red Hat Mono', serif;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
