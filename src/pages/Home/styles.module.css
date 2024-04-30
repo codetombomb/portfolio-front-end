@@ -1,0 +1,73 @@
+.home {
+  height: 100%;
+  width: 100%;
+  background-color: #ed6f4c;
+  color: #24110b;
+}
+
+.mainContent {
+  border: 15px solid #24110b;
+  width: 95%;
+  height: 97.5%;
+}
+
+.nameWrapper {
+  margin: 3%;
+}
+
+.headlineWrapper {
+  margin: 3%;
+}
+
+.nameWrapper h1 {
+  font-size: 6em;
+  padding: 2%;
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--secondary-font);
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.tomImg {
+  width: 80%;
+  opacity: 85%;
+}
+
+.hireMeWrapper {
+  background-color: #24110b;
+  cursor: pointer;
+  height: 5%;
+}
+
+.hireMe {
+  font-size: 2em;
+  color: #ffffff;
+}
+
+.navWrapper {
+  justify-content: space-around;
+}
+
+nav a {
+  text-decoration: none;
+  color: #24110b;
+  font-size: 3.5em;
+}
+
+.socialLinksWrapper {
+  justify-content: center;
+}
+
+.socialWrapper {
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 2.5em;
+}
+
+.socialLinksWrapper svg {
+  color: #24110b;
+  height: 100%;
+}
