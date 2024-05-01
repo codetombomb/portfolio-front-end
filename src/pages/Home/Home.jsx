@@ -38,7 +38,9 @@ function Home() {
             <img className={styles.tomImg} src="./tom-front.png" alt="tom" />
           </div>
           <div className={`${styles.hireMeWrapper}`}>
-            <h1 className={styles.hireMe}>Hire now!</h1>
+            <h1 className={styles.hireMe}>
+              <a href="#hire-now">Hire now!</a>
+            </h1>
           </div>
           <nav className={`grid-center`}>
             <div className={`${styles.navLinks} flex-align-center`}>
