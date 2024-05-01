@@ -34,13 +34,13 @@ function Home() {
           </div>
         </section>
         <section className={`${styles.btmSection}`}>
-          <div className="grid-center">
+          <div className={`${styles.desktopDisplay} grid-center`}>
             <img className={styles.tomImg} src="./tom-front.png" alt="tom" />
           </div>
-          <div className={`${styles.hireMeWrapper} grid-center`}>
+          <div className={`${styles.hireMeWrapper}`}>
             <h1 className={styles.hireMe}>Hire now!</h1>
           </div>
-          <nav className={`${styles.navWrapper} grid-center`}>
+          <nav className={`grid-center`}>
             <div className={`${styles.navLinks} flex-align-center`}>
               <a href="#about-section">about</a>
               <a href="#works-section">works</a>
