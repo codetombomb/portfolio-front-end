@@ -1,18 +1,19 @@
 /* @font-face {
   font-family: "Impact";
-  src: url("../fonts/impact-font/impact.ttf") format("truetype");
+  src: url("../assets/fonts/impact-font/impact.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "KyivTypeSerif";
-  src: url("../fonts/kyivtype/KyivType-NoVariable/TTF/KyivTypeSerif-Regular.ttf")
+  font-family: "KyivTypeSerif-Regular";
+  src: url("../assets/fonts/kyivtype/KyivType-NoVariable/TTF/KyivTypeSerif-Regular.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "Nosifer";
-  src: url("../fonts/Nosifer/Nosifer-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Nosifer/Nosifer-Regular.ttf") format("truetype");
 } */
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
