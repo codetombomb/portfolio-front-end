@@ -40,9 +40,11 @@ function Home() {
           <div className={`${styles.hireMeWrapper} grid-center`}>
             <h1 className={styles.hireMe}>Hire now!</h1>
           </div>
-          <nav className={`${styles.navWrapper} flex-align-center`}>
-            <a href="#about-section">about</a>
-            <a href="#works-section">works</a>
+          <nav className={`${styles.navWrapper} grid-center`}>
+            <div className={`${styles.navLinks} flex-align-center`}>
+              <a href="#about-section">about</a>
+              <a href="#works-section">works</a>
+            </div>
           </nav>
           <div className={`${styles.socialLinksWrapper} flex-align-center`}>
             <SocialIcon
