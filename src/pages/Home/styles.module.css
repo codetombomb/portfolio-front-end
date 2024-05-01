@@ -25,34 +25,34 @@
 .btmSection {
   bottom: 0px;
   width: 100%;
-  max-height: 460px;
+  max-height: 440px;
   flex-grow: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.headlineWrapper {
+.headlineWrapper p {
   margin: 3%;
+  font-family: var(--secondary-font);
 }
 
 .nameWrapper h1 {
   font-size: 5em;
   padding: 2%;
-  line-height: 0.8em;
+  line-height: 0.9em;
 }
 
 p {
-  font-family: var(--secondary-font);
   font-size: 1em;
   color: #ffffff;
-  max-width: 325px;
+  /* max-width: 325px; */
 }
 
 .tomImg {
   width: 80%;
-  min-width: 295px;
-  max-width: 400px;
+  min-width: 290px;
+  max-width: 340px;
   opacity: 85%;
 }
 
@@ -66,6 +66,10 @@ p {
 
 .hireMe {
   font-size: 2em;
+}
+
+.hireMe a {
+  text-decoration: none;
   color: #ffffff;
 }
 
@@ -85,6 +89,40 @@ nav a {
 
 .socialLinksWrapper {
   justify-content: center;
+}
+
+@media (min-width: 576px) {
+  .mainContent {
+    /* border: 1px solid blue; */
+  }
+
+  .tomImg {
+    max-width: 415px;
+  }
+
+  p {
+    max-width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .mainContent {
+    /* border: 1px solid yellow; */
+  }
+  p {
+    max-width: 285px;
+  }
+
+  .tomImg {
+    max-width: 500px;
+  }
+
+  .nameWrapper {
+    margin: 0%;
+  }
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1400px) {
 }
 
 @media (min-width: 1200px) {
@@ -107,7 +145,7 @@ nav a {
 
   .tomImg {
     width: 100%;
-    max-width: 97%;
+    max-width: 542px;
     position: absolute;
     bottom: 0px;
   }
@@ -138,7 +176,7 @@ nav a {
   .nameWrapper h1 {
     font-size: 16em;
     padding: 4%;
-    line-height: 1em;
+    line-height: 0.9em;
   }
 
   .topSection {
