@@ -60,6 +60,8 @@ p {
   background-color: #24110b;
   cursor: pointer;
   height: 8%;
+  display: grid;
+  place-items: center;
 }
 
 .hireMe {
@@ -67,10 +69,8 @@ p {
   color: #ffffff;
 }
 
-.navWrapper {
-}
-
 .navLinks {
+  display: block;
   justify-content: space-around;
   width: 65%;
   min-width: 290px;
@@ -88,12 +88,74 @@ nav a {
 }
 
 @media (min-width: 1200px) {
-  .mainContent {
-    border: 1px solid orangered;
+  .home {
+    position: relative;
   }
-}
-@media (min-width: 1400px) {
   .mainContent {
-    border: 1px solid blue;
+    border: none;
+    max-width: 1450px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  nav a {
+    display: none;
+  }
+
+  p {
+    display: none;
+  }
+
+  .tomImg {
+    width: 100%;
+    max-width: 97%;
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .desktopDisplay {
+    border: 15px solid #24110b;
+    width: 90%;
+    max-width: 690px;
+    position: relative;
+    height: 85vh;
+  }
+
+  .hireMeWrapper {
+    display: none;
+  }
+
+  .hireMe {
+    display: none;
+  }
+
+  .socialLinksWrapper {
+    width: 90%;
+  }
+
+  .nameWrapper {
+    margin: 0px;
+  }
+  .nameWrapper h1 {
+    font-size: 16em;
+    padding: 4%;
+    line-height: 1em;
+  }
+
+  .topSection {
+    /* border: 1px solid aquamarine; */
+    width: 50%;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
+
+  .btmSection {
+    max-height: none;
+    height: 100%;
+    position: absolute;
+    align-items: flex-end;
+    right: 0px;
+    width: 50%;
   }
 }
