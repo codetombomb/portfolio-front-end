@@ -1,6 +1,6 @@
 .home {
-  height: 100%;
-  width: 100%;
+  min-width: 335px;
+  min-height: 830px;
   background-color: #ed6f4c;
   color: #24110b;
 }
@@ -9,10 +9,27 @@
   border: 15px solid #24110b;
   width: 95%;
   height: 97.5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .nameWrapper {
   margin: 3%;
+}
+
+.topSection {
+  flex-grow: 1;
+}
+
+.btmSection {
+  bottom: 0px;
+  width: 100%;
+  max-height: 460px;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .headlineWrapper {
@@ -20,26 +37,31 @@
 }
 
 .nameWrapper h1 {
-  font-size: 6em;
+  font-size: 5em;
   padding: 2%;
-  font-weight: 700;
+  line-height: 0.8em;
 }
 
 p {
   font-family: var(--secondary-font);
-  font-size: 1.2em;
+  font-size: 1em;
   color: #ffffff;
+  max-width: 325px;
 }
 
 .tomImg {
   width: 80%;
+  min-width: 295px;
+  max-width: 400px;
   opacity: 85%;
 }
 
 .hireMeWrapper {
   background-color: #24110b;
   cursor: pointer;
-  height: 5%;
+  height: 8%;
+  display: grid;
+  place-items: center;
 }
 
 .hireMe {
@@ -47,27 +69,93 @@ p {
   color: #ffffff;
 }
 
-.navWrapper {
+.navLinks {
+  display: block;
   justify-content: space-around;
+  width: 65%;
+  min-width: 290px;
+  max-width: 450px;
 }
 
 nav a {
   text-decoration: none;
   color: #24110b;
-  font-size: 3.5em;
+  font-size: 3em;
 }
 
 .socialLinksWrapper {
   justify-content: center;
 }
 
-.socialWrapper {
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 2.5em;
-}
+@media (min-width: 1200px) {
+  .home {
+    position: relative;
+  }
+  .mainContent {
+    border: none;
+    max-width: 1450px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  nav a {
+    display: none;
+  }
 
-.socialLinksWrapper svg {
-  color: #24110b;
-  height: 100%;
+  p {
+    display: none;
+  }
+
+  .tomImg {
+    width: 100%;
+    max-width: 97%;
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .desktopDisplay {
+    border: 15px solid #24110b;
+    width: 90%;
+    max-width: 690px;
+    position: relative;
+    height: 85vh;
+  }
+
+  .hireMeWrapper {
+    display: none;
+  }
+
+  .hireMe {
+    display: none;
+  }
+
+  .socialLinksWrapper {
+    width: 90%;
+  }
+
+  .nameWrapper {
+    margin: 0px;
+  }
+  .nameWrapper h1 {
+    font-size: 16em;
+    padding: 4%;
+    line-height: 1em;
+  }
+
+  .topSection {
+    /* border: 1px solid aquamarine; */
+    width: 50%;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
+
+  .btmSection {
+    max-height: none;
+    height: 100%;
+    position: absolute;
+    align-items: flex-end;
+    right: 0px;
+    width: 50%;
+  }
 }
