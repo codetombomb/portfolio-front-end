@@ -22,6 +22,7 @@
   width: 100vw;
   min-width: 335px;
   min-height: 830px;
+  max-height: 1000px;
 }
 
 .txt-same-line-wrapper {

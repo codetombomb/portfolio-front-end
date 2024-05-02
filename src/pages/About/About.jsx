@@ -23,7 +23,7 @@ function About() {
           </div>
         </div>
         <div className={styles.aboutBtmSection}>
-          <h1 className={styles.aboutGreeting}>Hi, my name is Tom Tobar!👋</h1>
+          <h1 className={styles.aboutGreeting}>Hi, my name is Tom Tobar!</h1>
           <div className={styles.aboutDescription}>
             <p>
               My coding adventure kicked off in 2019, sparked by my daughter's
