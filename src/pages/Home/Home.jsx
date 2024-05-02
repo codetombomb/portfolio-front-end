@@ -30,7 +30,9 @@ function Home() {
             <h1>Tobar</h1>
           </div>
           <div className={styles.headlineWrapper}>
-            <p>I use cool tools to make fun internet things!</p>
+            <p className={styles.headline}>
+              I use cool tools to make fun internet things!
+            </p>
           </div>
         </section>
         <section className={`${styles.btmSection}`}>
