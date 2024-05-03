@@ -2,8 +2,8 @@
   height: 100vh;
   width: 100vw;
   min-width: 335px;
-  min-height: 830px;
-  max-height: 1000px;
+  min-height: 825px;
+  max-height: 900px;
 }
 
 .txt-same-line-wrapper {
@@ -38,5 +38,5 @@
 }
 
 /* ngrok dev*/
-/* ngrok http 5173 */
-/* https://cd99-173-175-50-10.ngrok-free.app */
+/* ngrok http http://localhost:5173 */
+/* https://3a2e-173-175-50-10.ngrok-free.app */

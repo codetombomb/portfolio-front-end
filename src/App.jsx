@@ -8,9 +8,14 @@ function App() {
     <>
       <Home />
       <About />
-      <h1>Works Title</h1>
-      <h1>Work 1</h1>
-      <h1>Work 2</h1>
+      <h1
+        className="section"
+        style={{ backgroundColor: "black", paddingTop: "5%" }}
+      >
+        Works Title
+      </h1>
+      <h1 className="section">Work 1</h1>
+      <h1 className="section">Work 2</h1>
     </>
   );
 }
