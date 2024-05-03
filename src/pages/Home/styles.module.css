@@ -44,7 +44,6 @@
 .headline {
   font-size: 1em;
   color: #ffffff;
-  /* max-width: 325px; */
 }
 
 .tomImg {
@@ -72,7 +71,7 @@
 }
 
 .navLinks {
-  display: block;
+  display: flex;
   justify-content: space-around;
   width: 65%;
   min-width: 290px;
