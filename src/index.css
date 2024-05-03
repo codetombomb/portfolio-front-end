@@ -17,41 +17,7 @@
   font-family: var(--primary-font);
 }
 
-.section {
-  height: 100vh;
-  width: 100vw;
-  min-width: 335px;
-  min-height: 830px;
-  max-height: 1000px;
-}
-
-.txt-same-line-wrapper {
-  display: flex;
-}
-
-.grid-center {
-  display: grid;
-  place-items: center;
-}
-
-.flex-align-center {
-  display: flex;
-  align-items: center;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-/* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
-
-@media (min-width: 1200px) {
-  .txt-same-line-wrapper {
-    flex-direction: column;
-  }
-
-  .flex-align-center {
-    padding: 2% 0 1% 0;
-  }
+body {
+  background-color: black;
+  color: #ffffff;
 }
