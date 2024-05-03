@@ -1,0 +1,182 @@
+.home {
+  background-color: #ed6f4c;
+  color: #24110b;
+}
+
+.mainContent {
+  border: 15px solid #24110b;
+  width: 95%;
+  height: 97.5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameWrapper {
+  margin: 3%;
+}
+
+.topSection {
+  flex-grow: 1;
+}
+
+.btmSection {
+  bottom: 0px;
+  width: 100%;
+  max-height: 440px;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.headlineWrapper .headline {
+  margin: 3%;
+  font-family: var(--secondary-font);
+}
+
+.nameWrapper h1 {
+  font-size: 5em;
+  padding: 2%;
+  line-height: 0.9em;
+}
+
+.headline {
+  font-size: 1em;
+  color: #ffffff;
+}
+
+.tomImg {
+  width: 80%;
+  min-width: 290px;
+  max-width: 340px;
+  opacity: 85%;
+}
+
+.hireMeWrapper {
+  background-color: #24110b;
+  cursor: pointer;
+  height: 8%;
+  display: grid;
+  place-items: center;
+}
+
+.hireMe {
+  font-size: 2em;
+}
+
+.hireMe a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-around;
+  width: 65%;
+  min-width: 290px;
+  max-width: 450px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #24110b;
+  font-size: 3em;
+}
+
+.socialLinksWrapper {
+  justify-content: center;
+}
+
+@media (min-width: 576px) {
+  .tomImg {
+    max-width: 415px;
+  }
+
+  .headline {
+    max-width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .headline {
+    max-width: 285px;
+  }
+
+  .tomImg {
+    max-width: 500px;
+  }
+
+  .nameWrapper {
+    margin: 0%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .home {
+    position: relative;
+  }
+  .mainContent {
+    border: none;
+    max-width: 1450px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  nav a {
+    display: none;
+  }
+
+  .headline {
+    display: none;
+  }
+
+  .tomImg {
+    width: 100%;
+    max-width: 542px;
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .desktopDisplay {
+    border: 15px solid #24110b;
+    width: 90%;
+    max-width: 690px;
+    position: relative;
+    height: 85vh;
+  }
+
+  .hireMeWrapper {
+    display: none;
+  }
+
+  .hireMe {
+    display: none;
+  }
+
+  .socialLinksWrapper {
+    width: 90%;
+  }
+
+  .nameWrapper {
+    margin: 0px;
+  }
+  .nameWrapper h1 {
+    font-size: 16em;
+    padding: 4%;
+    line-height: 0.9em;
+  }
+
+  .topSection {
+    width: 50%;
+    position: absolute;
+    height: 100%;
+  }
+
+  .btmSection {
+    max-height: none;
+    height: 100%;
+    position: absolute;
+    align-items: flex-end;
+    right: 0px;
+    width: 50%;
+  }
+}

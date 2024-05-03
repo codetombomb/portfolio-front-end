@@ -1,0 +1,140 @@
+.aboutSection {
+  background-color: black;
+  position: relative;
+}
+
+.aboutMainContent {
+  border: 1px solid #24fe00;
+  width: 90%;
+  height: 85%;
+  border-radius: 25px;
+  margin-top: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: fit-content;
+}
+
+.aboutSectionTitleWrapper {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.aboutSectionTitle {
+  width: 80%;
+  max-width: 575px;
+}
+
+.tomSideImgWrapper {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.tomSideImg {
+  width: 100%;
+  max-width: 315px;
+  filter: grayscale(80%) hue-rotate(40deg);
+}
+
+.aboutGreeting {
+  color: #ffffff;
+  font-family: var(--secondary-font);
+  font-size: 1.4em;
+  text-align: center;
+  margin: 0%;
+}
+
+.aboutDescription {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutDescription p {
+  color: #24fe00;
+  font-family: var(--secondary-font);
+  font-size: 0.85em;
+  padding: 2% 5%;
+}
+
+.aboutTopSection {
+  width: 100%;
+  height: 60%;
+}
+
+@media (min-width: 576px) {
+  .aboutGreeting {
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .aboutDescription p {
+    max-width: 650px;
+  }
+}
+
+@media (min-width: 768px) {
+  å .aboutGreeting {
+    font-size: 1.5;
+  }
+
+  .aboutDescription p {
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 992px) {
+  .aboutDescription {
+    font-size: 1.08em;
+    padding: 1% 2%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .aboutSection {
+    position: relative;
+  }
+  .aboutMainContent {
+    flex-direction: row;
+    justify-content: flex-end;
+    position: static;
+    margin-top: 7%;
+  }
+
+  .aboutSectionTitleWrapper {
+    width: 100%;
+    max-width: none;
+  }
+  .aboutSectionTitle {
+    width: 40%;
+    width: 100vw;
+    max-width: 500px;
+  }
+
+  .tomSideImgWrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tomSideImg {
+    height: 100%;
+    width: 100%;
+    max-width: 525px;
+    align-self: flex-end;
+  }
+
+  .aboutDescription p {
+    padding: 2% 5%;
+  }
+
+  .aboutTopSection {
+    width: 50%;
+    height: 100%;
+    display: block;
+  }
+  .aboutBtmSection {
+    width: 50%;
+  }
+}

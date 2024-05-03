@@ -1,57 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-
 :root {
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
-  --primary-light: #D5FF40;
-  --primary-dark: black;
-
-  --secondary-light: #606060;
-  --secondary-lighter: #ECECEC;
-  --secondary-dark: #161616;
-
-  --tertiary-light: #3A098A;
-  --tertiary-lighter: #FFA800;
-  --tertiary-dark: #090010;
-  
-  --chat-input-dark: #242426;
-  --chat-input-light: #2D2D2F;
-
-  --heading-font: 'Rubik Mono One', monospace;
-  font-family: 'Red Hat Mono', serif;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+
+  --primary-font: "Impact", sans-serif;
+  --secondary-font: "KyivTypeSerif-Regular", serif;
 }
 
-*, *::before, *::after {
-  padding: 0;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
   margin: 0;
-}
-
-html {
-  scroll-snap-type: y mandatory;
-  min-width: 300px;
+  padding: 0;
+  font-family: var(--primary-font);
 }
 
 body {
-  box-sizing: border-box;
-  background-color: var(--primary-light);
-  min-width: 200px;
-}
-
-h1 {
-  font-size: 1.8em;
-}
-
-p {
-  font-size: 1em;
-}
-
-button {
-  font-family: 'Red Hat Mono', serif;
+  background-color: black;
+  color: #ffffff;
 }

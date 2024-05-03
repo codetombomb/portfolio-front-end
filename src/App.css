@@ -1,20 +1,42 @@
-.flex {
-    display: flex;
+.section {
+  height: 100vh;
+  width: 100vw;
+  min-width: 335px;
+  min-height: 825px;
+  max-height: 900px;
 }
 
-.flex-column {
-    flex-direction: column;
-}
-
-.flex-center {
-    align-items: center;
-    justify-content: center;
-}
-
-.grid {
-    display: grid;
+.txt-same-line-wrapper {
+  display: flex;
 }
 
 .grid-center {
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
+
+@media (min-width: 1200px) {
+  .txt-same-line-wrapper {
+    flex-direction: column;
+  }
+
+  .flex-align-center {
+    padding: 2% 0 1% 0;
+  }
+}
+
+/* ngrok dev*/
+/* ngrok http http://localhost:5173 */
+/* https://3a2e-173-175-50-10.ngrok-free.app */
