@@ -5,7 +5,7 @@ import { useControls } from "leva";
 
 function Skull() {
   const skullRef = useRef(null);
-  const skull = useGLTF("./human_skull_sculpture/scene.gltf");
+  const skull = useGLTF("./skull.glb");
 
   useFrame((_, delta) => {
     skullRef.current.rotation.y -= delta * 0.25;
@@ -26,7 +26,7 @@ function Skull() {
       step: 0.001,
     },
     skullY: {
-      value: 1.53,
+      value: 0,
       min: -100,
       max: 100,
       step: 0.001,
