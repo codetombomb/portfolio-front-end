@@ -1,3 +1,4 @@
+import styles from "./styles.module.css";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { useGLTF, Html } from "@react-three/drei";
@@ -7,9 +8,9 @@ function Skull() {
   const skullRef = useRef(null);
   const skull = useGLTF("./skull.glb");
 
-  useFrame((_, delta) => {
-    skullRef.current.rotation.y -= delta * 0.25;
-  });
+  //   useFrame((_, delta) => {
+  //     skullRef.current.rotation.y -= delta * 0.25;
+  //   });
 
   const {
     skullX,
@@ -63,7 +64,16 @@ function Skull() {
       position={[skullX, skullY, skullZ]}
       rotation={[skullRotationX, skullRotationY, skullRotationZ]}
     >
-      <Html>WORKS</Html>
+      <Html className={styles.skull} center transform>
+        <div className={styles.worksTitleWrapper}>
+          <h1 className={styles.worksTitleW}>W</h1>
+          <h1 className={styles.worksTitleO}>O</h1>
+          <h1 className={styles.worksTitleR}>R</h1>
+          <h1 className={styles.worksTitleK}>K</h1>
+          <h1 className={styles.worksTitleS}>S</h1>
+          {/* <h1 className={styles.worksTitleW}>W</h1> */}
+        </div>
+      </Html>
     </primitive>
   );
 }
