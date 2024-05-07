@@ -6,7 +6,7 @@ import { useControls } from "leva";
 
 function Skull() {
   const skullRef = useRef(null);
-  const skull = useGLTF("./skull.glb");
+  const skull = useGLTF("./sm-skull.glb");
 
   //   useFrame((_, delta) => {
   //     skullRef.current.rotation.y -= delta * 0.25;
