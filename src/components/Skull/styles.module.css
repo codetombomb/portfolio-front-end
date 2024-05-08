@@ -1,0 +1,43 @@
+.skull {
+  position: relative;
+}
+
+.worksTitleWrapper {
+  border: 1px solid red;
+  height: 25vh;
+  width: 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.worksTitleW {
+  color: yellow;
+  /* position: absolute; */
+  top: 0px;
+  transform: rotate(5deg);
+}
+.worksTitleO {
+  color: orange;
+  /* position: absolute; */
+  top: 0px;
+  transform: rotate(5deg);
+}
+.worksTitleR {
+  color: purple;
+  /* position: absolute; */
+  top: 0px;
+  transform: rotate(5deg);
+}
+.worksTitleK {
+  color: green;
+  /* position: absolute; */
+  top: 0px;
+  transform: rotate(5deg);
+}
+.worksTitleS {
+  color: red;
+  /* position: absolute; */
+  top: 0px;
+  transform: rotate(5deg);
+}
