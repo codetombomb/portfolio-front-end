@@ -16,7 +16,7 @@ function WorksTitleSection() {
     pointLightLeftY: { value: -0.33, min: -50, max: 50, step: 0.001 },
     pointLightLeftZ: { value: -0.88, min: -50, max: 50, step: 0.001 },
     pointLightLeftColor: "purple",
-    pointLightLeftIntensity: { value: 50.0, min: -100, max: 100, step: 0.001 },
+    pointLightLeftIntensity: { value: 100.0, min: -100, max: 100, step: 0.001 },
   });
   const {
     pointLightRightX,
@@ -29,7 +29,7 @@ function WorksTitleSection() {
     pointLightRightZ: { value: 9.77, min: -50, max: 50, step: 0.001 },
     pointLightRightColor: "greenyellow",
     pointLightRightIntensity: {
-      value: 28.31,
+      value: 100,
       min: -100,
       max: 100,
       step: 0.001,
@@ -46,7 +46,7 @@ function WorksTitleSection() {
     pointLightFrontZ: { value: 2.89, min: -50, max: 50, step: 0.001 },
     pointLightFrontColor: "white",
     pointLightFrontIntensity: {
-      value: 20.01,
+      value: 100,
       min: -100,
       max: 100,
       step: 0.001,

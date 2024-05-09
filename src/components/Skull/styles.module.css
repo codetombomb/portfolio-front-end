@@ -1,6 +1,6 @@
-.skull {
+/* .skull {
   position: relative;
-}
+} */
 
 .worksTitleWrapper {
   border: 1px solid red;
@@ -12,10 +12,7 @@
 }
 
 .worksTitleW {
-  color: yellow;
-  /* position: absolute; */
-  top: 0px;
-  transform: rotate(5deg);
+  position: absolute;
 }
 .worksTitleO {
   color: orange;
