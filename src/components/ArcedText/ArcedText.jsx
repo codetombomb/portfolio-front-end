@@ -1,9 +1,6 @@
-import { useRef, useState, useMemo } from "react";
-import { useLoader, useFrame } from "@react-three/fiber";
+import { useMemo } from "react";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { v4 as uuidv4 } from "uuid";
-import { useControls } from "leva";
 
 import stickNoBills from "../../assets/StickNoBillsExtraBold_Regular.json";
 
@@ -53,26 +50,3 @@ function ArcedText({
 }
 
 export default ArcedText;
-
-// {letters.map((letter, index) => {
-//     const angle =
-//       (index * totalAngle) / (letters.length - 1) - totalAngle / 2;
-//     const x = Math.sin(angle) * radius;
-//     const z = Math.cos(angle) * radius - radius / 2;
-//     return (
-//       <mesh
-//         key={uuidv4()}
-//         position={[x + position[0], position[1], z + position[2]]}
-//         rotation={[
-//           letterRotation[0],
-//           letterRotation[1],
-//           -letterRotation[2] + index * 0.2,
-//         ]}
-//       >
-//         <textGeometry
-//           args={[letter, { font, size: 1, depth: 0.15, color }]}
-//         />
-//         <meshPhysicalMaterial attach="material" color="#D5FF43" />
-//       </mesh>
-//     );
-//   })}
