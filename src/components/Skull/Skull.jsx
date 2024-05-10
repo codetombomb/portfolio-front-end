@@ -1,13 +1,13 @@
-import styles from "./styles.module.css";
 import { useLoader, extend } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useRef, useState } from "react";
-import { useGLTF, Html } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
 import { useControls } from "leva";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+gsap.registerPlugin(ScrollTrigger);
+
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import stickNoBills from "../../assets/StickNoBillsExtraBold_Regular.json";
 import ArcedText from "../ArcedText/ArcedText";
 
 extend({ TextGeometry });
@@ -16,15 +16,48 @@ function Skull() {
   const skullRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
-  const font = new FontLoader().parse(stickNoBills);
-
   const skull = useLoader(GLTFLoader, "./sm-skull.glb", (loader) => {
     loader.manager.onLoad = () => console.log("Loading complete!");
     loader.manager.onProgress = (_, itemsLoaded, itemsTotal) => {
       setProgress((itemsLoaded / itemsTotal) * 100);
-      //   console.log((itemsLoaded / itemsTotal) * 100);
     };
   });
+
+  useEffect(() => {
+    gsap.fromTo(
+      skullRef.current.rotation,
+      {
+        y: Math.PI,
+      },
+      {
+        scrollTrigger: {
+          start: "top center",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+        y: -Math.PI,
+      }
+    );
+
+    gsap.fromTo(
+      skullRef.current.position,
+      {
+        x: 0,
+        z: 0,
+        y: 0,
+      },
+      {
+        scrollTrigger: {
+          start: "top center",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+        x: -1,
+        z: 6,
+        y: 1.5,
+      }
+    );
+  }, []);
 
   const {
     skullX,
@@ -68,27 +101,6 @@ function Skull() {
       value: 0.29,
       min: -100,
       max: 100,
-      step: 0.001,
-    },
-  });
-
-  const { textX, textY, textZ } = useControls("text rotate", {
-    textX: {
-      value: 0,
-      min: -5,
-      max: 5,
-      step: 0.001,
-    },
-    textY: {
-      value: Math.PI * 0.5,
-      min: -5,
-      max: 5,
-      step: 0.001,
-    },
-    textZ: {
-      value: 0,
-      min: -5,
-      max: 5,
       step: 0.001,
     },
   });

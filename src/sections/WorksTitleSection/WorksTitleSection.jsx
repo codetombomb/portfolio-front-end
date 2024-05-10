@@ -1,6 +1,3 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Html } from "@react-three/drei";
-import { useState, useRef } from "react";
 import { useControls } from "leva";
 import ThreeCanvas from "../../components/ThreeCanvas/ThreeCanvas";
 import Skull from "../../components/Skull/Skull";
@@ -54,10 +51,11 @@ function WorksTitleSection() {
   });
 
   return (
-    <div style={{ backgroundColor: "white", height: "50vh", width: "100vw" }}>
+    <div
+      id="works-title-section"
+      style={{ backgroundColor: "white", height: "50vh", width: "100vw" }}
+    >
       <ThreeCanvas>
-        <OrbitControls />
-
         {/* Lights */}
         <pointLight
           intensity={pointLightRightIntensity}

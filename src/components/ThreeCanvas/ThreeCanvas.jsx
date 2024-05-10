@@ -12,26 +12,23 @@ function ThreeCanvas({ children }) {
       min: -30,
       max: 30,
       step: 0.001,
-      // onChange: (value) => (canvasRef.current.cameraPosX = value),
     },
     cameraPosY: {
       value: 5,
       min: -30,
       max: 30,
       step: 0.001,
-      // onChange: (value) => (canvasRef.current.cameraPosY = value),
     },
     cameraPosZ: {
       value: 8,
       min: -30,
       max: 30,
       step: 0.001,
-      // onChange: (value) => (canvasRef.current.cameraPosZ = value),
     },
   });
   return (
     <Canvas
-      style={{ backgroundColor: "black" }}
+      style={{ backgroundColor: "white", minWidth: "335px" }}
       ref={canvasRef}
       camera={{
         fov: 50,
@@ -40,7 +37,7 @@ function ThreeCanvas({ children }) {
         position: [cameraPosX, cameraPosY, cameraPosZ],
       }}
     >
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       {children}
     </Canvas>
   );
