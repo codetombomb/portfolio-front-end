@@ -3,10 +3,11 @@ import "./App.css";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import WorksTitleSection from "./sections/WorksTitleSection/WorksTitleSection";
-
+import { Leva } from "leva";
 function App() {
   return (
     <>
+      <Leva hidden />
       <Home />
       <About />
       <WorksTitleSection />

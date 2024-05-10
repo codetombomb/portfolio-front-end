@@ -8,7 +8,7 @@ function ThreeCanvas({ children }) {
 
   const { cameraPosX, cameraPosY, cameraPosZ } = useControls("camera", {
     cameraPosX: {
-      value: -5,
+      value: 0,
       min: -30,
       max: 30,
       step: 0.001,
