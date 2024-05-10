@@ -28,7 +28,7 @@ function ThreeCanvas({ children }) {
   });
   return (
     <Canvas
-      style={{ backgroundColor: "white", minWidth: "335px" }}
+      style={{ backgroundColor: "black", minWidth: "335px" }}
       ref={canvasRef}
       camera={{
         fov: 50,
