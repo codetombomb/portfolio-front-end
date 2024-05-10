@@ -20,9 +20,9 @@ function Skull() {
 
   const skull = useLoader(GLTFLoader, "./sm-skull.glb", (loader) => {
     loader.manager.onLoad = () => console.log("Loading complete!");
-    loader.manager.onProgress = (url, itemsLoaded, itemsTotal) => {
+    loader.manager.onProgress = (_, itemsLoaded, itemsTotal) => {
       setProgress((itemsLoaded / itemsTotal) * 100);
-      console.log((itemsLoaded / itemsTotal) * 100);
+      //   console.log((itemsLoaded / itemsTotal) * 100);
     };
   });
 
@@ -106,49 +106,49 @@ function Skull() {
     letterRotationZ,
   } = useControls("text position", {
     textRaduis: {
-      value: 1.7,
+      value: 1.34,
       min: -10,
       max: 10,
       step: 0.001,
     },
     textPosX: {
-      value: -0.86,
+      value: 0,
       min: -100,
       max: 100,
       step: 0.001,
     },
     textPosY: {
-      value: 1.66,
+      value: 1.5,
       min: -100,
       max: 100,
       step: 0.001,
     },
     textPosZ: {
-      value: 1.27,
+      value: -0.85,
       min: -100,
       max: 100,
       step: 0.001,
     },
     textRotationX: {
-      value: 0.62,
+      value: 0.5,
       min: -10,
       max: 10,
       step: 0.001,
     },
     textRotationY: {
-      value: 2.37,
+      value: 2.2,
       min: -10,
       max: 10,
       step: 0.001,
     },
     textRotationZ: {
-      value: -1.32,
+      value: -1.65,
       min: -10,
       max: 10,
       step: 0.001,
     },
     letterRotationX: {
-      value: 0.65,
+      value: 0.75,
       min: -10,
       max: 10,
       step: 0.001,
@@ -160,7 +160,7 @@ function Skull() {
       step: 0.001,
     },
     letterRotationZ: {
-      value: -0.16,
+      value: 1.1,
       min: -10,
       max: 10,
       step: 0.001,
