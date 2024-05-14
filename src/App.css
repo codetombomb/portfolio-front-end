@@ -25,6 +25,12 @@
   flex-direction: column;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
 
 @media (min-width: 1200px) {

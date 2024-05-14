@@ -3,7 +3,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
 import { useControls } from "leva";
 
-function ThreeCanvas({ children }) {
+function ThreeCanvas({ children, color }) {
   const canvasRef = useRef(null);
 
   const { cameraPosX, cameraPosY, cameraPosZ } = useControls("camera", {
@@ -28,7 +28,10 @@ function ThreeCanvas({ children }) {
   });
   return (
     <Canvas
-      style={{ backgroundColor: "black", minWidth: "335px" }}
+      style={{
+        backgroundColor: `${color ? color : "white"}`,
+        minWidth: "335px",
+      }}
       ref={canvasRef}
       camera={{
         fov: 50,
