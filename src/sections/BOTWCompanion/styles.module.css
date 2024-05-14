@@ -1,0 +1,34 @@
+.workOne {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  border: 2px solid orangered;
+}
+
+.workOneWrapper {
+  color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+  border: 1px solid blue;
+}
+
+.workOneMainContent {
+  height: 90%;
+  width: 90%;
+  border: 1px solid rebeccapurple;
+}
+
+.workOneTitleWrapper {
+  background-color: #f6397e;
+  height: 15%;
+  color: black;
+}
+
+.workOneMainBody {
+  height: 90%;
+  width: 100%;
+  border: 1px solid black;
+}

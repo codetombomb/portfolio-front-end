@@ -55,7 +55,7 @@ function WorksTitleSection() {
       id="works-title-section"
       style={{ backgroundColor: "white", height: "50vh", width: "100vw" }}
     >
-      <ThreeCanvas>
+      <ThreeCanvas color="black">
         {/* Lights */}
         <pointLight
           intensity={pointLightRightIntensity}
