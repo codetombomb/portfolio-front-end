@@ -17,7 +17,7 @@ function Skull() {
   const [progress, setProgress] = useState(0);
 
   const skull = useLoader(GLTFLoader, "./sm-skull.glb", (loader) => {
-    loader.manager.onLoad = () => console.log("Loading complete!");
+    // loader.manager.onLoad = () => console.log("Loading complete!");
     loader.manager.onProgress = (_, itemsLoaded, itemsTotal) => {
       setProgress((itemsLoaded / itemsTotal) * 100);
     };
