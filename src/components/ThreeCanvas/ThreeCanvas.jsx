@@ -40,6 +40,7 @@ function ThreeCanvas({ children, color }) {
         position: [cameraPosX, cameraPosY, cameraPosZ],
       }}
     >
+      {/* <OrbitControls /> */}
       {children}
     </Canvas>
   );
