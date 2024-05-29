@@ -76,6 +76,8 @@
 
 .workOneLinks {
   margin-top: 5%;
+  width: 25%;
+  justify-content: space-around;
 }
 
 .websiteLink {

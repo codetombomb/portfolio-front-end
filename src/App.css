@@ -30,6 +30,11 @@
   justify-content: center;
 }
 
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
 
 @media (min-width: 1200px) {
