@@ -7,10 +7,6 @@
   padding-top: 5%;
 }
 
-.workTwoTitleWrapper {
-  border: 1px solid black;
-}
-
 .workTwoTitle {
   font-family: var(--tertiary-font);
   font-size: 6.8em;
