@@ -5,6 +5,8 @@ import About from "./pages/About/About";
 import WorksTitleSection from "./sections/WorksTitleSection/WorksTitleSection";
 import { Leva } from "leva";
 import BOTWCompanion from "./sections/BOTWCompanion/BOTWCompanion";
+import PyCliGpt from "./sections/PyCliGpt/PyCliGpt";
+
 function App() {
   return (
     <>
@@ -13,7 +15,7 @@ function App() {
       <About />
       <WorksTitleSection />
       <BOTWCompanion />
-      <h1 className="section">Work 2</h1>
+      <PyCliGpt />
     </>
   );
 }

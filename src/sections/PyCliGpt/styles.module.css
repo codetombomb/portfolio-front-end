@@ -1,0 +1,51 @@
+.workTwo {
+  background-color: #fea100;
+  color: black;
+  font-family: var(--primary-font);
+  position: relative;
+  overflow: hidden;
+}
+
+.workTwo h1 {
+  font-family: var(--tertiary-font);
+  font-size: 6.8em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.bgImgWrapper {
+  position: relative;
+  border: 1px solid red;
+  width: 100%;
+  height: 65vh;
+  right: 0;
+  bottom: 0;
+  min-width: 500px;
+}
+
+.robotLazerWrapper {
+  border: 1px solid springgreen;
+  position: absolute;
+  bottom: 0;
+  right: -20%;
+  height: 100%;
+}
+
+.robotImg {
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  border: 1px solid green;
+}
+
+.eyeDot {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-left: 25em solid transparent;
+  border-right: 25em solid transparent;
+  border-bottom: 70em solid #4ced6f;
+  top: -26%;
+  right: 77%;
+  transform: rotateZ(60deg);
+}
