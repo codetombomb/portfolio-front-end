@@ -27,8 +27,10 @@ function PyCliGpt() {
 
   return (
     <section className={`section ${styles.workTwo}`}>
-      <h1 className={styles.workTwoTitle}>py-cli</h1>
-      <h1 className={styles.workTwoTitle}>gpt</h1>
+      <div className={`${styles.workTwoTitleWrapper}`}>
+        <h1 className={styles.workTwoTitle}>py-cli</h1>
+        <h1 className={styles.workTwoTitle}>gpt</h1>
+      </div>
       <div className={styles.robotImgContainer}>
         <img
           className={styles.zebraPrint}
