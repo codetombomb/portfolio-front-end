@@ -41,7 +41,7 @@ function Home() {
           </div>
           <div className={`${styles.hireMeWrapper}`}>
             <h1 className={styles.hireMe}>
-              <a href="#hire-now">Hire now!</a>
+              <a href="mailto:codetombomb@gmail.com">Hire now!</a>
             </h1>
           </div>
           <nav className={`grid-center`}>
