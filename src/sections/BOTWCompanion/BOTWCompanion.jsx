@@ -49,7 +49,7 @@ function BOTWCompanion() {
                 <div className="flex-center flex-column">
                   <img
                     className={styles.workOneDemo}
-                    src="https://github.com/codetombomb/2023-acc-phase-1-project-demo/raw/main/assets/demo.gif"
+                    src="./botw-img.png"
                   ></img>
                   <div className={`${styles.workOneLinks} flex-center`}>
                     <SocialIcon
